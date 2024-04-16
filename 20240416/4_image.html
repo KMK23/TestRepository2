@@ -3,14 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>NASA 이미지들</title>
   </head>
   <body>
     <!-- img 태그는 시작과 종료태그가 아닌 바로 / 하면 됌 
   파일 위치를 정확히 아는것을 절대 경로, 현재 폴더위치를 기준으로하는게 상대 경로(4_image부터 시작해서 폴더 뒤로가기. resources, img 이렇게)
   ..은 뒤로가기가 상위 폴더로 
-결국에 image 부터 시작이니까 ..(상위로) 다음 resources/img/시바견.png 이렇게-->
-    <h2>시바견</h2>
-    <img src="../resources/img/시바견.png" />
+  결국에 image 부터 시작이니까 ..(상위로) 다음 resources/img/시바견.png 이렇게
+  절대경로에서 찾는법은 가장 상위가 내 폴더이므로 "/"이렇게 쓰면 가장 최상위 폴더이다. 읽을때는 루트경로라고 한다.
+  둘의 구분법은 
+  절대경로는 /이거나 /앞에 폴더명 Folder Name부터 시작이고
+  ..을 쓰거나 .을쓰면 상대경로이다. .한개는 현재 경로를 바로 파악할수 있어
+  alt 속성 : alternate text이건 이미지 파일이 안나올때 대체할수 있는 것-->
+    <!-- <h2>시바견</h2>
+    <img
+      src="../resources/img/시바견.png"
+      width="400"
+      height="420"
+      alt="시바견 이미지"
+    /> -->
+    <!-- <img src="/resources/img/시바견.png" /> -->
   </body>
 </html>
