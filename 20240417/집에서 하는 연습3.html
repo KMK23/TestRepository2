@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form>
+      고객 명 : <input type="text" /> 전화번호 :
+      <input tpye="tel" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4} required" /> E-mail
+      : <input type="email" required />
+      <fieldset style="width: 400px">
+        <legend>피자 사이즈</legend>
+        <input type="radio" name="size" id="small" value="small" />
+        <label for="small">Small</label><br /><br />
+        <input type="radio" name="size" id="medium" value="medium" />
+        <label for="medium">Medium</label><br /><br />
+        <input type="radio" name="size" id="large" value="large" />
+        <label for="large">Large</label>
+      </fieldset>
+      <fieldset style="width: 400px">
+        <legend>토핑 선택</legend>
+        <input type="checkbox" name="토핑" id="베이컨" value="베이컨" />
+        <label for="베이컨">베이컨</label><br /><br />
+        <input type="checkbox" name="토핑" id="치즈" value="치즈" />
+        <label for="치즈">치즈</label><br /><br />
+        <input type="checkbox" name="토핑" id="양파" value="양파" />
+        <label for="양파">양파</label><br /><br />
+        <input type="checkbox" name="토핑" id="버섯" value="버섯" />
+        <label for="버섯">버섯</label>
+      </fieldset>
+      <br />
+      희망배송시간 : <input type="time" name="time" /><br />
+      배송시 요청사항 : <textarea name="feedback" rows="3" cols="7"></textarea>
+      <br />
+      <input type="submit" value="주문하기" />
+      <input type="reset" value="다시 선택하기" />
+    </form>
+  </body>
+</html>
