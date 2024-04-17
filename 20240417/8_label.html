@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <label for="male">남성</label>
+    <input type="radio" name="gender" id="male" value="male" /><br />
+    <label for="female">여성</label>
+    <input type="radio" name="gender" id="female" value="female" /><br />
+    <input type="submit" value="제출" />
+    <!-- name의 역할이 하나만 선택되게끔 하는것. 
+    id와 for의 역할은 텍스트만 눌러도 선택이 된다.
+    for 속성이 없을때는 텍스트를 눌러도 반응이 없다.
+    for 속성과 맞추어 주기위해 or id 속성과 맞춰주기 위해 두개 쓴다고 생각해. -->
+    <br /><br />
+    <label for="">삼성노트북</label>
+    <input type="checkbox" id="samsung" name="notebook" />
+    <label for="">lg노트북</label>
+    <input type="checkbox" id="LG" name="notebook" />
+    <label for="">asus노트북</label>
+    <input type="checkbox" id="ASUS" name="notebook" />
+    <label for="">MAC</label>
+    <input type="checkbox" id="MAC" name="notebook" />
+    <input type="submit" value="제출" />
+    <!-- 여기서 name은 서버로 전송해서 받는 데이터의 구분을 위해 쓴다. 서버에서 선택된 내용을 알기 위해
+    서버에 전송되는 내용을 확인하기 위해서는 f12 누르고 네트워크 headers, payload 에서 확인 가능함.-->
+  </body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이메일 전송화면</title>
+  </head>
+  <body>
+    <form>
+      <h1>이메일 전송화면</h1>
+      이름:<input type="text" name="name" /><br />
+      이메일 주소:<input type="email" name="email" required /><br />
+      내용<br /><textarea name="feedback" rows="2" cols="30"></textarea><br />
+      <input type="submit" value="전송" />
+      <input type="reset" value="재설정" />
+    </form>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br />
+      <h1>회원 가입 화면</h1>
+      이름:<input type="text" name="name" /><br />
+      주소:<input type="text" /><br />
+      email:<input type="email" required /><br />
+      <input type="radio" name="gender" id="Male" value="Male" />
+      <label for="Male">Male</label><br />
+      <input type="radio" name="gender" id="female" value="female" />
+      <label for="Female">Female</label><br />
+      <input type="submit" value="Send" />
+      <input type="reset" value="원래대로" />
+    </form>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <form>
+    고객 명:<input type="text" name="name" />
+    <p>
+      전화번호:<input
+        type="tel"
+        pattern="[0-9]{3}-[0-9]{3,4}-[0-9]{3} required"
+      />
+    </p>
+    <p>E-mail<input type="email" name="email" required /></p>
+    <fieldset style="width: 200px;">
+      <legend>피자 사이즈></legend>
+    <input type="radio" name="size" id="small" value="small" >
+    <label for="small">Small</label><br>
+    <input type="radio" name="size" id="medium" value="medium">
+    <label for="medium">Medium</label><br>
+    <input type="radio" name="size" id="large" value="large">
+    <label for="large">Large</label><br>
+    </fieldset>
+    <br>
+    <fieldset style="width: 200px;">
+      <legend>토핑 선택</legend>
+      <input type="checkbox" id="베이컨" value="베이컨">
+      <label for="베이컨">베이컨</label><br>
+      <input type="checkbox" id="치즈" value="치즈">
+      <label for="치즈">치즈</label><br>
+      <input type="checkbox" id="양파" value="양파">
+      <label for="양파">양파</label><br>
+      <input type="checkbox" id="버섯" value="버섯">
+      <label for="버섯">버섯</label>
+    </fieldset>
+    희망배송시간 : <input type="time"><br>
+    배송시 요청사항 : <textarea name="feedback" rows="5" cols="30"></textarea><br>
+    <input type="submit" value="주문하기">
+    <input type="reset" value="다시 선택하기">
+    </form>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br />  
+    <form>
+      <fieldset style="width: 500px;">
+      <legend>납품자 정보</legend>
+     <p> 1.납품자명 : <input type="text" placeholder="name"></p>
+     <p> 2.email : <input type="text" placeholder="answer@naver.com"></p>
+     <p> 3.홈페이지 : <input type="text" placeholder="http://"></p>
+        </fieldset>
+        <fieldset style="width: 500px;">
+        <legend>납품정보</legend>
+          <ul>
+          <p><li>상품명 : <input type="text"></li></p>
+          <p><li>납품수량 : <input type="text" placeholder="최소 100"></li>
+          <li>납품등급 : <input type="range" min="100" max="1000"></li>
+          <li>기타사항 : <textarea name="feedback" rows="3" cols="20"></textarea></li> 
+        </ul>
+        </fieldset></br>
+        <input type="submit" value="send massage">
+    </form>
+  </body>
+</html>
