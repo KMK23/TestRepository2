@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    a[target="_blank"] {
+      font-size: 2rem;
+    }
+    a[target="_self"] {
+      background-color: yellow;
+    }
+    /* 이건 속성을 바꾸는 것. */
+    div > a[target="_top"] {
+      background-color: orange;
+    }
+    [title] {
+      font-weight: 900;
+      background-color: blue;
+    }
+    [title] {
+      font-weight: 800;
+    }
+  </style>
+  <body>
+    <div>
+      <a href="2_coffe.html" target="_top">현재 탭이 전환됩니다.</a>
+      <div>
+        <a href="2_coffe.html" target="_self">현재 탭이 전환됩니다.</a>
+      </div>
+    </div>
+    <a href="2_coffe.html" target="_blank" title="coffe"
+      >새로운 탭으로 열립니다.</a
+    >
+
+    <p title="title입니다.">title이 있는 p태그 입니다.</p>
+    <p title="ㅎㅎㅎㅎㅎㅎ">title이 있는 p태그 입니다.</p>
+    <p>title이 없는 p태그 입니다.</p>
+  </body>
+</html>
