@@ -1,0 +1,13 @@
+h1,
+p {
+  font-family: sans-serif;
+  color: blue;
+}
+span {
+  font-size: 2em;
+  color: red;
+}
+em {
+  font-size: 1.5em;
+  color: yellow;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    a[target="_blank"] {
+      font-size: 3em;
+      border: 2px solid red;
+    }
+
+    a[target="_self"] {
+      font-weight: bold;
+      background-color: violet;
+    }
+
+    a[target="_top"] {
+      font-style: italic;
+      color: blue;
+    }
+
+    p[title] {
+      color: yellow;
+    }
+
+    div[title] {
+      font-weight: bold;
+    }
+
+    p[class="“example”"] {
+      color: blue;
+    }
+    p.example {
+      color: blue;
+    }
+  </style>
+  <body>
+    <div>
+      <a href="H_2_coffee.html" target="_blank">새탭으로 연결</a><br /><br />
+      <a href="H_2_coffee.html" target="_self">현재 탭으로 연결</a><br /><br />
+      <a href="H_2_coffee.html" target="_top">top임</a><br /><br />
+      <br /><br />
+      <p title="ex">example</p>
+      <div title="beacause">beacause</div>
+    </div>
+    <p class="example">쏼라쏼라</p>
+    <p class="">fdf</p>
+  </body>
+</html>
