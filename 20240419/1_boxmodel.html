@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      /* Box-sizing 속성 
+      content-box: 정해준 width, height 값은 화면상에서 그대로 표현되지 않고
+      padding 과 border 영역을 포함해서 화면에 표현된다.(default) 
+      border-box: 정해준 width, height 값이 화면상에 그대로 표현된다.
+      */
+      box-sizing: border-box;
+    }
+    /* 박스사이즈 보더박스를 넣지 않으면 원래는 컨탠츠 박스이다. 
+    박스사이징 보더박스를 넣으면 보더를 몇을 주건 패딩을 몇을 주건 안에 컨탠츠 영역만 줄어들지 계산하기는 훨씬 편리하다. */
+    /* body 태그 margin 의 값을 설정하기 어렵다. */
+    body {
+      margin: 0;
+    }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+    /* 영역을 잡아두어야지 레이아웃 하기 편하다. */
+    div {
+      /* div는 블록요소이므로 width, height 값을 조정할 수 있다. */
+      width: 490px;
+      height: 490px;
+      border: 5px solid red;
+      /* padding: 15px; */
+      margin: 15px;
+    }
+
+    /* body 태그 안에 있는 첫번째 요소에서 margin 값을 0을 주는것을 잘 생각해서 해야해.
+     */
+  </style>
+  <body>
+    <div></div>
+  </body>
+</html>

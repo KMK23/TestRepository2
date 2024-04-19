@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    p.width {
+      border-style: solid;
+      border-color: red;
+      width: 150px;
+      /* border-width: 10px 6px; */
+      /* border-width: thick; */
+      /* border-width: medium; */
+      /* border-width: thin; */
+      border-width: thin;
+    }
+    div.radius {
+      width: 300px;
+      height: 300px;
+      border: 5px dotted blue;
+      /* border-radius: 50px 15px; */
+      border-radius: 50%;
+      /* border를 줄였을 뿐 content를 줄인것은 아니다. */
+      /* radius 원래 모양 : 40px 20px 40px 20px / 20px 40px 20px 40px 
+                           / 전에 값은 x축, / 뒷값은 y축*/
+    }
+    div.shadow {
+      width: 300px;
+      height: 100px;
+      background-color: plum;
+      /* box-shadow : offset-X offset-Y blur spread color inset */
+      box-shadow: 20px 10px 5px 10px #666666 inset;
+    }
+  </style>
+  <body>
+    <p style="border-style: none">none.</p>
+    <p style="border-style: dotted">dotted.</p>
+    <p style="border-style: dashed">dashed.</p>
+    <p style="border-style: solid">solid.</p>
+    <p style="border-style: double">double.</p>
+    <p style="border-style: groove">groove.</p>
+    <p style="border-style: ridge">ridge.</p>
+    <p style="border-style: inset">inset.</p>
+    <p style="border-style: outset">outset.</p>
+
+    <p class="width">border-width 확인</p>
+    <div class="radius">
+      border-radius 속성을 사용하면 둥근 경계선을 만들 수 있습니다.
+    </div>
+    <div class="shadow"></div>
+  </body>
+</html>

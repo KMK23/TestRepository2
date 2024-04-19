@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    div {
+      width: 300px;
+      height: 100px;
+      background-color: hotpink;
+    }
+    p {
+      width: 300px;
+      height: 150px;
+      background-color: yellow;
+      display: inline-block;
+    }
+    span {
+      /* width: 300px; */
+      /* height: 50px; */
+      background-color: blue;
+    }
+  </style>
+  <body>
+    <!-- 블록요소 
+        블록요소의 옆으로 다른 요소가 올 수 없다.(개행된다)
+        작성하는 width, height 값 대로 크기가 조정된다.
+        
+        인라인요소
+        인라인요소의 옆으로 다른 인라인요소가 올 수 있다.(블록요소는 올 수 없다)
+        width, height 값은 인라인 요소의 컨텐트 만큼만 갖는다.
+    -->
+
+    <!-- 블록,인라인 두개다 갖고 있는 하이브리드도 있다.
+         inline-block : block 요소의 특징과 inline 요소의 특징을 갖는다.
+         작성하는 width, height 값 대로 크기가 조정되고, 옆으로 다른 요소를 배치 할 수 있다.
+         (input, button, select...)
+        -->
+    <div>div</div>
+    <p>p</p>
+    <span>span</span><br /><br />
+
+    <span border-style="solid">이것은 ㅓㅁ닝럼니ㅏㅇ러미ㅏㄴ어리마넝ㄹ</span>
+  </body>
+</html>

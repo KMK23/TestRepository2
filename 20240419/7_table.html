@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    /* table,
+    th,
+    td {
+      border: 2px solid orange;
+    }
+    table {
+      border-collapse: separate;
+      border-spacing: 20px 30px;
+      width: 100%;
+      text-align: center; */
+    /* 정렬을 했는데 table안에 있는 tr이 효과를 먹어야 하는데, th, td까지 먹었어.
+      table은 tr , td 등 안에 있는걸 상속받는e다.
+      tr td 에 직접 효과를 주어도 상관 없지만 번잡해지니 table 에 한번에 쓰도록해. */
+    /* } */
+    /* th {
+      height: 50px;
+      vertical-align: top;
+    }
+    td {
+      height: 50px;
+      vertical-align: bottom;
+    }
+    caption {
+      caption-side: bottom;
+      font-weight: 900;
+    } */
+    #list {
+      width: 100%;
+    }
+    #list th,
+    #list td {
+      border: 1px dotted gray;
+      text-align: center;
+    }
+    /* #list th {
+      color: white;
+      background-color: blue;
+    }
+    #list tr.alt td {
+      background-color: yellow;
+    } */
+    tr:nth-child(even) {
+      background-color: yellow;
+    }
+    /* 2n+1 이 어렵다면 odd을 쓰도록(홀수). 짝수는 2n+2 지만 even도 가능  */
+    /* tr:first-child {
+      background-color: blue;
+      color: white;} */
+    /* last-child도 많이 쓴다. */
+
+    tr:not(:first-child) {
+      background-color: springgreen;
+    }
+  </style>
+  <body>
+    <!-- <table>
+      <caption>
+        VIP 고객 리스트
+      </caption>
+      <tr>
+        <th>이름</th>
+        <th>이메일</th>
+      </tr>
+      <tr>
+        <td>김철수</td>
+        <td>kmjnh34@google.com</td>
+      </tr>
+      <tr>
+        <td>김영희</td>
+        <td>shpark@naver.com</td> -->
+
+    <table id="list">
+      <tr>
+        <th>이름</th>
+        <th>이메일</th>
+      </tr>
+      <tr>
+        <td>김철수</td>
+        <td>chul@gmail.com</td>
+      </tr>
+      <tr class="alt">
+        <td>김영희</td>
+        <td>young@gmail.com</td>
+      </tr>
+      <tr>
+        <td>홍길동</td>
+        <td>hong@google.com</td>
+      </tr>
+      <tr class="alt">
+        <td>김수진</td>
+        <td>sujin@google.com</td>
+      </tr>
+    </table>
+  </body>
+</html>
