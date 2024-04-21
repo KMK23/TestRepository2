@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      width: 100%;
+      height: 100%;
+    }
+    fieldset {
+      width: 400px;
+      height: 200px;
+    }
+  </style>
+  <body>
+    <from>
+      <p>고객 명 : <input type="text" name="text" /></p>
+      <p>
+        전화번호 :
+        <input
+          type="tel"
+          name="tel"
+          pattern="[0-9]{3}-[0-9]{4}-[0-9]{4} required"
+        />
+      </p>
+      <p>E-mail : <input type="email" name="email" required /></p>
+      <fieldset>
+        <legend>피자사이즈</legend>
+        <br />
+        <input type="radio" name="size" id="small" value="small" />
+        <label for="small">Small</label><br /><br /><br />
+        <input type="radio" name="size" id="medium" value="medium" />
+        <label for="medium">medium</label><br /><br /><br />
+        <input type="radio" name="size" id="large" value="large" />
+        <label for="large">large</label><br /><br /><br />
+      </fieldset>
+      <fieldset>
+        <legend>토핑 선택</legend>
+        <br />
+        <input type="checkbox" name="topping" value="topping" />
+        &nbsp;베이컨<br /><br />
+        <input type="checkbox" name="topping" value="topping" />
+        &nbsp;베이컨<br /><br />
+        <input type="checkbox" name="topping" value="topping" />
+        &nbsp;베이컨<br /><br />
+        <input type="checkbox" name="topping" value="topping" />
+        &nbsp;베이컨<br /><br />
+      </fieldset>
+      희망 배송 시간 : <input type="time" /><br />
+      배송 시 요청 사항 :
+      <textarea rows="3" cols="10"></textarea><br />
+      <input type="submit" value="주문하기" />
+      <input type="reset" value="다시작성" />
+    </from>
+  </body>
+</html>

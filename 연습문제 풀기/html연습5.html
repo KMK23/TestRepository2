@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body {
+      padding: 0;
+    }
+    div {
+      font-family: sans-serif;
+    }
+  </style>
+  <body>
+    <div>
+      <from>
+        이메일 : <input type="email" name="email" required /><br />
+        주소 : <input type="url" name="url" /><br />
+        전화번호 :
+        <input
+          type="tel"
+          pattern="[0-9]{3}-[0-9]{3,4}-[0-9]{4}"
+          name="tel"
+        /><br />
+        색상 : <input type="color" name="color" /><br />
+        월 : <input type="month" name="month" /> <br />
+        날짜 :
+        <input type="date" name="date" /><br />
+        주 : <input type="week" name="week" /><br />
+        시간 : <input type="time" name="time" /><br />
+        지역 시간 : <input type="datetime-local" name="local" /><br />
+        숫자 : <input type="number" name="number" /><br />
+        범위 : 0<input type="range" min="0" max="9" name="range" />9<br />
+        <input type="submit" value="제출" />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <button onclick="alert('histor')">눌러보세요</button>
+        <br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+        <h1>이메일 전송화면</h1>
+        이름 : <input type="text" name="name" /><br />
+        이메일 주소 :
+        <input type="email" name="email" required /><br />
+        내용 <br />
+        <textarea name="feedback" rows="5" cols="50"></textarea><br />
+        <input type="submit" value="전송" />
+        <input type="reset" value="재설정" />
+        <br /><br /><br /><br /><br /><br /><br /><br /><br />
+        <h1>회원 가입 화면</h1>
+        <br />
+        <div>
+          이름 : <input type="text" name="name" /><br />
+          주소 : <input type="url" name="url" /><br />
+          email : <input type="email" name="emial" /><br />
+          <input type="radio" name="gender" id="male" value="male" />
+          <label for="male">Male</label><br />
+          <input type="radio" name="gender" id="female" value="female" />
+          <label for="female">FeMale</label><br />
+          <input type="submit" value="send" />
+          <input type="reset" value="원래대로" />
+        </div>
+      </from>
+    </div>
+  </body>
+</html>
