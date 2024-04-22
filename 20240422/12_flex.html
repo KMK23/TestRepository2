@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>flex 축약형</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    ul {
+      display: flex;
+      /* align-items: stretch; */
+      /* align-items: flex-start; */
+      /* 이 아이템들  정렬하는 방법. */
+      /* align-items: flex-end; */
+      /* align-items: center; */
+      /* 플렉스 컨테이너에 쓴다. */
+      /* stretch는 기본값 */
+      list-style: none;
+      border: 5px solid red;
+      padding: 0;
+      font-size: 30px;
+      height: 500px;
+    }
+    li {
+      background-color: beige;
+    }
+    li:nth-child(2n + 2) {
+      background-color: coral;
+    }
+    li:nth-child(2) {
+      flex-grow: 2;
+      flex-shrink: 2;
+      /* grow: 빈공간을 다 차지한다. 상대적인 숫자이기 때문에 1,2,3...가능
+      flex-grow의 기본값은 0이다.
+      flex-shrink는 반대. 줄어드는걸 비율로(상대적) 줄어드는 속도를 보려면 줄여서 해보면 알수 있어.   */
+      /* flex-shirnk를 써서 다람쥐에 비율을 높였더니 다람쥐가 더 빨리 줄어든다. 
+      최대로*/
+      /* flex-shrink의 기본값은 1이다. */
+    }
+    li:nth-child(3) {
+      flex-grow: 1;
+      flex-shrink: 3;
+    }
+    li:nth-child(4) {
+      flex-basis: 200px;
+      /* flex-basis는 처음의 초기값을 정해주는것. */
+    }
+    /* 축약형! 
+    grow, shrink, basis 순서이다.*/
+    li:nth-child(5) {
+      flex: 6 3 200px;
+    }
+    /* order는 각각에 줄수 있는데 예를 들어 거북이에 order5를 주면 순서가 5번 되고.
+    코끼리에 order1을 주면 1번이 된다. */
+  </style>
+  <body>
+    <ul>
+      <li id="li1">거북이</li>
+      <li id="li2">호랑이</li>
+      <li id="li3">다람쥐</li>
+      <li id="li4">고라니</li>
+      <li id="li5">코끼리</li>
+    </ul>
+  </body>
+</html>

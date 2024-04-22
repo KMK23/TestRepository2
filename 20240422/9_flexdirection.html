@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>9_flex direction</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    ul {
+      display: flex;
+      list-style: none;
+      flex-direction: column-reverse;
+    }
+    #container {
+      display: flex;
+      background-color: yellowgreen;
+      flex-wrap: nowrap;
+      /* nowarp 일떄는 어떻게든 한줄에 넣으려고함.
+      warp으로 바꾸면 우리가 정한 size를 유지 시킬수 있음 
+      밑에 박스를 200px 로 놨는데 그게 유지됌. */
+
+      /* flex warp
+       nowarp:기본값. 부모 넓이에 맞게 요소들의 넓이를 강제로 축소
+       Wrap:부모(container) 넓이보다 요소들의 총 넓이가 크다면 나머지 요소들을 다음줄로 줄바꿈
+       wrap-reverse : 줄바꿈 하는 요소들의 역순으로 배치
+       */
+    }
+    #container > div {
+      width: 200px;
+      height: 50px;
+      background-color: red;
+      padding: 5px;
+      margin: 5px;
+    }
+  </style>
+  <body>
+    <ul>
+      <li>거북이</li>
+      <li>호랑이</li>
+      <li>다람쥐</li>
+      <li>고라니</li>
+      <li>코끼리</li>
+    </ul>
+    <br /><br />
+    <div id="container">
+      <div>FLEX1</div>
+      <div>FLEX2</div>
+      <div>FLEX3</div>
+      <div>FLEX4</div>
+      <div>FLEx5</div>
+      <div>FLEX6</div>
+      <div>FLEX7</div>
+      <div>FLEX8</div>
+      <div>FLEX9</div>
+      <div>FLEX0</div>
+    </div>
+  </body>
+</html>
