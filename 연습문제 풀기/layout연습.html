@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      border: 5px solid blue;
+    }
+    h1 {
+      background-color: yellow;
+      border: 0px solid yellow;
+      border-radius: 30px 30px 30px 30px;
+      text-align: center;
+    }
+    #n1 {
+      font-size: 20px;
+      font-weight: 100;
+    }
+    #n2 {
+      background-color: rgb(245, 203, 175);
+      width: 300px;
+      /* display: inline-block; */
+      border-radius: 20px 20px 20px 20px;
+    }
+
+    .color {
+      color: yellow;
+      font-weight: bold;
+    }
+    div {
+      display: flex;
+    }
+    #box2 {
+      border: 1px dotted black;
+      background-color: black;
+      width: 500px;
+    }
+  </style>
+  <body>
+    <h1>
+      My blog Page<br /><br />
+      <div id="n1">시멘틱 태그로 만들어진 페이지 입니다.</div>
+    </h1>
+    <div>
+      <ul id="n2">
+        <h2>LINKS</h2>
+        <li>w3schools</li>
+        <li class="color">naver</li>
+        <li class="color">daum</li>
+        <img
+          src="../resources/img/강아지배경.jpg"
+          width="100px"
+          height="100px"
+        />
+        <br /><span>강아지</span>
+      </ul>
+      <p id="box2"></p>
+    </div>
+  </body>
+</html>
