@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      margin: 0;
+    }
+    #container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+    #title {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-grow: 1;
+      background-color: yellow;
+      border: 1px solid yellow;
+    }
+    #menu {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      color: white;
+      flex-grow: 1;
+      background-color: violet;
+      border: 1px solid violet;
+      text-transform: uppercase;
+    }
+    #main {
+      display: flex;
+      flex-grow: 3;
+      border: 3px solid blue;
+    }
+    #kategorie {
+      flex-grow: 1;
+      background-color: hotpink;
+      border: 1px solid hotpink;
+      flex-shrink: 0;
+    }
+    ul {
+      display: flex;
+      flex-direction: column;
+      height: 30%;
+      list-style: none;
+      border: solid 1px peachpuff;
+      background-color: peachpuff;
+    }
+    #section2 {
+      display: flex;
+      flex-grow: 2;
+      background-color: beige;
+      border: 1px solid beige;
+    }
+    #com1 {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    #com2 {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    #com3 {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+    #section3 {
+      flex-grow: 1;
+      background-color: pink;
+      border: 1px solid pink;
+      flex-shrink: 0;
+    }
+    #footer {
+      flex-grow: 1;
+      background-color: tomato;
+      border: 1px solid tomato;
+    }
+    #li_1 {
+      border: 1px dotted red;
+    }
+  </style>
+  <body>
+    <div id="container">
+      <div id="title">
+        <img src="../resources/img/개발자.jpg" width="100px" height="100px" />
+        <h1>Web Shopping</h1>
+      </div>
+      <div id="menu">
+        <p>home</p>
+        <p>shopping about</p>
+        <p>news</p>
+        <p>my account</p>
+        <p>contacts</p>
+      </div>
+      <div id="main">
+        <div id="kategorie">
+          <p>카테고리</p>
+          <ul id="li_1">
+            <li>컴퓨터</li>
+            <li>의류</li>
+            <li>음악</li>
+            <li>영화</li>
+            <li>스포츠/레저</li>
+            <li>가구/인테리어</li>
+            <li>식품</li>
+          </ul>
+        </div>
+        <div id="section2">
+          <div id="com1">
+            <img
+              src="../resources/img/귀여운 동물.jpeg"
+              width="150px"
+              height="150px"
+            />
+            <p style="width: min-content">
+              한성컴퓨터 TFG AX8726 데스크탑 i7 8700/RTX2060(로스트아크,
+              포트나이트, 배틀그라운드, 배그, 오버워치, 롤, 피파, 방송용, PC방,
+            </p>
+          </div>
+          <div id="com2">
+            <img
+              src="../resources/img/귀여운 동물.jpeg"
+              width="150px"
+              height="150px"
+            />
+            <p style="width: min-content">
+              한성컴퓨터 TFG AX8726 데스크탑 i7 8700/RTX2060(로스트아크,
+              포트나이트, 배틀그라운드, 배그, 오버워치, 롤, 피파, 방송용, PC방,
+              조립, 가정용, 사무용, 가성비, 본체)
+            </p>
+          </div>
+          <div id="com3">
+            <img
+              src="../resources/img/귀여운 동물.jpeg"
+              width="150px"
+              height="150px"
+            />
+            <p style="width: min-content">
+              한성컴퓨터 TFG AX8726 데스크탑 i7 8700/RTX2060(로스트아크,
+              포트나이트, 배틀그라운드, 배그, 오버워치, 롤, 피파, 방송용, PC방,
+            </p>
+          </div>
+        </div>
+        <div ip="section3">
+          <h3>Shopping Cart</h3>
+          <p>현재 쇼핑카트에 물품이 없습니다.</p>
+          <p>쇼핑카트 보기</p>
+          <h3>Log In</h3>
+          <p>아이디</p>
+          <input type="text" />
+          <p>패스워드</p>
+          <input type="password" /><br /><br />
+          <input type="submit" value="로그인" />
+          <input type="reset" value="초기화" />
+          <p id="go">회원가입</p>
+          <p>비밀번호 분실</p>
+        </div>
+      </div>
+      <div id="footer"></div>
+    </div>
+  </body>
+</html>

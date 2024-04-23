@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    #container {
+      border: 5px solid red;
+      border-radius: 10px;
+      font-size: 48px;
+      height: 500px;
+      display: flex;
+      /* flex-direction: column; 이렇게 y축을 주축으로 하면 밑에 수평, 수직 정렬의 기준이 바뀐다는거야. */
+      /* justify-content: center; 수평정렬(주축) */
+      /* align-items: center; 수직정렬(교차축) */
+      justify-content: center;
+      align-items: center;
+    }
+    .item {
+      width: 200px;
+      height: 100px;
+      border: 3px solid blue;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* 컨테이너 안에 있는 파란색 박스가 아이템이지만. 이걸 또 컨테이너를 만들어서 그안에 컨탠츠를 아이템으로 만들어주면 돼. */
+      /* 컨테이너가 조작할수 있는건 자식까지만이야. 그래서 id=container 의 자식인 class 까지만 되는거야. */
+    }
+  </style>
+  <body>
+    <div id="container">
+      <div class="item">flex</div>
+    </div>
+  </body>
+</html>
