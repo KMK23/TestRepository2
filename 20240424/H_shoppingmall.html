@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    /* 공통 스타일 시작 */
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body,
+    #wrapper {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      margin: 0;
+    }
+    #wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    a {
+      text-decoration: none;
+    }
+    /* 공통 스타일 끝 */
+
+    /* title 스타일 시작 */
+    #title {
+      display: flex;
+      background-color: yellow;
+      height: 10%;
+      justify-content: center;
+      align-items: center;
+    }
+    /* title 스타일 끝 */
+
+    /* menu 스타일 시작 */
+    #menu {
+      border-top: 2px dotted rgb(0, 90, 0);
+      border-bottom: 2px solid rgb(0, 90, 0);
+      height: 10%;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      margin-bottom: 1%;
+      margin-top: 0;
+    }
+    #menu a:link {
+      color: blue;
+    }
+
+    /* menu 스타일 끝 */
+
+    /* main 스타일 시작 */
+    #main {
+      display: flex;
+      height: 70%;
+
+      /* background-color: aqua; */
+    }
+    /* main 스타일 끝 */
+
+    /* nav 스타일 시작 */
+    #nav {
+      background-color: dodgerblue;
+      width: 15%;
+      padding: 0 1%;
+    }
+    #section1 li {
+      background-color: #e6b3b3;
+      padding: 5% 5%;
+      border-bottom: 1px solid #d1a3a3;
+    }
+    #section1 a:link {
+      color: white;
+    }
+    /* nav 스타일 끝 */
+    #content {
+      display: flex;
+      width: 70%;
+      background-color: #fafafa;
+      padding: 1%;
+      gap: 1%;
+    }
+
+    .com {
+      display: flex;
+      flex-direction: column;
+      width: 33%;
+      border: 1px solid #e5e5e5;
+    }
+
+    .image-section {
+      height: 70%;
+    }
+    .desc-section {
+      height: 20%;
+    }
+    .button-section {
+      height: 3%;
+    }
+    .button-section button {
+      width: 100%;
+    }
+    .last {
+      text-decoration: underline;
+    }
+    #cart {
+      background-color: bisque;
+      width: 15%;
+      padding: 0 1%;
+    }
+    /* footer 스타일 시작 */
+    #footer {
+      background-color: black;
+      height: 10%;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* footer 스타일 끝 */
+  </style>
+  <body>
+    <div id="wrapper">
+      <div
+        id="title"
+        style="
+          background-image: url(../resources/img/개발자.jpg);
+          background-size: contain;
+          background-position: center;
+          background-repeat: no-repeat;
+        "
+      >
+        <p>Web shopping</p>
+      </div>
+      <ul id="menu">
+        <li><a href="#">HOME</a></li>
+        <li><a href="#">SHOPPING ABOUT</a></li>
+        <li><a href="#">NEWS</a></li>
+        <li><a href="#">MY ACCOUNT</a></li>
+        <li><a href="#">CONTACTS</a></li>
+      </ul>
+      <div id="main">
+        <div id="nav">
+          <ul id="section1">
+            <li><a href="#">컴퓨터</a></li>
+            <li><a href="#">의류</a></li>
+            <li><a href="#">음악</a></li>
+            <li><a href="#">영화</a></li>
+            <li><a href="#">스포츠/레저</a></li>
+            <li><a href="#">가구/인테리어</a></li>
+            <li><a href="#">식품</a></li>
+          </ul>
+        </div>
+        <div id="content">
+          <div class="com">
+            <div
+              class="image-section"
+              style="
+                background-image: url(../resources/img/컴퓨터1.png);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+              "
+            ></div>
+            <div class="desc-section">
+              한성컴퓨터 TFG AX8726 데스크탑 i7 8700/RTX2060(로스트아크,
+              포트나이트, 배틀그라운드, 배그, 오버워치, 롤, 피파, 방송용, PC방)
+            </div>
+            <div class="button-section">
+              <button>쇼핑카트에 추가하기</button>
+            </div>
+          </div>
+          <div class="com">
+            <div
+              class="image-section"
+              style="
+                background-image: url(../resources/img/컴퓨터2.jpg);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+              "
+            ></div>
+            <div class="desc-section">
+              한성컴퓨터 TFG AX8726 데스크탑 i7 8700/RTX2060(로스트아크,
+              포트나이트, 배틀그라운드, 배그, 오버워치, 롤, 피파, 방송용, PC방)
+            </div>
+            <div class="button-section">
+              <button>쇼핑카트에 추가하기</button>
+            </div>
+          </div>
+          <div class="com">
+            <div
+              class="image-section"
+              style="
+                background-image: url(../resources/img/컴퓨터3.jpg);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+              "
+            ></div>
+            <div class="desc-section">
+              한성컴퓨터 TFG AX8726 데스크탑 i7 8700/RTX2060(로스트아크,
+              포트나이트, 배틀그라운드, 배그, 오버워치, 롤, 피파, 방송용, PC방)
+            </div>
+            <div class="button-section">
+              <button>쇼핑카트에 추가하기</button>
+            </div>
+          </div>
+        </div>
+        <div id="cart">
+          <h2>Shopping Cart</h2>
+          <p>현재 쇼핑카트에 물품이 없습니다.</p>
+          <p><a href="#" class="last">쇼핑카트 보기</a></p>
+          <br />
+          <h2>Log In</h2>
+          <form>
+            <div>아이디</div>
+            <input type="text" />
+            <div>패스워드</div>
+            <input type="password" /><br /><br />
+            <input type="submit" value="로그인" />
+            <input type="reset" value="초기화" />
+          </form>
+          <a href="#" class="last">회원가입</a>
+          <a href="#" class="last">비밀번호 분실</a>
+        </div>
+      </div>
+      <div id="footer">2024.04.23 DW아카데미 042-123-4567</div>
+    </div>
+  </body>
+</html>

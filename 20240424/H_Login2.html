@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    html,
+    body,
+    #container {
+      height: 100%;
+      width: 100%;
+      background-color: dimgrey;
+    }
+    #container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #box1 {
+      display: flex;
+      flex-direction: column;
+      background-color: snow;
+      width: 500px;
+      height: 500px;
+    }
+    h2 {
+      display: flex;
+      justify-content: center;
+      margin: 20%;
+    }
+    #all {
+      display: flex;
+      flex-direction: column;
+      /* justify-content: space-evenly; */
+      align-items: center;
+    }
+    .ep {
+      position: relative;
+      width: 90%;
+    }
+    .ep input:not([type="submit"]) {
+      width: 100%;
+      padding: 3% 6%;
+    }
+    .ep > i {
+      position: absolute;
+      left: 7px;
+      top: 28px;
+    }
+    #all input {
+      margin-top: 3%;
+    }
+    #all input[type="submit"] {
+      width: 200px;
+    }
+  </style>
+  <body>
+    <div id="container">
+      <div id="box1">
+        <h2>Log in</h2>
+        <form id="all">
+          <div class="ep">
+            <i class="fas fa-star"></i>
+            <input type="email" required placeholder="your email" />
+          </div>
+          <div class="ep">
+            <i class="fas fa-star"></i>
+            <input type="password" required placeholder="your password" />
+          </div>
+          <input type="submit" value="submit" class="submit" />
+        </form>
+        <div class="forgot"><a href="#">Forget your password?</a></div>
+      </div>
+    </div>
+  </body>
+</html>
