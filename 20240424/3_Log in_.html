@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    html,
+    body,
+    #wrapper {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      margin: 0%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(22, 20, 24);
+    }
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background-color: coral;
+      width: 15%;
+      height: 40%;
+    }
+    .ID {
+      position: relative;
+      width: 250px;
+      height: 30px;
+    }
+
+    .icon {
+      position: absolute;
+      top: 15px;
+      left: 3px;
+      color: yellow;
+    }
+    input {
+      padding: 20px;
+      width: 100%;
+      height: 100%;
+    }
+    a {
+      color: white;
+      text-decoration: none;
+    }
+    .type1 {
+      background-color: rgb(230, 224, 236);
+    }
+  </style>
+  <body>
+    <div id="container">
+      <h2>Log in</h2>
+      <div class="ID">
+        <i class="fas fa-vial icon"></i>
+        <input type="email" required placeholder="Your Email" class="type1" />
+      </div>
+      <br />
+      <div class="ID">
+        <i class="fas fa-vial icon"></i>
+        <input
+          type="password"
+          required
+          placeholder="Your password"
+          class="type1"
+        />
+      </div>
+      <div>
+        <br />
+        <input
+          type="submit"
+          value="SUBMIT"
+          style="background-color: yellow"
+          class="submit"
+        />
+      </div>
+      <br /><br />
+      <div>
+        <a href="@">Forgot your password?</a>
+      </div>
+    </div>
+  </body>
+</html>

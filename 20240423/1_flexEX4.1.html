@@ -26,9 +26,11 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-grow: 1;
+      flex-grow: 10%;
       background-color: yellow;
-      border: 1px solid yellow;
+      /* border: 1px solid yellow; */
+      border-radius: 50px;
+      margin-bottom: 10px;
     }
     #menu {
       display: flex;
@@ -36,87 +38,96 @@
       align-items: center;
       color: white;
       flex-grow: 1;
-      background-color: violet;
-      border: 1px solid violet;
+      background-color: #d1b3e5;
+      /* border: 1px solid violet; */
       text-transform: uppercase;
+      border-radius: 50px;
+      margin-bottom: 10px;
     }
     #main {
       display: flex;
       flex-grow: 3;
-      border: 3px solid blue;
+      /* border: 3px solid blue; */
     }
     #kategorie {
-      flex-grow: 1;
+      /* flex-grow: 1; */
       background-color: #faebeb;
       /* border: 1px solid hotpink; */
       flex-shrink: 0;
+      border-radius: 50px 50px 0 0;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      width: 15%;
     }
     ul {
       display: flex;
       flex-direction: column;
       height: 30%;
       list-style: none;
-      border: solid 1px peachpuff;
-      background-color: peachpuff;
+      font-size: 20px;
+      /* background-color: peachpuff; */
+      padding: 0;
     }
     #section2 {
       display: flex;
-      flex-grow: 2;
-      background-color: beige;
-      border: 1px solid beige;
+      /* flex-grow: 5; */
+      background-color: white;
+      width: 70%;
     }
     #com1 {
-      border: 1px solid blanchedalmond;
+      border: 1px solid #f3f2f2;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
-      /* justify-content: center; */
-      /* align-items: center; */
+      justify-content: center;
+      align-items: center;
     }
     #com2 {
       display: flex;
       flex-direction: column;
       flex-grow: 1;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #f3f2f2;
     }
     #com3 {
       display: flex;
       flex-direction: column;
       flex-grow: 1;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #f3f2f2;
     }
     #section3 {
-      flex-grow: 1;
+      /* flex-grow: 1; */
       background-color: #faebeb;
       /* border: 1px solid pink; */
-      flex-shrink: 0;
+      /* flex-shrink: 0; */
+      display: flex;
+      flex-direction: column;
+      border-radius: 50px 50px 0 0;
+      margin-left: 10px;
+      margin-bottom: 10px;
+      width: 15%;
+      /* align-items: center; */
     }
     #footer {
-      flex-grow: 1;
-      background-color: tomato;
-      border: 1px solid tomato;
+      /* flex-grow: 1; */
+      height: 8%;
+      display: flex;
+      background-color: #d1b3e5;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50px;
     }
-    #li_1 {
-      border: 1px dotted red;
-    }
-    table {
-      border-collapse: collapse;
-    }
-    ul {
-      padding: 0;
-      list-style: none;
-    }
+
     li {
       border: 1px solid #d3a4a4;
       background-color: #e6b3b3;
-      height: 170px;
-      padding-left: 20px;
-      padding-top: 15px;
+      margin: 0;
+      padding: 5px;
     }
-    #table1 {
-      display: flex;
-      justify-content: center;
-      vertical-align: middle;
-      text-align: center;
-    }
+
     h3 {
       padding: 10px;
     }
@@ -157,10 +168,10 @@
           <div id="com1">
             <img
               src="../resources/img/컴퓨터1.png"
-              width="150px"
-              height="150px"
+              width="300px"
+              height="300px"
             />
-            <p style="width: min-content">
+            <p>
               한성컴퓨터 TFG AX8726 데스크탑 i7 8700/RTX2060(로스트아크,
               포트나이트, 배틀그라운드, 배그, 오버워치, 롤, 피파, 방송용, PC방)
             </p>
@@ -169,10 +180,10 @@
           <div id="com2">
             <img
               src="../resources/img/컴퓨터2.jpg"
-              width="150px"
-              height="150px"
+              width="300px"
+              height="300px"
             />
-            <p style="width: min-content">
+            <p>
               LG Gram i7 8700/RTX2060(로스트아크, 포트나이트, 배틀그라운드,
               배그, 오버워치, 롤, 피파, 방송용, PC방, 조립, 가정용, 사무용,
               가성비, 본체)
@@ -182,10 +193,10 @@
           <div id="com3">
             <img
               src="../resources/img/컴퓨터3.jpg"
-              width="150px"
-              height="150px"
+              width="300px"
+              height="300px"
             />
-            <p style="width: min-content">
+            <p>
               NYCTO주문가능/애플정품/아이맥/MNE92KH/A[신한/KB국민 100만원 이상
               11pay 결제 시 최대 22개월 무이자 (신한/BS국민/NH농협/삼성 20만원
               이상 11pay 결제 시 최대 12개월 무이자)
@@ -193,22 +204,22 @@
             <input type="button" value="쇼핑카트에 추가하기" />
           </div>
         </div>
-        <form>
-          <div id="section3">
+        <div id="section3">
+          <form>
             <h3>Shopping Cart</h3>
             <p>현재 쇼핑카트에 물품이 없습니다.</p>
-            <p>쇼핑카트 보기</p>
+            <p><a href="@">쇼핑카트보기</a></p>
             <h3>Log In</h3>
             <p>아이디</p>
             <input type="text" />
             <p>패스워드</p>
             <input type="password" /><br /><br />
-            <input type="submit" value="로그인" />
-            <input type="reset" value="초기화" />
-            <p id="go">회원가입</p>
-            <p>비밀번호 분실</p>
-          </div>
-        </form>
+            <input type="submit" value="로그인" class="button1" />
+            <input type="reset" value="초기화" class="button2" />
+            <p id="go"><a href="@"> 회원가입</a></p>
+            <p id="back"><a href="@">비밀번호 분실</a></p>
+          </form>
+        </div>
       </div>
       <div id="footer">2019.08.23 DW아카데미 042-123-4567</div>
     </div>
