@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+    }
+
+    .container {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      border: 5px solid green;
+      height: 500px;
+
+      display: grid;
+      grid-template-columns: 200px 1fr 200px;
+      grid-template-rows: 50px 50px 1fr 50px;
+      grid-template-areas:
+        "header header header"
+        "nav nav nav"
+        "aside main aside2"
+        "footer footer footer";
+
+      /* ". header 이렇게라도 앞에 써야함. " */
+    }
+    li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: beige;
+      border: 5px solid tomato;
+      border-radius: 8px;
+    }
+    li:nth-child(1) {
+      grid-area: header;
+    }
+    li:nth-child(2) {
+      grid-area: nav;
+    }
+    li:nth-child(3) {
+      grid-area: aside;
+    }
+    li:nth-child(4) {
+      grid-area: main;
+    }
+    li:nth-child(5) {
+      grid-area: aside2;
+    }
+    li:nth-child(6) {
+      grid-area: footer;
+    }
+  </style>
+  <body>
+    <ul class="container">
+      <li class="item">HEADER</li>
+      <li class="item">NAV</li>
+      <li class="item">ASIDE</li>
+      <li class="item">MAIN</li>
+      <li class="item">ASIDE2</li>
+      <li class="item">FOOTER</li>
+    </ul>
+  </body>
+</html>

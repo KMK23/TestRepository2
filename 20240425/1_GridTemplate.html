@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grid Template</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+    }
+
+    .container {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      border: 5px solid green;
+      height: 500px;
+
+      display: grid;
+      /* grid-template-columns: 100px 200px; */
+      /* 2개를 썼으니 가로 길이가 100, 200 인 박스가 2개 생긴다. */
+      /* grid-template-rows: 100px 200px; */
+
+      /* grid-template-columns: 10% 20% 20% 10%;
+      grid-template-rows: 10% 20% 20%; */
+
+      /* grid-template-columns: 1fr 2fr;
+      grid-template-rows: 1fr 2fr; */
+      /* grid를 쓸때 아이템 갯수를 잘 파악해야해. */
+      /* 1fr 2fr로 쓸경우 1:2 비율로 된다.(전체화면) */
+
+      /* grid-template-columns: 100px 20% 1fr;  섞어 쓰기 가능*/
+
+      /* grid-template-columns: repeat(2, 1fr 3fr 2fr);
+      grid-template-rows: repeat(2, 1fr 2fr); */
+      /* 
+      grid-template-columns: repeat(2, 1fr 4fr);
+      grid-template-rows: repeat(2, 2fr 1fr); */
+
+      /* repeat과 관련해서 많이 쓰는것 
+      auto-fill과 auto-fit 은 column 의 갯수를 미리 정하지 않고 설정 된 너비가 
+      허용하는 한 최대한 셀을 채운다. 최소 최대값만 적용해주면 된다.
+      */
+      /* grid-template-columns: repeat(auto-fit, minmax(300px, auto)); */
+      /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); */
+      /* fill은 가로(width) 값이 최대한일때 최대한의 셀을 채울 뿐. 밑에 리스트가 4개밖에없으니까(실습때 5번부터 주석처리함). 
+      auto를 쓰던 1fr를 쓰던 비슷하다.
+      */
+
+      grid-template-columns: repeat(3, 1fr);
+      /* gap: 2%; */
+      /* row-gap: 10px; */
+      column-gap: 10px;
+    }
+    li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: beige;
+      border: 5px solid tomato;
+      border-radius: 8px;
+    }
+  </style>
+  <body>
+    <ul class="container">
+      <li class="item">1</li>
+      <li class="item">2</li>
+      <li class="item">3</li>
+      <li class="item">4</li>
+      <li class="item">5</li>
+      <li class="item">6</li>
+      <li class="item">7</li>
+      <li class="item">8</li>
+      <li class="item">9</li>
+    </ul>
+  </body>
+</html>

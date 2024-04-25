@@ -21,7 +21,7 @@
     #container {
       height: 100%;
       width: 100%;
-      background-color: dimgrey;
+      background-color: #1f2029;
     }
     #container {
       display: flex;
@@ -31,7 +31,8 @@
     #box1 {
       display: flex;
       flex-direction: column;
-      background-color: snow;
+      color: #c4c3ca;
+      background-color: #2a2b38;
       width: 500px;
       height: 500px;
     }
@@ -53,17 +54,42 @@
     .ep input:not([type="submit"]) {
       width: 100%;
       padding: 3% 6%;
+      font-weight: 500;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+      border: none;
+      background-color: #1f2029;
     }
+
+    .ep input:not([type="submit"]):focus {
+      border: none;
+      outline: none;
+    }
+
     .ep > i {
       position: absolute;
-      left: 7px;
-      top: 28px;
+      /* left: 7px; */
+      top: 20px;
+      color: #ffeba7;
+      padding: 5px;
     }
     #all input {
       margin-top: 3%;
     }
     #all input[type="submit"] {
-      width: 200px;
+      width: 100px;
+      height: 40px;
+      border-radius: 20px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      border: none;
+      background-color: #ffeba7;
+    }
+    .forgot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 6%;
     }
   </style>
   <body>

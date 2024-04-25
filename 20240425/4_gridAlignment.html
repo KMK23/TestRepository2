@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    html,
+    body {
+      height: 100%;
+      width: 100%;
+    }
+
+    .container {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      border: 5px solid green;
+      height: 500px;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 100px 100px 100px;
+      grid-template-rows: 80px 80px 80px;
+      /* content를 쓰려면 컨테이너 영역이 아이템들보다 커야해. 정렬 될 공간이 있어야하니까. */
+      align-content: space-between;
+      justify-content: space-between;
+      /* align-items: start; */
+      /* 각 행의 트랙의 높으 만큼 상중하 */
+      /* 
+      justify-items: start; */
+      /* 열 방향 너비 좌 센 우 */
+    }
+
+    li {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: beige;
+      border: 5px solid tomato;
+      border-radius: 8px;
+    }
+
+    /* li:nth-child(1) {
+      justify-self: start;
+      align-items: start;
+    } */
+    /* 1 4 7 */
+    /* li:nth-child(3n + 1) {
+      justify-self: start;
+    } */
+    /* 2 5 8 */
+    /* li:nth-child(3n + 2) {
+      justify-self: center;
+    } */
+    /* 3 6 9 */
+    /* li:nth-child(3n + 3) {
+      justify-self: end;
+    } */
+
+    /* li:nth-child(3) {
+      justify-self: end;
+    }
+    li:nth-child(4) {
+      align-self: center;
+    }
+    li:nth-child(5) {
+      align-self: center;
+      justify-self: center;
+    }
+    li:nth-child(6) {
+      justify-self: end;
+      align-self: center;
+    }
+    li:nth-child(7) {
+      align-self: end;
+    }
+    li:nth-child(8) {
+      justify-self: center;
+      align-self: end;
+    }
+    li:nth-child(9) {
+      align-self: end;
+      justify-self: end;
+    } */
+  </style>
+  <body>
+    <ul class="container">
+      <li class="item">1</li>
+      <li class="item">2</li>
+      <li class="item">3</li>
+
+      <li class="item">4</li>
+      <li class="item">5</li>
+      <li class="item">6</li>
+
+      <li class="item">7</li>
+      <li class="item">8</li>
+      <li class="item">9</li>
+    </ul>
+  </body>
+</html>
