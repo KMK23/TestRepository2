@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+    />
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body,
+    html,
+    #container {
+      height: 100%;
+      width: 100%;
+    }
+    body {
+      margin: 0;
+    }
+    #container {
+      background-color: blue;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+    }
+    #box {
+      display: grid;
+      grid-template-rows: 80px 100px 50px 50px;
+      align-content: space-evenly;
+      width: 500px;
+      height: 500px;
+      background-color: white;
+    }
+
+    #box h2 {
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      background-color: aqua;
+    }
+    #idps {
+      display: grid;
+      justify-items: center;
+      align-content: space-evenly;
+      background-color: red;
+      position: relative;
+    }
+    .ep {
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      /* align-items: center; */
+      width: 100%;
+      /* text-align: center; */
+    }
+    .input-section {
+      display: grid;
+      align-content: center;
+      height: 35px;
+      width: 80%;
+      padding-left: 30px;
+    }
+    .ep > i {
+      position: absolute;
+    }
+    #sub {
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      background-color: gray;
+    }
+    #submit {
+      height: 50px;
+      width: 100px;
+      background-color: yellow;
+      border: none;
+      letter-spacing: 3px;
+    }
+    #forget {
+      background-color: green;
+    }
+  </style>
+  <body>
+    <div id="container">
+      <div id="box">
+        <h2>Log in</h2>
+        <form id="idps">
+          <div class="ep">
+            <i class="fas fa-vial"></i>
+            <input
+              type="email"
+              placeholder="your email"
+              class="input-section"
+            />
+          </div>
+          <div class="ep">
+            <i class="fas fa-vial"></i>
+            <input
+              type="password"
+              placeholder="your password"
+              class="input-section"
+            />
+          </div>
+        </form>
+        <div id="sub">
+          <input type="submit" value="SUBMIT" id="submit" />
+        </div>
+        <div id="forget"><a href="@">Forget your password?</a></div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -46,6 +46,7 @@
       padding: 10px;
       text-decoration: none;
       border-radius: 30px;
+      font-size: 1em;
     }
     #main {
       background-color: beige;
@@ -53,6 +54,7 @@
       flex-direction: column;
       justify-content: space-around;
       border-radius: 30px;
+      padding: 2%;
     }
     #footer {
       background-color: violet;
@@ -77,19 +79,19 @@
     div:nth-child(4) {
       grid-area: footer;
     }
-    #sb {
-      height: 60%;
-    }
+
     .section {
-      align-items: center;
+      font-size: 1.5em;
       border: 5px dotted green;
-      background-color: darkgoldenrod;
+      background-color: #9ed7c2;
       border-radius: 30px;
+      padding: 1%;
     }
-    a:visited {
-      color: yellow;
+    #aside a:hover {
+      color: white;
     }
     a {
+      color: yellow;
       text-decoration: none;
     }
     #bob {
@@ -110,12 +112,12 @@
           <li><a href="#"> daum</a></li>
         </ul>
         <div
-          id="sb"
           style="
             background-image: url(../resources/img/스펀지밥.png);
             background-position: center;
             background-repeat: no-repeat;
             background-size: contain;
+            height: 60%;
           "
         ></div>
         <p id="bob">스펀지밥</p>
