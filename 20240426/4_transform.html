@@ -19,12 +19,12 @@
       height: 100%;
     }
 
-    /* 
-  transform 은 요소에 이동(translate), 회전(rotate), 확대/축소(scale) 
-  비틀기(skew) 효과를 부여해준다.
-  단, 그 자체로 애니메여선 효과를 제공하지는 않기 때문에 애니메이션 효과도 같이 주고 싶다면
-  trasition 과 같이 조합하면 된다.
-  */
+    /*
+    transform 은 요소에 이동(translate), 회전(rotate), 확대/축소(scale)
+    비틀기(skew) 효과를 부여해준다.
+    단, 그 자체로 애니메여선 효과를 제공하지는 않기 때문에 애니메이션 효과도 같이 주고 싶다면
+    trasition 과 같이 조합하면 된다.
+    */
     div {
       width: 100px;
       height: 100px;
@@ -46,18 +46,37 @@
     .translate:hover {
       /* translate : 요소의 위치를 X축 Y축 으로 이동 시킨다. */
       transform: translate(10px, 50px);
+
+      /* transform-origin : 요소의 기준점을 설정할 때 사용한다. */
+      /* transform-origin: 25% 25%; */
       transition: 2s linear;
     }
     .scale:hover {
       /* scale : 요소의 크기를 X축으로 X배 Y축으로 Y배 확대 또는 축소한다. */
-      transform: scale(2, 0.5);
-      transition: 2s linear;
+      transform: scale(0.5, 0.5);
+      transform-origin: 100% 100%;
+      /*50% 50% 이 기본값이다.*/
+      transition: 1s linear;
     }
     .skew:hover {
       /* skew : 요소를 X축으로 X각도 만큼 Y각도 만큼 기울인다. */
-      transform: skew(50deg, 0);
+      transform: skew(0, 50deg);
       transition: 1s linear;
     }
+
+    .rotate:hover {
+      /* rotate : 요소를 각도값 만큼 회전시킨다.  */
+      transform: rotate(360deg);
+      transition: 2s linear;
+    }
+
+    .complex:hover {
+      /* complex : 위에 것들을 복합적으로 사용하는것  */
+      transform: scale(1.5) rotate(180deg) translate(0, -220px);
+      transition: 1s linear;
+    }
+
+    /* 3D 에서 가능한것들: translate, rotate, scale 정도 */
   </style>
   <body>
     <div>
@@ -70,10 +89,10 @@
       <div class="skew">skew</div>
     </div>
     <div>
-      <div></div>
+      <div class="rotate">rotate</div>
     </div>
     <div>
-      <div></div>
+      <div class="complex">complex</div>
     </div>
     <div>
       <div></div>
