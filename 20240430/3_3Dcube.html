@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+    html,
+    body,
+    #wrapper {
+      width: 100%;
+      height: 100%;
+    }
+    #wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .cube {
+      width: 300px;
+      height: 300px;
+      /* background-color: gray; */
+      position: relative;
+      transform-style: preserve-3d;
+      transition: all 3s;
+      animation: cube 10s linear infinite;
+    }
+
+    .cube > div {
+      width: 300px;
+      height: 300px;
+      /* background-image: url(../resources/img/시바견.png);
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100%;
+      width: 100%; */
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 3rem;
+      font-weight: 700;
+      /* opacity: 0.5; */
+      border: 3px solid white;
+      color: white;
+      box-shadow: 0 0 40px 5px gold;
+    }
+
+    #front {
+      /* 
+        hsla()
+        h:hue - 색상(=색조=색) 0~360
+        s:saturation - 채도(=컬러 정도, 음영) 0~100%
+        l:lightness - 명도(=밝기) 0~100%
+        a:alpha - 불투명도 0.0 ~1.0 (opacity)
+        */
+      background-color: hsla(0, 100%, 50%, 0.5);
+      transform: translateZ(150px);
+    }
+    #left {
+      background-color: hsla(60, 100%, 50%, 0.5);
+      transform: translateX(-150px) rotateY(-90deg);
+    }
+    #right {
+      background-color: hsla(120, 100%, 50%, 0.5);
+      transform: translateX(150px) rotateY(90deg);
+    }
+    #top {
+      background-color: hsla(180, 100%, 50%, 0.5);
+      transform: translateY(-150px) rotateX(90deg);
+    }
+    #bottom {
+      background-color: hsla(240, 100%, 50%, 0.5);
+      transform: translateY(150px) rotateX(-90deg);
+    }
+    #back {
+      background-color: hsla(320, 100%, 50%, 0.5);
+      transform: translateZ(-150px) rotateY(180deg);
+    }
+
+    .cube:hover {
+      transform: rotateX(90deg);
+    }
+
+    @keyframes cube {
+      from {
+        transform: rotateX(360deg) rotateY(0deg) rotateZ(0deg);
+      }
+      to {
+        transform: rotateX(0deg) rotateY(360deg) rotateZ(360deg);
+      }
+    }
+  </style>
+  <body>
+    <div id="wrapper">
+      <div class="cube">
+        <div id="front">Front</div>
+        <div id="left">Left</div>
+        <div id="right">Right</div>
+        <div id="top">Top</div>
+        <div id="bottom">Bottom</div>
+        <div id="back">Back</div>
+      </div>
+    </div>
+  </body>
+</html>
