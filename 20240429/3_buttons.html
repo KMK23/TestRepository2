@@ -110,8 +110,11 @@
     }
 
     .Gradient {
-      background-color: #e0e5ec;
+      /* background-color: #e0e5ec; */
       position: relative;
+      overflow: hidden;
+      box-shadow: 2px 2px 2px 0px rgba(255, 255, 255, 0.5) inset,
+        7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
     }
     .Gradient::after {
       content: "";
@@ -121,6 +124,12 @@
       height: 100%;
       top: 0;
       left: 0;
+      z-index: -1;
+      border-radius: 6px;
+      transition: all 0.3s ease;
+    }
+    .Gradient:hover::after {
+      transform: scale(2) rotate(180deg);
     }
 
     /* .btn.green 이렇게 .을 두개 찍으면 btn green 두개 다 들어간 애들만 선택되는것이다. */
