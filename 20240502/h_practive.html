@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function showMe(oo) {
+        console.log(oo);
+      }
+
+      //   let message;
+      //   message = "hello";
+      //   alert(message);
+
+      //   message = "길제야 공부해라";
+      //   alert(message);
+
+      let result = 0;
+      let a = 2;
+      let b = 4;
+      let c = 3;
+
+      result = a + b + c;
+      //   console.log(result)
+      showMe(result);
+      result = (a + b) / c;
+      showMe(result);
+      result = c % a;
+      showMe(result);
+
+      //문자열 해보자
+      let str1 = "My";
+      let str2 = "Name";
+      let str3 = true;
+
+      result = str1 + str2;
+      showMe(result);
+      result = "3" + 10;
+      showMe(result);
+      result = a + b + c + "3";
+      showMe(result);
+      result = c - "3";
+      showMe(result);
+      result = `3${a}4${a}`;
+      showMe(result);
+      result = +"3" + a;
+      showMe(result);
+      result = a > b;
+      showMe(result);
+      result = a <= b;
+      showMe(result);
+      result = a == 2;
+      showMe(result);
+      result = a != 2;
+      showMe(result);
+
+      result = "2" < 3;
+      showMe(result);
+
+      result = true == 2;
+      showMe(result);
+
+      result = "0" === 0;
+      showMe(result);
+
+      result = null >= 0;
+      showMe(result);
+
+      let counter = 2;
+      counter = counter + 1;
+      result = counter;
+
+      showMe(result);
+
+      console.log("result :" + result);
+
+      let one = 2;
+      let p = --one;
+      result = p;
+      showMe(result);
+      // "" + 1 + 0; = 10;
+      // "" - 1 + 0; = -1;
+      // true + false = 1;
+      // 6 / "3" = 2;
+      // "2" + "3" + 2 = 232
+
+      console.log("문자열" + 1 + true + false + 2);
+      console.log(1 + true + false + 2 + "문자열");
+
+      //  문제의 function 구간
+
+      // function 함수명 (){}; 기본형태다
+
+      function local(data) {
+        console.log(data);
+      }
+
+      function name(a, b) {
+        document.write(`<h1>${a}야 ${b} 공부해라</h1>`);
+      }
+      name("길제", "제발");
+      name("경문", "똑바로");
+
+      //   function add(x = 0, y = 0) {
+      //   {
+      //     let sum = 0;
+      //     sum = x + y;
+      //     return sum;
+      //   }
+      //   let solution = add(4, 7);
+      //   document.write(solution);
+      //     return x + y;
+      //   }
+      //   let solution = add(4, 7);
+      //   document.write(solution);
+
+      function sum(alpha, beta) {
+        return alpha + beta;
+      }
+
+      let solution1 = sum(10, 20);
+      let solution2 = sum(20, 30);
+
+      let totalSolution = solution1 + solution2;
+
+      document.write(totalSolution);
+
+      //1.입력값을 전달 받아 경고 창을 띄어주는 함수를 작성하세요.
+
+      function warring(a = "경고!") {
+        alert(a);
+      }
+      warring();
+      //2.두개의 숫자를 입력받아 나머지를 화면에 출력
+      function two(x = 1, y = 1) {
+        return x % y;
+      }
+      let ssg = two(5, 3);
+      document.write(`<div class='result'>${ssg}</div>`);
+    </script>
+  </body>
+</html>

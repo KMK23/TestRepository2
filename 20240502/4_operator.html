@@ -47,6 +47,7 @@
 
       result = "2" < 1; //문자형이 숫자형으로 바뀐다. --> 형변환
       result = "00000001" == 1;
+
       // truthy 한 값들은 1로 변형되고, flasy 한 값들은 0으로 변형된다.
       reuslt = true == 1; // true
       reuslt = false == 0; // true
@@ -65,7 +66,8 @@
       result = null >= 0; // true(3)
       //동등 연산자와 기타 비교 연산자의 동장 방식이 다르기 때문에
       //(1)과 (3) 에서는 null이 숫자형으로 변환 되어 0이 된다.
-      //그런데 동등 연산자는 피연산자 가 undefined 이거나 null 일때 형변환을 하지 않는다.
+      //그런데 동등 연산자는 피연산자가
+      // undefined 이거나 null 일때 형변환을 하지 않는다.
       // undifined와 null을 비교하는 경우에만 true를 반환하고 그 와의 경우에는 false를 반환한다
 
       // 증감 연산자
@@ -102,7 +104,7 @@
       //   console.log(x + "number is ");
       //   console.log("my number is " + a + b);
 
-      alert("alert 함수입니다");
+      // alert("alert 함수입니다");
 
       //   alert 함수 입니다. --> 입력값이라고한다.
       console.log(`result:${result}`);
