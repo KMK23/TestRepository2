@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //함수 선언
+      // function 함수명() {}; //가장 기본 형태
+      function showmessage(message) {
+        // 함수의 내용이 중괄호 안에 들어간다.
+        console.log(message);
+      }
+
+      //   showmessage();
+
+      function name(a, b) {
+        // a, b는 함수의 매개 변수라고 한다.
+        // 매개 변수는 함수 안에서만 사용 할 수 있다.
+        // console.log(`${a}부장님, ${b}차장님`);
+        document.write(`<h1>${a} 부장님, ${b} 차장님 환영합니다.</h1>`);
+      }
+
+      name("홍길동", "임꺽정");
+      name("김길제", "김경문");
+
+      function add(num1 = 0, num2 = 0) {
+        let sum = 0;
+        sum = num1 + num2;
+
+        return sum; //반환값
+        //add 라는 함수의 반환값을 화면에 보여주고 있는거야
+      }
+      let str = name("고길동", "또치");
+      showmessage(str);
+
+      let result = add(5, 44);
+      document.write(`<h1>${result}</h1>`);
+      result = add();
+      showmessage(result);
+      //   이걸 찍어보면 NaN 이나오는데 add의 디폴트 값이 있음. 그게 num1=0 num2=0 임
+    </script>
+  </body>
+</html>
