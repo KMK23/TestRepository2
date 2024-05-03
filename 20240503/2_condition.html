@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>condition script</title>
+  </head>
+  <body>
+    <script>
+      let year = 0;
+      year = +prompt("올해는 몇년도 입니까?");
+
+      //   false 이기 때문에 조건식이 코드 블록 안쪽으로 들어 올수 없다.
+      //   if (year == 2020) {
+      //     alert("현재 년도는 2020년 입니다.");
+      //   }
+      //   if (year == 2024) {
+      //     alert("현재 년도는 2024년 입니다.");
+      //   }
+
+      //falsy 값 : 0, "", null, undefined, NaN ...
+
+      // if, else 다 같이 있는걸 if 문이라고 한다.
+      //   if (year == 2023) {
+      //     alert("현재 년도는 2023년 입니다.");
+      //   } else if (year == 2024) {
+      //     alert("현재 년도는 2024년 입니다.");
+      //   } else if (year == 2022) {
+      //     alert("현재 년도는 2022년 입니다.");
+      //   } else {
+      //     alert("잘못 입력했다.");
+      //   }
+      //   중간에 하나가 true 이면 else 를 읽지 않고 밖으로 나가 버린다.
+
+      //   swich 의 case를 비교할 때는 동등비교가 아닌 일치비교를 한다.
+      switch (year) {
+        case 2022:
+          alert("현재 년도는 2022년 입니다.");
+          break;
+
+        case 2023:
+          alert("현재 년도는 2023년 입니다.");
+          break;
+
+        case 2024:
+          alert("현재 년도는 2024년 입니다.");
+          break;
+        default:
+          alert("잘못입력");
+      }
+
+      switch (key) {
+        case value:
+          break;
+
+        default:
+          break;
+      }
+    </script>
+  </body>
+</html>

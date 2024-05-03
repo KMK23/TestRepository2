@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //0.변수 선언
+      let num1 = 0;
+      let num2 = 0;
+      let op = 0;
+      let result = 0;
+      //1.첫번째 숫자를 입력박을 프롬프트를 띄운다.
+      num1 = +prompt("첫번째 숫자를 입력하세요");
+      //2.두번째 숫자를 입력받을 프롬프트를 띄운다.
+      num2 = +prompt("두번쨰 숫자를 입력하세요");
+      //3.연산자를 입력받을 프롬프트를 띄운다.
+      op = prompt("연산자를 입력하세요(+,-,*,/,%중 하나)");
+
+      //4.연산자를 확인할 조건문 안에서 계산결과를 도출한다.
+      if (result) {
+      } else if (op == "+") {
+        result = num1 + num2;
+      } else if (op == "-") {
+        result = num1 - num2;
+      } else if (op == "*") {
+        result = num1 * num2;
+      } else if (op == "/") {
+        result = num1 / num2;
+      } else if (op == "%") {
+        result = num1 % num2;
+      }
+
+      //5.화면에 출력한다.
+      document.write(`<h1>${num1}${op}${num2}=${result}</h1>`);
+    </script>
+  </body>
+</html>

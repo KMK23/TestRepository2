@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <script>
+      // 지역변수 전역변수
+      //   let sum;
+      let num = 0; //전역 변수. 스크립트 내부 어디서든 사용 가능하다.
+      //선언 되었을때 값을 넣어주는것을 초기화라고 함.
+
+      //함수 선언식
+      function showAlert() {
+        sum = 0; //이라고 해놨다고 치면 변수 앞에 키워드를 쓰지 않았는데도 맨위에 let sum;을 스크립트가 마음대로 만들어버림.
+        //선언과 달리 값을 넣어주는것은 할당이라고 한다.
+        let message; //지역 변수
+        alert(num); //사용가능.
+      }
+      //   alert(message); //불록 안쪽에서 사용하던 변수를 블록 밖에서 사용하는것은 불가능하다.
+      //   alert(window.sum); // 맨위에 let 하고 선언을 해줬어 스크립트가. 근데 그건 가짜임 사실 윈도우까지 나간거임.
+      //스크립트안에 들어 있는게 아니고 윈도우까지 나간상태야.
+
+      // 함수 표현식
+
+      const func = function () {};
+    </script>
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 변수 선언
+      let user1 = 0;
+      user2 = 0;
+      result = 0;
+      userNum1 = 0;
+      userNum2 = 0;
+
+      //이기는 경우 : 가위-보, 바위-가위, 보-바위 ==> -2, 1
+      //지는 경우 : 가위-바위, 바위-보, 보-가위  ==> -1, 2
+      //비기는 경우 ==> 0
+
+      // 첫번째 사람의 묵찌빠 낸걸 입력할 수있는 프롬프트 띄우기
+
+      function changeRsp(rsp) {
+        if (rsp == "가위") {
+          return 1;
+        } else if (rsp == "바위") {
+          return 2;
+        } else {
+          return 3;
+        }
+      }
+      user1 = prompt("가위 바위 보중 하나를 입력하세요");
+      // if (user1 == "가위") {
+      //   userNum1 = 1;
+      // } else if (user1 == "바위") {
+      //   userNum1 = 2;
+      // } else {
+      //   userNum1 = 3;
+      // }
+      userNum1 = chageRsp(user1);
+
+      // 두번째 사람의 묵찌빠 낸걸 입력할 수있는 프롬프트 띄우기
+      user2 = prompt("가위 바위 보중 하나를 입력하세요");
+      userNum2 = chageRsp(user2);
+      // if (user2 == "가위") {
+      //   userNum2 = 1;
+      // } else if (user2 == "바위") {
+      //   userNum2 = 2;
+      // } else {
+      //   userNum2 = 3;
+      // }
+      // 1번사용자와 2번사용자가 낸 가위바위보를 비교한다.
+
+      switch (userNum1 - userNum2) {
+        case -2:
+        case 1:
+          result = "첫번째 사람 승!!";
+          break;
+
+        case 2:
+        case -1:
+          result = "두번째 사람 승!!";
+          break;
+
+        default:
+          result = "무승부!!";
+          break;
+      }
+
+      // 결과를 화면에 출력한다.
+      document.write(`
+        <h1>첫번째 사람 : ${user1}</h1>
+        <h1>두번째 사람 : ${user2}</h1>
+        <h1>결과 : ${result}</h1>`);
+    </script>
+  </body>
+</html>

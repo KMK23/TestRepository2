@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //100~91: A, 90~81: B, 80~71: C  ...
+
+      // grade 변수에 값을 대입하기 위해 grade 변수를 써주고,
+      // 대입하기 위해 라고 했으니 대입 연산자인 "="를 써주고,
+      // 값을 대입한다고 했는데 어떤 값이냐? 사용자가 입력받는 값.
+      // 그럼 사용자에게 값은 어떻게 입력받냐 ? ==> prompt를 사용한다.
+      let grade = 0;
+
+      let result = 0;
+      grade = +prompt("점수를 입력하세요", 0);
+
+      //대입된 상태의 grade를 가지고 grade 가 어느 점수 구간에 해당되는지 알아낸다.
+      //어떻게 알아내냐? ==> if문을 사용한다.
+      //if문에서 점수 구간을 확인하려면 1<grade<100가 안되기 때문에
+      //&& 혹은 || 연산자를 써야한다.
+      if (90 <= grade && 100 >= grade) {
+        result = "gradeA";
+      } else if (80 <= grade && 89 >= grade) {
+        result = "gradeB";
+      } else if (70 <= grade && 79 >= grade) {
+        result = "gradeC";
+      } else if (60 <= grade && 69 >= grade) {
+        result = "gradeD";
+      } else if (0 <= grade && 59 >= grade) {
+        result = "gradeE";
+      } else {
+        alert("잘못입력했음.");
+      }
+      10;
+      //화면에 출력을 하자. 화면에 뭔가를 할때는 document.write를 쓰자고
+      document.write(`<h1>${result}</h1>`);
+      // && : And 연산자 || : or 연산자
+
+      //0. 변수 선언
+
+      //1. 사용자에게 점수를 입력 받는다.
+
+      //2. 입력받은 점수를 바탕으로 성적 구간이 될 수 있는 값을 도출한다.
+
+      //3. 도출된 값을 switch 문을 통해 성적을 구한다.
+
+      let grade2 = parseInt(grade / 10);
+      switch (grade2) {
+        case 9:
+        case 10:
+          result = "A";
+          break;
+        case 8:
+          result = "B";
+          break;
+        case 7:
+          result = "C";
+          break;
+        case 6:
+          result = "D";
+          break;
+        case 5:
+          result = "F";
+          break;
+      }
+      //4. 결과를 화면에 출력한다.
+
+      document.write(`<h1>${result}</h1>`);
+    </script>
+  </body>
+</html>
