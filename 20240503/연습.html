@@ -112,39 +112,39 @@
       //   userNum1 = 3;
       // }
 
-      // if (user2 == "가위") {
-      //   userNum2 = 1;
-      // } else if (user2 == "바위") {
-      //   userNum2 = 2;
-      // } else {
-      //   userNum2 = 3;
-      // }
-      //   let res = userNum1 - userNum2;
-      //   if (result == -2 || result == 1) {
-      //     result == "첫번째 승리";
-      //   } else if (result == -1 || result == 2) {
-      //     result == "두번째 승리";
-      //   } else {
-      //     result == "무승부";
-      //   }
-
-      switch (userNum1 - userNum2) {
-        case -2:
-        case 1:
-          result = "1번승";
-          break;
-
-        case 2:
-        case -1:
-          result = "2번승";
-          break;
-
-        default:
-          result = "무승부";
-          break;
+      if (user2 == "가위") {
+        userNum2 = 1;
+      } else if (user2 == "바위") {
+        userNum2 = 2;
+      } else {
+        userNum2 = 3;
+      }
+      let res = userNum1 - userNum2;
+      if (result == -2 || result == 1) {
+        result == "첫번째 승리";
+      } else if (result == -1 || result == 2) {
+        result == "두번째 승리";
+      } else {
+        result == "무승부";
       }
 
-      document.write(result);
+      // switch (userNum1 - userNum2) {
+      //   case -2:
+      //   case 1:
+      //     result = "1번승";
+      //     break;
+
+      //   case 2:
+      //   case -1:
+      //     result = "2번승";
+      //     break;
+
+      //   default:
+      //     result = "무승부";
+      //     break;
+      // }
+
+      document.write(res);
     </script>
   </body>
 </html>

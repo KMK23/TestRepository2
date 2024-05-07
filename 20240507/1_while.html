@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let i = 0;
+      while (i < 10) {
+        document.write(`<h4>카운터 :  ${i}</h4>`);
+        i++;
+      }
+      document.write(`<hr>`);
+
+      //while문은 조건식 부터 확인하고 do while 문은 한번 실행하고 조건식을 확인한다.
+      do {
+        document.write(`<h4>카운터 : ${i}</h4>`);
+        i++;
+      } while (i < 10);
+    </script>
+  </body>
+</html>

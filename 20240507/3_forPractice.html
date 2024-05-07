@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    *****<br />
+    *****<br />
+    *****<br />
+    *****<br />
+    *****<br />
+    <script>
+      document.write(`<hr>`);
+      // 1~20 까지의 숫자중 짝수만 출력 하세요.
+      //   for (let i = 2; i <= 20; i = i + 2) {
+      //     // if (i % 2 == 0) {
+      //     document.write(`<h4>${i}</h4>`);
+      //     // }
+      //   }
+      //   let x = 4;
+      //   for (let i = 2; i <= x * 5; i = i + 2) {
+      //     document.write(`<h4>${i}</h4>`);
+      //   }
+
+      //별찍기
+      //*****
+      //*****
+      //*****
+      //*****
+      //*****
+
+      for (let i = 1; i <= 5; i++) {
+        for (let j = 1; j <= 5; j++) {
+          document.write(`<span>*</span>`);
+        }
+        document.write(`<br>`);
+      }
+      document.write(`<hr>`);
+
+      for (let i = 1; i <= 5; i = 2 * i - 2) {
+        for (let j = 1; j <= 5; j = j++) {
+          document.write(`<span>*</span>`);
+        }
+        document.write(`<br>`);
+      }
+      document.write(`<hr>`);
+    </script>
+  </body>
+</html>
