@@ -11,6 +11,12 @@
     *****<br />
     *****<br />
     *****<br />
+
+    <!-- &nbsp;&nbsp;&nbsp;&nbsp;*<br />
+    &nbsp;&nbsp;&nbsp;**<br />
+    &nbsp;&nbsp;***<br />
+    &nbsp;****<br />
+    *****<br /> -->
     <script>
       document.write(`<hr>`);
       // 1~20 까지의 숫자중 짝수만 출력 하세요.
@@ -33,43 +39,218 @@
 
       // for (let i = 1; i <= 5; i++) {
       //   for (let j = 1; j <= 5; j++) {
-      //     document.write(`<span>*</span>`);
+      //     ap = i * j;
+      //     ap = "*";
+      //     document.write(`<span>${ap}</span>`);
       //   }
       //   document.write(`<br>`);
       // }
       // document.write(`<hr>`);
 
-<<<<<<< Updated upstream
-      // for (let a = 1; a <= 5; a++) {
-      //   document.write(`${a}번째<br>`);
-
-      //   for (let b = 1; b <= a; b++) {
-      //     add = "*";
-      //     document.write(add);
-      //   }
-      //   document.write(`<br>`);
-      // }
-      // document.write(`<hr>`);
-
-      // for (let c = 1; c <= 5; c++) {
-      //   document.write(`${c}번째<br>`);
-
-      //   for (let d = 5; d >= c; d--) {
-      //     add = "*";
-      //     document.write(add);
-      //   }
-      //   document.write(`<br>`);
-      // }
-      // document.write(`<hr>`);}
-=======
-      for (let i = 1; i <= i + 1; i++) {
-        for (let j = 1; j <= 5; j = j++) {
+      for (let a = 1; a <= 5; a++) {
+        for (let b = 1; b <= 5; b++) {
           document.write(`<span>*</span>`);
         }
         document.write(`<br>`);
       }
       document.write(`<hr>`);
->>>>>>> Stashed changes
+
+      for (let a = 1; a <= 5; a++) {
+        for (let b = 1; b <= a; b++) {
+          document.write(`<span>*</span>`);
+        }
+        document.write(`<br>`);
+      }
+      document.write(`<hr>`);
+
+      //     *
+      //    **
+      //   ***
+      //  ****
+      // *****
+
+      for (let i = 1; i <= 5; i++) {
+        // 공백 4 3 2 1 0
+        //     i        k
+        //     1     4 3 2 1
+        //     2      4 3 2
+        //     3       4 3
+        //     4        4
+        //     5      false
+        for (let k = 4; k >= i; k--) {
+          document.write(`&nbsp;`);
+        }
+        for (let j = 1; j <= i; j++) {
+          // 1 2 3 4 5
+          document.write(`*`);
+        }
+        document.write(`<br>`);
+      }
+      document.write(`<hr>`);
+      //*****
+      //****
+      //***
+      //**
+      //*
+
+      for (let a1 = 1; a1 <= 5; a1++) {
+        for (let b1 = 5; b1 >= a1; b1--) {
+          document.write(`<span>*</span>`);
+        }
+        document.write(`<br>`);
+      }
+      document.write(`<hr>`);
+
+      //*****
+      // ****
+      //  ***
+      //   **
+      //    *
+
+      for (let p = 1; p <= 5; p++) {
+        for (let z = 1; z < p; z++) {
+          document.write(`&nbsp`);
+        }
+        for (let o = 5; o >= p; o--) {
+          document.write(`<span>*</span>`);
+        }
+        document.write(`<br>`);
+      }
+      document.write(`<hr>`);
+
+      for (let x = 1; x <= 5; x++) {
+        for (let y = 1; y <= x; y++) {
+          document.write(`<span>*</span>`);
+        }
+        document.write(`<br>`);
+      }
+      for (let m = 1; m <= 5; m++) {
+        for (let n = 5; n >= m; n--) {
+          document.write(`<span>*</span>`);
+        }
+        document.write(`<br>`);
+      }
+
+      document.write(`<hr>`);
+
+      //     *
+      //    **
+      //   ***
+      //  ****
+      // *****
+      // *****
+      //  ****
+      //   ***
+      //    **
+      //     *
+      for (let v = 1; v <= 5; v++) {
+        for (let v3 = 4; v3 >= v; v3--) {
+          document.write(`&nbsp`);
+        }
+        for (let v2 = 1; v2 <= v; v2++) {
+          document.write(`<span>*</span>`);
+        }
+        document.write(`<br>`);
+      }
+      for (let vv = 1; vv <= 5; vv++) {
+        for (let vv3 = 1; vv3 < vv; vv3++) {
+          document.write(`&nbsp`);
+        }
+        for (let vv2 = 5; vv2 >= vv; vv2--) {
+          document.write(`<span>*</span>`);
+        }
+        document.write(`<br>`);
+      }
+      document.write(`<hr>`);
+
+      // 1부터 사용자가 입력한 숫자까지의 합을 더해서 화면에 출력하세요
+      // let userNum, result;
+      // let sum = 0;
+
+      // userNum = +prompt(`숫자를 입력하세요`);
+
+      // for (let num = 1; num < userNum; num++) {
+      //   sum = sum + num;
+      //   result = userNum + sum;
+      //   // console.log(result);
+      //   // sum = userNum + num;
+      //   // document.write(`${sum}`);
+      // }
+      // document.write(
+      //   `<h3>사용자가 입력한 값은 :${userNum}, 총합 : ${result}</h3>`
+      // );
+
+      // let num=0;
+      // while(num < range){
+      // sum += num;
+      // i++;}
+
+      //   *
+      //  ***
+      // *****
+      //*******
+      for (let i2 = 0; i2 < 5; i2++) {
+        for (let j2 = 4; j2 > i2; j2--) {
+          document.write("&nbsp");
+        }
+        for (let j2 = 0; j2 <= i2; j2++) {
+          document.write("*");
+        }
+        for (let j2 = 1; j2 <= i2; j2++) {
+          document.write("*");
+        }
+        document.write(`<br>`);
+      }
+
+      document.write(`<hr>`);
+      // 홀수개로 시작 이따 해보자
+      for (let ao1 = 1; ao1 <= 5; ao1++) {
+        for (let ao3 = 4; ao3 >= ao1; ao3--) {
+          document.write(`&nbsp`);
+        }
+        for (let ao2 = 1; ao2 <= 2 * ao1 - 1; ao2++) {
+          document.write(`*`);
+        }
+        document.write(`<br>`);
+      }
+
+      document.write(`<hr>`);
+      for (let tr = 1; tr <= 5; tr++) {
+        for (let tr3 = 5; tr3 > tr; tr3--) {
+          document.write(`&nbsp`);
+        }
+        for (let tr2 = 1; tr2 <= tr; tr2++) {
+          document.write(`<span>*</span>`);
+        }
+        for (let tr2 = 1; tr2 < tr; tr2++) {
+          document.write(`<span>*</span>`);
+        }
+        document.write(`<br>`);
+      }
+
+      for (let jk = 2; jk <= 5; jk++) {
+        for (let jk3 = 1; jk3 < jk; jk3++) {
+          document.write(`&nbsp`);
+        }
+        for (let jk2 = 5; jk2 >= jk; jk2--) {
+          document.write(`*`);
+        }
+        for (let jk2 = 5; jk2 > jk; jk2--) {
+          document.write(`*`);
+        }
+        document.write(`<br>`);
+      }
+
+      document.write(`<hr>`);
+      for (let q = 1; q <= 5; q++) {
+        for (let q1 = 1; q1 < q; q1++) {
+          document.write(`&nbsp`);
+        }
+        for (let q2 = 9; q2 >= 2 * q - 1; q2--) {
+          document.write(`*`);
+        }
+        document.write(`<br>`);
+      }
     </script>
   </body>
 </html>
