@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //1. push 맨뒤 추가가능
+
+      const arr = ["배", "고", "파", "집에", "가고", "싶어"];
+
+      document.write(`원본 : <p>${arr}</p>`);
+      arr.push("가", "자", "집에");
+      document.write(`수정 : <p>${arr}</p>`);
+
+      //2. pop 맨뒤 제거하고 반환 받을수있음
+      document.write(`<h1>2번 pop</h1>`);
+      document.write(`<p>원본 : ${arr}</p>`);
+      document.write(`<p>반환값 : ${arr.pop()}</p>`);
+
+      document.write(`<p>최종 : ${arr}</p>`);
+
+      //3 unshift 앞에추가일껄 근데 길이 반환임
+      document.write(`<h1>3번 unshift</h1>`);
+      document.write(`<p>원본 : ${arr}</p>`);
+      document.write(
+        `<p>그럼 몇개 lenght? : ${arr.unshift("ㅋㅋㅋ", "ㅎㅎㅎ")}</p>`
+      );
+      document.write(`<p>최종 : ${arr}</p>`);
+
+      //4 shift 앞에 제거겠지 요소 반환임
+      document.write(`<h1>4번 shift</h1>`);
+      document.write(`<p>수정 : ${arr.shift("")}</p>`);
+      document.write(`<p>원본 : ${arr}</p>`);
+    </script>
+  </body>
+</html>

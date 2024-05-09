@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      document.write(`<h1>&lt;Break&gt;</h1>`);
+      for (let i = 0; i < 10; i++) {
+        if (i == 3) {
+          break;
+          //   break가 걸렸을때는 가장 가까운 반복문을 끝낸다.
+        }
+        document.write(`<h3>${i}<h3>`);
+      }
+
+      document.write(`<hr>`);
+      let j = 0;
+      while (true) {
+        document.write(`<h3>${j}</h3>`);
+        j++;
+        if (j == 5) {
+          break;
+        }
+      }
+      document.write(`<hr>`);
+
+      document.write(`<h1>&lt;continue&gt;</h1>`);
+
+      for (let i = 0; i < 10; i++) {
+        if (i == 3) {
+          continue;
+          //   i가 3인 회차를 종료 시킨다.
+        }
+        document.write(`<h3>${i}<h3>`);
+      }
+
+      let stage = 0;
+      while (true) {
+        document.write(`<h3>${stage}스테이지</h3>`);
+        stage++;
+        if (stage == 5) {
+          continue;
+        }
+        if (stage >= 11) {
+          break;
+          //엔딩장면 (게임이라고 쳤을때)
+        }
+      }
+
+      for (let i1 = 1; i1 <= 10; i1++) {
+        if (i1 % 2 == 1) {
+          continue;
+        }
+        document.write(`<h2>${i1}</h2>`);
+      }
+    </script>
+  </body>
+</html>
