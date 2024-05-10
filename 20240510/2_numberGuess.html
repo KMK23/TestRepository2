@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Number Guess</h1>
+    <p>1부터 100 사이의 정수를 입력하세요</p>
+    <input id="number" tpye="text" />
+    <button onclick="clickFn()">숫자 추측</button>
+    <p id="solution"></p>
+  </body>
+  <script>
+    //0. 변수선언
+    const input = document.querySelector("#number");
+    const pTag = document.querySelector("#solution");
+    let randNum = 0;
+    let resStr = "";
+    const MAX_COUNT = 10;
+    let count = 0;
+
+    function reset() {
+      count = 0;
+      randNum = getRandom();
+      resStr = "";
+      input.value = "";
+      pTaq.innerHTML = "";
+    }
+    //1. random 숫자를 추출한다.(1~100)
+    function getRandom() {
+      return parseInt(Math.random() * 101);
+    }
+    randNum = getRandom();
+    //2. 사용자가 input 창에 입력한 숫자를 가져온다.
+    //2-1. input 요소에 접근한다.
+    //2-2. 접근한 input 요소의 값을 가져온다.
+    function clickFn() {
+      if (count == MAX_COUNT) {
+        reset();
+        return false;
+      }
+      //   count++;
+      //3. 랜덤숫자와 가져온 값이 일치하는지 비교한다.
+      //3-1 비교해서 값이 일치하면 p태그에 "정답"이라는 텍스트를 출력한다.
+      //3-2 불일치 일시 값을 다시 입력 받는다.
+      let inputNum = input.value;
+      if (randNum == inputNum) {
+        resStr = `ㅋ`;
+        alert(resStr);
+        reset;
+      } else {
+        count++;
+        if (randNum > inputNum) {
+          resStr = `😈UP😈. 입력한 숫자 :${inputNum}<br>`;
+        } else {
+          resStr = `😈DOWN😈. 입력한 숫자 :${inputNum}<br>`;
+        }
+
+        // if(MAX_COUNT >= 5)
+        // if(count >= MAX_COUNT)  다 가능하긴 한데 유지보수성을
+        // 따져서 위에 숫자 5를 쓰는것은 별로
+      }
+      pTag.innerHTML += resStr;
+
+      if (MAX_COUNT == count) {
+        resStr = `ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ 랜덤 숫자는 ${randNum}<br>`;
+        pTag.innerHTML = resStr;
+      }
+    }
+  </script>
+</html>

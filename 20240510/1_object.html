@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //객체 선언 방법
+      let person = {};
+      //   let person2 = new object();
+
+      // 객체 생성 후 프로퍼티 추가 방법1
+      person.age = 20;
+      // age 에 20이란값을 넣어준 상태야.
+      //근데 꺼내오려면 그냥 person.age만 써
+      person.name = "홍길동";
+      person.age = 30;
+      console.log(person);
+
+      // 객체 생성 후 프로퍼티 추가 방법2
+      person["addr"] = "대전광역시 중구 선화동";
+      person["tel"] = "010-9911-9051";
+      // 반드시 문자열이어야 한다. 쿼테이션 , 백팁 등이 없으면 변수로 된다.
+
+      // 객체 생성과 동시에 프로퍼티를 추가하는 방법.
+      let person3 = {
+        age: 25,
+        name: "둘리",
+        addr: "대전광역시 중구 선화동",
+        tel: "010-1111-2222",
+      };
+
+      //객체의 값을 가져오는 방법.
+      console.log(person3); // 이건 객체 전부를 확인하는 방법
+      console.log(person3.age); // 객체 안에 프로퍼티를 불러오는 방법
+      console.log(person3[`name`]);
+
+      //저의 이름은 name 이고 나이는 age 이며,
+      //주소는 addr 입니다. 그리고 전화번호는 tel 입니다.
+
+      document.write(
+        `<h1>저의 이름은${person3.name}이고 나이는 ${
+          person3[`age`]
+        }이며, 주소는 ${person3[`addr`]}입니다. 그리고 전화번호는 ${
+          person3.tel
+        }입니다.</h1>`
+      );
+
+      //객체를 다루는 함수
+
+      //Object.keys(객체) - 객체의 *key값* 을 배열로 반환
+      const keys = Object.keys(person3);
+      console.log(keys);
+      for (i = 0; i < keys.length; i++) {
+        console.log(person3[keys[i]]);
+      }
+
+      // Object.values(객체) - object의 *value값* 을 배열로 반환
+      const values = Object.values(person);
+      console.log(values);
+
+      // Object.entries(객체) - object의 *key,value쌍* 을 배열로 반환
+      const entries = Object.entries(person);
+      console.log(entries);
+    </script>
+  </body>
+</html>
