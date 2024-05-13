@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    div {
+      width: 300px;
+      height: 200px;
+      border: 2px solid red;
+    }
+  </style>
+  <body>
+    <div></div>
+    <br />
+    <button onclick="chgBKcolor()">색상변경</button>
+  </body>
+  <script>
+    // function chgBKcolor() {
+    //   const colorArr = [];
+    //   for (i = 1; i < 4; i++) {
+    //     const randNum = parseInt(Math.random() * 256);
+    //     colorArr.push(randNum);
+    //   }
+    //   const divEl = document.querySelector(`div`);
+    //   divEl.style.backgroundColor = `rgb(${colorArr.toString()})`;
+    // }
+
+    function chgBKcolor() {
+      const colorArr = [];
+      for (i = 1; i < 4; i++) {
+        const randNum = parseInt(Math.random() * 256);
+        colorArr.push(randNum);
+      }
+      const divEl = document.querySelector(`div`);
+      divEl.style.backgroundColor = `rgb(${colorArr.toString()}`;
+    }
+  </script>
+</html>

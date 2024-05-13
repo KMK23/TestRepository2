@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body > div {
+      border: 2px solid red;
+      width: 300px;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 3rem;
+    }
+  </style>
+  <body>
+    <div>
+      <span>복습중</span>
+    </div>
+    <br />
+    <button onclick="usertext()">텍스트 입력</button>
+    <button onclick="back()">배경색상 변경</button>
+    <button onclick="color()">폰트색상 변경</button>
+  </body>
+  <script>
+    //사용자에게 "색상명"을 입력 받아서 요소의 스타일을 변경하는 함수를 만들어보자.
+
+    function usertext() {
+      const text = prompt("텍스트를 입력하세요");
+      let textbox = document.querySelector(`div > span`);
+      textbox.innerHTML = text;
+    }
+
+    function back() {
+      const backcolor = prompt("색상명 입력");
+      let colorbox = document.querySelector(`div`);
+      colorbox.style.backgroundColor = backcolor;
+    }
+
+    function color() {
+      const colorbox = prompt(`글자색은?`);
+      let textcolor = document.querySelector(`div > span`);
+      textcolor.style.color = colorbox;
+    }
+  </script>
+</html>
