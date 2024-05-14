@@ -31,44 +31,62 @@
   <body>
     <div id="birthCalc">
       <input type="text" placeholder="출생년도를 입력하세요." />
-      <button onclick="age()">나이 계산</button>
+      <button onclick="birthCalc()">나이 계산</button>
       <div class="result"></div>
     </div>
     <hr />
     <div id="square">
-      <input type="text" placeholder="가로 너비를 입력하세요." />
-      <input type="text" placeholder="세로 높이를 입력하세요." />
-      <button>사각형 넓이 계산</button>
+      <input id="width" type="text" placeholder="가로 너비를 입력하세요." />
+      <input id="height" type="text" placeholder="세로 높이를 입력하세요." />
+      <button onclick="quad()">사각형 넓이 계산</button>
       <div class="result"></div>
     </div>
     <hr />
     <div id="discount">
-      <input type="text" placeholder="할인 전 가격" />
-      <input type="text" placeholder="할인율" />
-      <button>할인가계산</button>
+      <input id="origin" type="text" placeholder="할인 전 가격" />
+      <input id="after" type="text" placeholder="할인율" />
+      <button onclick="discount()">할인가계산</button>
       <div class="result"></div>
     </div>
   </body>
   <script>
     // 1. 나이 계산 버튼을 누르면 사용자가 입력한 출생년도를 참고하여
     //나이를 계산하는 함수를 작성하세요. (result div에 결과 표시)
-    function age() {
+    function birthCalc() {
+      //입력된 출생년도 가져와
       const inputA = document.querySelector(`#birthCalc > input`);
       const inputValue = inputA.value;
-      const date1 = new Date();
+      //현재 날짜
+      const date = new Date();
+      const date1 = date.getFullYear();
       const date2 = inputValue;
-      const sol = date1 - date2;
-      let diffDay = 24 * 60 * 60 * 1000;
-      let diffMonth = diffDay * 30;
-      let diffYear = diffMonth * 12;
+      const age = date1 - date2;
+
       const result = document.querySelector(`.result`);
-      result.innerHTML = sol;
+      result.innerHTML = `당신의 현재 나이는 ${age} 입니다.`;
     }
 
     // 2. 사각형의 가로 너비와 세로 높이를 입력하여
     //사각형의 넓이를 계산하는 함수를 작성하세요. (result div에 결과 표시)
-
+    function quad() {
+      const inputW = document.querySelector(`#width`);
+      const inputH = document.querySelector(`#height`);
+      const inputWValue = inputW.value;
+      const inputHValue = inputH.value;
+      const sum = inputWValue * inputHValue;
+      const result = document.querySelector(`#square > .result`);
+      result.innerHTML = `값은 ${sum} 입니다.`;
+    }
     // 3. 원래 가격과 할인율을 입력하면 할인 가격을 계산해주는 함수를 작성하세요.
     // (할인된 가격은 정수로 표현하세요. result div에 결과 표시)
+    function discount() {
+      const origin = document.querySelector(`#discount >input:nth-child(1)`);
+      const discount = document.querySelector(`#discount >input:nth-child(2)`);
+      const originValue = origin.value;
+      const discountValue = discount.value;
+      const add = originValue * ((100 - discountValue) / 100);
+      const result = document.querySelector(`#discount > .result`);
+      result.innerHTML = `할인가격은 ${add} 입니다.`;
+    }
   </script>
 </html>
