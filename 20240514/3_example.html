@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    //1. 변수 두개를 선언하고 각각 초기값을 3, 4로 할당하세요
+    let A = 3;
+    let B = 4;
+
+    //2. 위의 두 변수의 합, 차, 곱, 나누가한 값을 콘솔창에 출력해보세요
+    //3. 위 문제에서 콘솔창에 출력할 때 결과가 어떤 연산을 했는지를 알 수 있도록
+    //결과값 왼쪽에 연산 내용을 표시해 보세요.
+    //ex) a + b = 결과
+    let result = 0;
+    result = A + B;
+    console.log(`A+B=${result}`);
+    result = A - B;
+    console.log(`A-B=${result}`);
+    result = A * B;
+    console.log(`A*B=${result}`);
+    result = A / B;
+    console.log(`A/B=${result}`);
+
+    //4. 1번에서 선언한 변수 두개의 대소 비교를 하여 어떤 변수가 큰지를
+    //alert 창으로 출력 할 수 있게 작성해
+
+    //5. 비어있는 객체를 하나 생성해
+    const blankOJ = {};
+    //6. 위에서 만든 객체에 num1과 num2라는 프로퍼티를 추가하고
+    //각각에 1번 문제에서 만든 변수를 할당해
+    blankOJ.num1 = 3;
+    blankOJ.num2 = 4;
+
+    //7. 위에서 만든 객체의 속성을 콘솔창에 각각 출력해
+    console.log(blankOJ);
+
+    const BO1 = Object.keys(blankOJ);
+    console.log(BO1);
+
+    const BO2 = Object.values(blankOJ);
+    console.log(BO2);
+
+    //8. 비어있는 배열을 선언하고 그 배열에 1부터 10까지 숫자를 추가해
+    //(선언 이후에 값을 넣는 방법 사용)
+    const blankArr = [];
+
+    blankArr.push(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    console.log(blankArr);
+    //9. 비어있는 배열을 선언하고 1~100까지의 숫자를 추가해보세요.(반복문)
+    const Num = [];
+
+    for (i = 1; i < 101; i++) {
+      Num.push([i]);
+    }
+    console.log(Num);
+    //10. 비어있는 배열을 선언하고 1~100까지 숫자중 짝수 추가(반복문)
+    const NumArr = [];
+    for (i = 1; i < 101; i++) {
+      if (i % 2 == 0) {
+        NumArr.push([i]);
+      }
+    }
+    console.log(NumArr);
+    //11. 함수를 생성하고 함수를 호출하면 `안녕하세요`라는 alert 창이 출력되도록 작성해
+    function Fn() {
+      alert("안녕하세요");
+    }
+    Fn();
+    //12. 함수를 호출하면 body 태그에 p태그를 추가하고 font색상과
+    //background-color가 변경된 요소가 화면에 출력되는 함수를 작성해
+    function color(color, backgroundColor) {
+      const addPtag = document.createElement(`p`);
+      const body = document.querySelector(`body`);
+      body.append(addPtag);
+      const pTag = document.querySelector(`p`);
+      pTag.style.backgroundColor = color;
+      pTag.style.color = backgroundColor;
+    }
+
+    color("blue", "yellow");
+  </script>
+</html>
