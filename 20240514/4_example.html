@@ -17,7 +17,7 @@
       padding: 20px;
       height: 100%;
     }
-    div {
+    body > div {
       display: flex;
       gap: 10px;
       height: 80px;
@@ -26,20 +26,28 @@
       width: 100px;
       height: 100%;
       border: 2px solid red;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   </style>
   <body>
     <div id="birthCalc">
-      <input type="text" placeholder="출생년도를 입력하세요." />
+      <input
+        type="text"
+        placeholder="출생년도를 입력하세요."
+        pattern="[0-9]{4}"
+        oninput="this.value = this.value.replace(/[^0-9]{1}/g, '')"
+      />
       <button onclick="birthCalc()">나이 계산</button>
       <div class="result"></div>
     </div>
     <hr />
     <div id="square">
-      <input id="width" type="text" placeholder="가로 너비를 입력하세요." />
-      <input id="height" type="text" placeholder="세로 높이를 입력하세요." />
+      <input type="text" placeholder="가로 너비를 입력하세요." />
+      <input type="text" placeholder="세로 높이를 입력하세요." />
       <button onclick="quad()">사각형 넓이 계산</button>
-      <div class="result"></div>
+      <div class="result"><sup></sup></div>
     </div>
     <hr />
     <div id="discount">
@@ -56,26 +64,43 @@
       //입력된 출생년도 가져와
       const inputA = document.querySelector(`#birthCalc > input`);
       const inputValue = inputA.value;
+      //const inputValue = document.querySelector(`#birthCalc > input`).value ;
+      // 이것도 가능.
+
       //현재 날짜
       const date = new Date();
       const date1 = date.getFullYear();
+      // 이게 const date = new Date().getFullYear()도 가능.
+      //밑에 date라는 변수는 더이상 쓰지 않으니
       const date2 = inputValue;
-      const age = date1 - date2;
-
+      const age = date1 - date2 + 1;
+      if (age < 0) {
+        alert("잘못입력");
+        inputA.value = "";
+        return false;
+      }
       const result = document.querySelector(`.result`);
       result.innerHTML = `당신의 현재 나이는 ${age} 입니다.`;
+      inputA.value = "";
     }
 
     // 2. 사각형의 가로 너비와 세로 높이를 입력하여
     //사각형의 넓이를 계산하는 함수를 작성하세요. (result div에 결과 표시)
     function quad() {
-      const inputW = document.querySelector(`#width`);
-      const inputH = document.querySelector(`#height`);
+      // const inputs = document.querySelectorAll("square > input");
+      // console.log(inputs);
+      //여러개의 태그를 가져올때는 이렇게 써야함.
+      // const width = inputs[0].value;
+      // const height = inputs[1].value;
+      //////////////////위의 값이 선생님 정답 ////////////////////
+
+      const inputW = document.querySelector(`#square > input:nth-child(1)`);
+      const inputH = document.querySelector(`#square > input:nth-child(2)`);
       const inputWValue = inputW.value;
       const inputHValue = inputH.value;
       const sum = inputWValue * inputHValue;
-      const result = document.querySelector(`#square > .result`);
-      result.innerHTML = `값은 ${sum} 입니다.`;
+      const result = document.querySelector(`#square > div.result`);
+      result.innerHTML = `${sum}m<sup>2</sup> `;
     }
     // 3. 원래 가격과 할인율을 입력하면 할인 가격을 계산해주는 함수를 작성하세요.
     // (할인된 가격은 정수로 표현하세요. result div에 결과 표시)
@@ -85,8 +110,8 @@
       const originValue = origin.value;
       const discountValue = discount.value;
       const add = originValue * ((100 - discountValue) / 100);
-      const result = document.querySelector(`#discount > .result`);
-      result.innerHTML = `할인가격은 ${add} 입니다.`;
+      const result = document.querySelector(`#discount > div.result`);
+      result.innerHTML = `할인가격은 ${add} 원 입니다.`;
     }
   </script>
 </html>
