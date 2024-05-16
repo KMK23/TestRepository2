@@ -73,16 +73,12 @@
       // 이게 const date = new Date().getFullYear()도 가능.
       //밑에 date라는 변수는 더이상 쓰지 않으니
       const date2 = inputValue;
-<<<<<<< Updated upstream
       const age = date1 - date2 + 1;
       if (age < 0) {
         alert("잘못입력");
         inputA.value = "";
         return false;
       }
-=======
-      const age = date1 - date2;
->>>>>>> Stashed changes
       const result = document.querySelector(`.result`);
       result.innerHTML = `당신의 현재 나이는 ${age} 입니다.`;
       inputA.value = "";
@@ -103,13 +99,8 @@
       const inputWValue = inputW.value;
       const inputHValue = inputH.value;
       const sum = inputWValue * inputHValue;
-<<<<<<< Updated upstream
       const result = document.querySelector(`#square > div.result`);
       result.innerHTML = `${sum}m<sup>2</sup> `;
-=======
-      const result = document.querySelector(`#square > .result`);
-      result.innerHTML = `사각형의 넓이 값은 ${sum}`;
->>>>>>> Stashed changes
     }
     // 3. 원래 가격과 할인율을 입력하면 할인 가격을 계산해주는 함수를 작성하세요.
     // (할인된 가격은 정수로 표현하세요. result div에 결과 표시)
@@ -119,13 +110,8 @@
       const originValue = origin.value;
       const discountValue = discount.value;
       const add = originValue * ((100 - discountValue) / 100);
-<<<<<<< Updated upstream
       const result = document.querySelector(`#discount > div.result`);
       result.innerHTML = `할인가격은 ${add} 원 입니다.`;
-=======
-      const result = document.querySelector(`#discount > .result`);
-      result.innerHTML = `할인가격은 ${add}원 입니다.`;
->>>>>>> Stashed changes
     }
   </script>
 </html>

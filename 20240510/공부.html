@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    //객체 선언방법
+    const obj = {};
+    const obj2 = new Object();
+
+    //객체 생성 후 프로퍼티 추가 방법
+
+    obj.age = 20;
+    obj["tel"] = "010010101010";
+
+    //객체 생성과 동시에 프로퍼티 추가방법
+
+    const person = {
+      age: 20,
+      gender: "남자",
+    };
+
+    //객체의 값 가져오기
+
+    console.log(person.age);
+    console.log(person["gender"]);
+
+    //객체를 다루는 함수
+
+    const keys = Object.keys(person);
+    console.log(keys);
+    //까대기했을때 는 []
+    for (i = 0; i < keys.length; i++) {
+      console.log(person[keys[i]]);
+    }
+
+    const value = Object.values(person);
+    console.log(value);
+
+    //    쌍으로 배열하는것
+
+    const ssang = Object.entries(person);
+    console.log(ssang);
+  </script>
+</html>

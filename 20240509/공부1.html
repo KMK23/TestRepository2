@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // array 관련 함수
+    // push == > 맨뒤에 추가 하는것
+    rra.push("또 꺼내?");
+    document.write(`<h1>${rra}</h1>`);
+
+    //pop --> 맨뒤제거
+    rra.pop();
+    document.write(`<h1>${rra}</h1>`);
+    //제거한 요소 확인법
+    document.write(`<h1>제거하고 반환받은거 :${rra.pop()}</h1>`);
+
+    //unshift --> 맨앞 추가
+
+    rra.unshift(false);
+    document.write(`<h1>${rra.unshift()}</h1>`);
+
+    document.write(`<h1>${rra}</h1>`);
+
+    //shift --> 맨앞 제거
+    document.write(`<h1>${rra.shift()}</h1>`);
+    document.write(`<h1>${rra}</h1>`);
+
+    // splice --> 첫번째 파라미터는 추가될 위치, 두번째 파라미터는 제거될 갯수
+
+    const arr4 = [1, true, "JavaScript", "자바스크립트"];
+    arr4.splice(1, 3, 10, 20);
+    document.write(`<h1>${arr4.splice()}</h1>`);
+    document.write(`<h1>${arr4}</h1>`);
+
+    ///////////////원본 배열 안망가트림
+
+    //join --> 쓰면 문자열 된다. 쉼표 대신 / 나 뭐 아무거나 넣어도 됌
+    const arr01 = [1, true, "JavaScript", false, "C언어"];
+
+    document.write(`<h4>${arr01.join()}</h4>`);
+    document.write(`<h4>${arr01.join("/")}</h4>`);
+
+    //slice --> 첫번째 파라미터는 시작 위치, 두번째 파라미터 앞에까지 제거됌.
+
+    const sliceArr = arr01.slice(2, 4);
+    document.write(`${sliceArr}`);
+    document.write(`<h1>원본 : ${arr01}</h1>`);
+
+    // concat 어디부터 넣을께
+    const goat = arr01.concat("33", [3, 2]);
+    document.write(`<h1> ${goat}</h1>`);
+
+    let = arr01.toString();
+    document.write(`<h1>    ${arr01}</h1>`);
+
+    /////함수 연습
+    function sum(a, b) {
+      console.log(`a:${a},b:${b}`);
+      return a + b;
+    }
+
+    function add() {
+      let user1 = +prompt("1번입력");
+      let user2 = +prompt("2번입력");
+      let result = sum(user1, user2);
+      document.write(`${result}`);
+    }
+  </script>
+</html>
