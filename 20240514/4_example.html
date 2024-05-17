@@ -60,29 +60,31 @@
   <script>
     // 1. 나이 계산 버튼을 누르면 사용자가 입력한 출생년도를 참고하여
     //나이를 계산하는 함수를 작성하세요. (result div에 결과 표시)
-    function birthCalc() {
-      //입력된 출생년도 가져와
-      const inputA = document.querySelector(`#birthCalc > input`);
-      const inputValue = inputA.value;
-      //const inputValue = document.querySelector(`#birthCalc > input`).value ;
-      // 이것도 가능.
+    // function birthCalc() {
+    //입력된 출생년도 가져와
+    // const inputA = document.querySelector(`#birthCalc > input`);
+    // const inputValue = inputA.value;
+    //const inputValue = document.querySelector(`#birthCalc > input`).value ;
+    // 이것도 가능.
 
-      //현재 날짜
-      const date = new Date();
-      const date1 = date.getFullYear();
-      // 이게 const date = new Date().getFullYear()도 가능.
-      //밑에 date라는 변수는 더이상 쓰지 않으니
-      const date2 = inputValue;
-      const age = date1 - date2 + 1;
-      if (age < 0) {
-        alert("잘못입력");
-        inputA.value = "";
-        return false;
-      }
-      const result = document.querySelector(`.result`);
-      result.innerHTML = `당신의 현재 나이는 ${age} 입니다.`;
-      inputA.value = "";
-    }
+    //현재 날짜
+    // const date = new Date();
+    // const date1 = date.getFullYear();
+    // 이게 const date = new Date().getFullYear()도 가능.
+    //밑에 date라는 변수는 더이상 쓰지 않으니
+    //   const date2 = inputValue;
+    //   const age = date1 - date2 + 1;
+    //   if (age < 0) {
+    //     alert("잘못입력");
+    //     inputA.value = "";
+    //     return false;
+    //   }
+    //   const result = document.querySelector(`.result`);
+    //   result.innerHTML = `당신의 현재 나이는 ${age} 입니다.`;
+    //   inputA.value = "";
+    // }
+
+    fuc;
 
     // 2. 사각형의 가로 너비와 세로 높이를 입력하여
     //사각형의 넓이를 계산하는 함수를 작성하세요. (result div에 결과 표시)
