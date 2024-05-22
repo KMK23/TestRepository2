@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #background {
+      width: 100%;
+      max-width: 1200px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    #container {
+      width: 340px;
+      height: 540px;
+      border-radius: 15px;
+      box-shadow: 1px 1px 10px #333333;
+      background-color: white;
+    }
+  </style>
+
+  <body>
+    <img src="../resources/img/background.png" id="background" />
+    <div id="container">
+      <div id="header">
+        <button>
+          <img src="../resources/img/left-arrow.png" width="30" height="30" />
+        </button>
+        <img src="../resources/img/profile.png" width="30" height="30" />
+        <div>
+          <p>사채업자</p>
+          <p>1시간 전에 활동</p>
+        </div>
+        <button>
+          <img src="../resources/img/phone-call.png" width="30" height="30" />
+        </button>
+        <button>
+          <img src="../resources/img/video-call.png" width="30" height="30" />
+        </button>
+      </div>
+      <div id="chat-box">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div id="footer">
+        <textarea></textarea>
+        <button></button>
+      </div>
+    </div>
+  </body>
+</html>

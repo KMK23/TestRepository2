@@ -3,9 +3,111 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="1_keyboard.css" />
     <title>fake keyboard</title>
   </head>
+  <style>
+    #my-input {
+      width: 200px;
+      height: 30px;
+      font-size: 20px;
+    }
+
+    .events {
+      width: 333px;
+      height: 34px;
+      margin: 10px 0;
+      border: 1px solid #333333;
+      border-left: 0;
+      display: flex;
+      justify-content: space-around;
+    }
+    .event {
+      width: 50%;
+      padding: 5px;
+      text-align: center;
+      border-left: 1px solid #333333;
+    }
+
+    .check {
+      color: white;
+    }
+
+    #keypress.check {
+      background-color: green;
+    }
+    #keydown.check {
+      background-color: red;
+    }
+    #keyup.check {
+      background-color: blue;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .function-keys {
+      display: flex;
+      justify-content: space-between;
+      width: 700px;
+    }
+
+    .main-keys {
+      width: 700px;
+      height: 300px;
+    }
+
+    .key {
+      width: 45px;
+      height: 45px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #333333;
+      border-radius: 10px;
+      margin: 1px;
+    }
+
+    #Backspace,
+    #Tap {
+      width: 79px;
+    }
+
+    #CapsLock,
+    #Enter {
+      width: 86px;
+    }
+
+    #shiftLeft,
+    #shiftRight {
+      width: 110px;
+    }
+
+    #ControlLeft,
+    #ControlRight,
+    #AltLeft,
+    #AltRight,
+    #MetaLeft,
+    #MetaRight {
+      width: 50px;
+    }
+
+    #Space {
+      width: 284px;
+    }
+    .on {
+      color: white;
+      background-color: var(--main-color);
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+      transform: translateY(1px);
+    }
+
+    :root {
+      --main-color: white;
+      --font-color: white;
+    }
+  </style>
   <body>
     <input type="text" id="my-input" />
     <div class="events">
@@ -126,69 +228,53 @@
     </div>
   </body>
   <script>
-    const myInput = document.getElementById("my-input");
-    const key = document.getElementById("key");
-    const code = document.getElementById("code");
-    const keydown = document.getElementById("keydown");
-    const keypress = document.getElementById("keypress");
-    const keyup = document.getElementById("keyup");
+    //변수선언
+    const myInput = document.querySelector(`#my-input`);
+    const keydown = document.querySelector(`#keydown`);
+    const keypress = document.querySelector(`#keypress`);
+    const keyup = document.querySelector(`#keyup`);
+    const key = document.querySelector(`#key`);
+    const code = document.querySelector(`#code`);
 
-    function presskeyEvent() {
+    //keypress 부터
+    function keypressEvent() {
       keypress.classList.add("check");
 
       setTimeout(function () {
         keypress.classList.remove("check");
       }, 300);
     }
-
-    function downkeyEvent(e) {
+    function keydownEvent(e) {
       if (e.code == "F1" || e.code == "F3") {
         e.preventDefault();
       }
-      // 눌린 키에 대한 요소를 가져온다.
-      // console.log(`key : ${e.key}, code : ${e.code}`);
       const el = document.querySelector(`#${e.code}`);
 
-      // 외부 파일에 대한 엘리먼트 접근
-      colorArr = [];
+      const colorArr = [];
       for (let i = 0; i < 3; i++) {
         colorArr.push(parseInt(Math.random() * 256));
       }
-      el.style.setProperty("--main-color", `rgb(${colorArr})`);
-      el.style.setProperty("--font-color", `black`);
+      el.style.setProperty(`--main-color`, `rgb(${colorArr})`);
+      el.style.setProperty(`--font-color`, `black`);
 
-      // keydown div에 check 클래스를 추가한다.
       keydown.classList.add("check");
-
-      // 눌린 키를 화면상에서 회색으로 변경한다.(클래스를 적용하여)
       el.classList.add("on");
 
-      // 눌린 키의 "key"와 "code" 프로퍼티 값을 화면에 표시한다.
-      key.innerHTML = `key: ${e.key}`;
-      code.innerHTML = `code: ${e.code}`;
+      key.innerHTML = `key : ${e.key}`;
+      code.innerHTML = `code : ${e.key}`;
 
-      // check 클래스를 0.3초 이후에 제거한다.
       setTimeout(function () {
         keydown.classList.remove("check");
       }, 300);
     }
 
-    function upkeyEvent(e) {
-      // console.log(`key: ${e.key}, code: ${e.code}`);
-      // 손가락을 뗏을 때의 키 요소를 가져온다.
+    function keyupEvent(e) {
       const el = document.querySelector(`#${e.code}`);
-
-      // keyup 요소에 check 클래스를 추가한다.
       keyup.classList.add("check");
-
-      // 손가락을 뗀 키를 화면상에서 다시 원상복구 시킨다.(on 클래스 삭제)
       el.classList.remove("on");
-
-      // check 클래스를 0.3초 이후에 제거한다.
       setTimeout(function () {
         keyup.classList.remove("check");
       }, 300);
-
       if (e.code == "AltRight") {
         el.classList.add("on");
         setTimeout(function () {
@@ -197,8 +283,8 @@
       }
     }
 
-    myInput.addEventListener("keypress", presskeyEvent);
-    myInput.addEventListener("keydown", downkeyEvent);
-    myInput.addEventListener("keyup", upkeyEvent);
+    myInput.addEventListener("keypress", keypressEvent);
+    myInput.addEventListener("keydown", keydownEvent);
+    myInput.addEventListener("keyup", keyupEvent);
   </script>
 </html>
