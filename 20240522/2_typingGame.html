@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>typingGame</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url("../resources/img/background.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #container {
+      width: 90%;
+      height: 80%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
+    #input {
+      position: absolute;
+      width: 180px;
+      height: 45px;
+      font-size: 16px;
+      padding: 10px;
+      border: none;
+      /* left: 50%;
+      transform: translateX(-50%);
+    bottom : 0 */
+    }
+    .word {
+      color: #ffffff;
+      font-size: 30px;
+      font-weight: 500;
+      position: absolute;
+    }
+  </style>
+  <body>
+    <div id="container">
+      <input id="input" type="text" placeholder="단어를 입력하세요" />
+    </div>
+  </body>
+  <script>
+    const words = [
+      "DW",
+      "JavaScript",
+      "DOM",
+      "BOM",
+      "Document",
+      "window",
+      "Event",
+    ];
+    const input = document.querySelector("#input");
+    let count = 0;
+    // 단어들이 뿌려질 container의 범위를 파악한다.
+    const container = document.querySelector("#container");
+    console.log(
+      `offsetwidth:${container.offsetWidth}, offsetHeight : ${container.offsetHeight}`
+    );
+    const maxPositionX = container.offsetWidth - 90;
+    const maxPositionY = container.offsetHeight - 100;
+
+    // 단어를 생성하고 화면에 뿌리는 부분.
+    function init() {
+      words.forEach(function (el) {
+        //span 태그를 생성
+        const span = document.createElement("span");
+        //words 배열에 있는 단어를 생성한 span 태그에 넣어
+        span.innerHTML = el;
+        //span태그에 클래스를 추가한다(word)
+        span.classList.add("word");
+
+        // span태그에 id 속석을 추가한다.
+        span.setAttribute("id", el);
+
+        //span 태그의 위치를 랜덤으로 설정한다
+        span.style.top = `${Math.floor(Math.random() * maxPositionY)}px`;
+        span.style.left = `${Math.floor(Math.random() * maxPositionX)}px`;
+        //container div 에 span 태그를 추가한다.
+        container.append(span);
+      });
+    }
+
+    //  사용자가 입력한 텍스트와 동일한 id를 가진 span 태그를 제거한다.
+    input.addEventListener("change", function () {
+      const word = document.querySelector(`span[id=${input.value}]`);
+      if (word != null) {
+        word.remove();
+        count++;
+        // 게임 클리어
+        if (count == words.length) {
+          alert("Clear!!!!");
+          if (confirm("재도전??")) {
+            window.location.reload();
+          }
+        }
+      }
+      input.value = "";
+    });
+
+    // 단어들을 내려오게 하는 부분
+    function wordRain() {}
+
+    init();
+  </script>
+</html>
