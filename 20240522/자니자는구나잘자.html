@@ -31,36 +31,158 @@
       box-shadow: 1px 1px 10px #333333;
       background-color: white;
     }
+    #header {
+      display: flex;
+      height: 60px;
+      padding: 12px 5px 8px;
+    }
+    .profilebox {
+      margin-right: 80px;
+      margin-left: 10px;
+    }
+    #userName {
+      margin: 0;
+    }
+    #status {
+      margin: 5px 0 0 0;
+      color: gray;
+      font-size: 12px;
+    }
+    #chat-box {
+      height: 400px;
+      padding: 12px 10px;
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .btn {
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
+
+    .bubble {
+      margin: 5px 0;
+      max-width: 300px;
+      width: max-content;
+    }
+
+    .friend-bubble {
+      background-color: #f3f0f5;
+      border-radius: 15px 15px 15px 0;
+      color: #8f00fe;
+      padding: 10px;
+    }
+
+    .my-bubble {
+      background-color: #8f00fe;
+      color: #f3f0f5;
+      padding: 10px;
+      border-radius: 15px 15px 0 15px;
+      align-self: flex-end;
+    }
+    #footer {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      width: 100%;
+      height: 80px;
+      align-items: center;
+    }
+    .textbox {
+      width: 100%;
+      height: 100%;
+      background-color: #e8e8e8;
+      border: none;
+      resize: none;
+      border-radius: 10px;
+      padding: 10px;
+    }
+    /* 대화작성부 */
   </style>
 
   <body>
     <img src="../resources/img/background.png" id="background" />
     <div id="container">
       <div id="header">
-        <button>
+        <button class="btn">
           <img src="../resources/img/left-arrow.png" width="30" height="30" />
         </button>
-        <img src="../resources/img/profile.png" width="30" height="30" />
-        <div>
-          <p>사채업자</p>
-          <p>1시간 전에 활동</p>
+        <img
+          src="../resources/img/profile.png"
+          width="30"
+          height="30"
+          class="profile-pic"
+        />
+        <div class="profilebox">
+          <p id="userName">사채업자</p>
+          <p id="status">1시간 전에 활동</p>
         </div>
-        <button>
-          <img src="../resources/img/phone-call.png" width="30" height="30" />
-        </button>
-        <button>
-          <img src="../resources/img/video-call.png" width="30" height="30" />
-        </button>
+        <div class="call-box">
+          <button class="btn">
+            <img src="../resources/img/phone-call.png" width="20" height="20" />
+          </button>
+          <button class="btn">
+            <img src="../resources/img/video-call.png" width="20" height="20" />
+          </button>
+        </div>
       </div>
+
+      <!-- 대화 내용표시부 -->
       <div id="chat-box">
-        <div></div>
-        <div></div>
-        <div></div>
+        <div class="bubble friend-bubble">야 자냐</div>
+        <div class="bubble friend-bubble">자냐고</div>
+        <div class="bubble my-bubble">asdfasdf</div>
       </div>
+
+      <!-- 대화 작성부 -->
       <div id="footer">
-        <textarea></textarea>
-        <button></button>
+        <textarea class="textbox" placeholder="메세지를 입력하세요"></textarea>
+        <button class="btn" id="clickbtn">
+          <img src="../resources/img/send.png" width="30" height="30" />
+        </button>
       </div>
     </div>
   </body>
+  <script>
+    //필요한 변수
+    //textarea, 보내기 버튼, 화면에 띄어지는것
+    const chatbox = document.querySelector("#chat-box");
+    const textbox = document.querySelector(".textbox");
+    const send = document.querySelector("#clickbtn");
+
+    function sendMyText() {
+      //작성된 메세지 가져오기
+      const message = textbox.value;
+      if (message.length == 0) {
+        return false;
+      }
+      let changeMessage = message.replaceAll(" ", "&nbsp;");
+      changeMessage = changeMessage.replaceAll("\n", "<br/>");
+
+      //메시지를 담을 div 만들기
+      const div = document.createElement("div");
+      //div에 내 메세지 담기
+      div.innerHTML = changeMessage;
+      //div에 class 추가해서 내가 말한 말풍선 사용하자
+      div.classList.add("bubble", "my-bubble");
+      //chat-box에 div 추가(글을 띄어보내야하니까)
+      chatbox.append(div);
+      //마지막에 textbox 에있는 문자 제거
+      textbox.value = "";
+    }
+
+    function sendMyTextByEnter(e) {
+      // 엔터를 눌렀을 때 메세지를 보내고싶다.
+      //개행은 쉬프트 눌렀을떄
+      if (e.key == "Enter" && !e.shiftKey) {
+        sendMyText();
+        e.preventDefault();
+      }
+    }
+
+    send.addEventListener("click", sendMyText);
+    textbox.addEventListener("keypress", sendMyTextByEnter);
+  </script>
 </html>
