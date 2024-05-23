@@ -7,50 +7,38 @@
   </head>
   <style>
     #my-input {
-      width: 200px;
+      width: 250px;
       height: 30px;
       font-size: 20px;
     }
-
     .events {
-      width: 333px;
-      height: 34px;
-      margin: 10px 0;
       border: 1px solid #333333;
       border-left: 0;
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
+      width: 333px;
+      height: 33px;
+      margin: 5px 0;
     }
     .event {
       width: 50%;
-      padding: 5px;
-      text-align: center;
       border-left: 1px solid #333333;
+      padding: 3px;
+      text-align: center;
     }
 
-    .check {
+    .chceck {
       color: white;
     }
+
     #keypress.check {
-      background-color: #0cb30c;
+      background-color: green;
     }
     #keydown.check {
-      background-color: #eb2f2f;
+      background-color: red;
     }
     #keyup.check {
-      background-color: #2757f5;
-    }
-
-    .function-keys {
-      width: 700px;
-      margin-bottom: 10px;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .main-keys {
-      width: 700px;
-      height: 300px;
+      background-color: blue;
     }
 
     .row {
@@ -58,49 +46,58 @@
       justify-content: space-between;
     }
 
+    .function-keys {
+      display: flex;
+      justify-content: space-between;
+      width: 700px;
+      margin-bottom: 5px;
+    }
+
+    .main-keys {
+      width: 700px;
+      height: 300px;
+    }
+
     .key {
-      width: 43px;
-      height: 43px;
-      border: 1px solid #333333;
-      border-radius: 3px;
-      margin: 1px;
       display: flex;
       justify-content: center;
       align-items: center;
+      border-radius: 3px;
+      width: 43px;
+      height: 43px;
+      border: 1px solid #333333;
+      margin: 1px;
     }
 
     #Backspace,
     #Tab {
-      width: 79px;
+      width: 80px;
     }
 
     #CapsLock,
     #Enter {
-      width: 86px;
+      width: 100px;
     }
 
     #ShiftLeft,
     #ShiftRight {
       width: 110px;
     }
-
-    #ControlLeft,
-    #ControlRight,
-    #AltLeft,
-    #AltRight,
-    #MetaLeft,
-    #MetaRight {
-      width: 50px;
-    }
-
     #Space {
-      width: 284px;
+      width: 280px;
+    }
+    #ControlLeft,
+    #MetaLeft,
+    #AltLeft,
+    #ControlRight,
+    #MetaRight,
+    #AltRight {
+      width: 50px;
     }
 
     .on {
       color: white;
       background-color: gray;
-      /* #999797 */
       box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
       transform: translateY(1px);
     }
@@ -225,12 +222,11 @@
     </div>
   </body>
   <script>
-    //변수선언
     const key = document.querySelector("#key");
-    const input = document.querySelector("#my-input");
     const code = document.querySelector("#code");
-    const keypress = document.querySelector("#keypress");
+    const input = document.querySelector("#my-input");
     const keydown = document.querySelector("#keydown");
+    const keypress = document.querySelector("#keypress");
     const keyup = document.querySelector("#keyup");
 
     function keypressEvent() {
@@ -268,12 +264,12 @@
         el.classList.add("on");
         setTimeout(function () {
           el.classList.remove("on");
-        }, 300);
+        });
       }
     }
 
     input.addEventListener("keypress", keypressEvent);
-    input.addEventListener("keydown", keydownEvent);
     input.addEventListener("keyup", keyupEvent);
+    input.addEventListener("keydown", keydownEvent);
   </script>
 </html>
