@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .background {
+      width: 100%;
+      max-width: 1000px;
+      position: absolute;
+      z-index: -1;
+      left: 0;
+      top: 0;
+    }
+    .container {
+      width: 340px;
+      height: 640px;
+      background-color: white;
+      box-shadow: 1px 1px 10px #333333;
+      border-radius: 20px;
+    }
+
+    .header {
+      display: flex;
+      height: 60px;
+      padding: 12px 5px 8px;
+    }
+
+    .btn {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+
+    .info-block {
+      margin-left: 12px;
+      margin-right: 80px;
+    }
+
+    .username {
+      margin: 0 0 3px;
+      font-size: 16px;
+    }
+
+    .status {
+      color: gray;
+      font-size: 12px;
+      margin-top: 0px;
+    }
+    .call-box {
+      display: flex;
+      justify-content: space-between;
+      width: 60px;
+    }
+
+    #chat-box {
+      height: 450px;
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      padding: 12px 10px;
+    }
+
+    .bubble {
+      max-width: 300px;
+      margin: 10px;
+      padding: 10px;
+      width: max-content;
+    }
+    .friend-bubble {
+      background-color: #f3f0f5;
+      border-radius: 15px 15px 15px 0;
+      color: #8f00fe;
+      padding: 7px 15px;
+    }
+
+    .my-bubble {
+      background-color: #8f00fe;
+      color: #f3f0f5;
+      align-self: flex-end;
+      border-radius: 15px 15px 0px 15px;
+    }
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      height: 120px;
+      align-items: center;
+      padding: 10px;
+    }
+    #input {
+      width: 100%;
+      height: 100%;
+      background-color: #f3f0f5;
+      border-radius: 10px;
+      margin: 15px;
+      padding: 10px;
+      resize: none;
+      border: none;
+    }
+  </style>
+  <body>
+    <img class="background" src="../resources/img/background.png" />
+    <div class="container">
+      <!-- header : 상대방 정보 표시 및 전화(음성, 영상)통화 버튼 -->
+      <div class="header">
+        <button class="btn">
+          <img src="../resources/img/left-arrow.png" width="30" height="30" />
+        </button>
+        <img
+          class="profile-pic"
+          src="../resources/img/profile.png"
+          width="40"
+          height="40"
+        />
+        <div class="info-block">
+          <p class="username">사채업자</p>
+          <p class="status">1시간 전에 활동</p>
+        </div>
+        <div class="call-box">
+          <button class="btn">
+            <img src="../resources/img/phone-call.png" width="20" height="20" />
+          </button>
+          <button class="btn">
+            <img src="../resources/img/video-call.png" width="20" height="20" />
+          </button>
+        </div>
+      </div>
+
+      <!-- 대화내용 표시부 -->
+      <div id="chat-box">
+        <div class="bubble friend-bubble">자냐?</div>
+        <div class="bubble friend-bubble">지금 잠이와?</div>
+        <div class="bubble friend-bubble">야 자냐고</div>
+        <div class="bubble my-bubble">누구세요?</div>
+      </div>
+
+      <!-- 대화 작성부 -->
+      <div class="footer">
+        <textarea id="input" placeholder="메세지를 입력하세요."></textarea>
+        <button class="btn" id="sendBtn">
+          <img src="../resources/img/send.png" width="24" height="24" />
+        </button>
+      </div>
+    </div>
+  </body>
+  <script>
+    //변수선언. 보내는버튼. text창. 화면에 띄어지는것
+    const input = document.querySelector("#input");
+    const send = document.querySelector("#sendBtn");
+    const chatbox = document.querySelector("#chat-box");
+
+    function SendMyText() {
+      //input에서 가져와
+      const newMessage = input.value;
+      if (newMessage.length == 0) {
+        return false;
+      }
+      let changeMessage = newMessage.replaceAll(" ", "&nbsp");
+      changeMessage = changeMessage.replaceAll(`\n`, "<br/>");
+      //메세지 담을 div 만들고
+      const div = document.createElement("div");
+      //만든 div에 메세지 담아
+      div.innerHTML = changeMessage;
+      //내가 쓴 css 쓰기 위해 클래스 추가
+      div.classList.add("bubble", "my-bubble");
+      //chat-box에 div 추가
+      chatbox.append(div);
+      //div 초기화
+      input.value = "";
+    }
+
+    function SendMyTextByEnter(e) {
+      if (e.key == "Enter" && !e.shiftKey) {
+        SendMyText();
+        e.preventDefault();
+      }
+    }
+    send.addEventListener("click", SendMyText);
+    input.addEventListener("keypress", SendMyTextByEnter);
+  </script>
+</html>
