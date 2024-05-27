@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url("../resources/img/background.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 100vh;
+    }
+    #container {
+      width: 90%;
+      height: 80%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      position: relative;
+    }
+    #input {
+      width: 300px;
+      height: 50px;
+      font-size: 1.5em;
+      border: none;
+    }
+    .word {
+      color: white;
+      font-size: 2rem;
+      font-weight: 500;
+      position: absolute;
+    }
+    .score {
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: white;
+      font: 2rem;
+    }
+  </style>
+  <body>
+    <div id="container">
+      <input id="input" type="text" placeholder="단어를 입력하세요." />
+    </div>
+    <div class="score">총점 : 0</div>
+  </body>
+  <script>
+    const words = [
+      "DW",
+      "JavaScript",
+      "DOM",
+      "BOM",
+      "Document",
+      "window",
+      "Event",
+    ];
+
+    const input = document.querySelector("#input");
+    const scorePanel = document.querySelector(".score");
+    const container = document.querySelector("#container");
+    let count = 0;
+    let score = 0;
+
+    //천천히 생각해봐
+    //container 사이즈를 확인해봐
+
+    const maxPositionX = container.offsetWidth - 90;
+    const maxPositionY = container.offsetHeight - 100;
+
+    //span 추가해서 화면ㅇ
+
+    function init() {
+      words.forEach(function (el) {
+        //span 추가
+        const span = document.createElement("span");
+        //단어들에 span 추가
+        span.innerHTML = el;
+        //css 사용 위한 class
+        span.classList.add("word");
+        //id 추가
+        span.setAttribute("id", el);
+        //랜덤으로 위치 잡기
+        span.style.top = `${Math.floor(Math.random() * maxPositionY)}px`;
+        span.style.left = `${Math.floor(Math.random() * maxPositionX)}px`;
+        //화면추가
+        container.append(span);
+      });
+    }
+
+    //사용자가 입력한거랑 단어가 맞는지 확인법.(id)
+    function typing() {
+      const word = document.querySelector(`span[input=${input.value}]`);
+      if (word != null) {
+        word.remove();
+        score += 100;
+        scorePanel.innerHTML = `총점 : ${score} 점`;
+        count++;
+        if(count)
+      }
+    }
+  </script>
+</html>
