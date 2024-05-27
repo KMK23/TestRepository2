@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+  <body>
+    <p>1.<span>홍길동</span></p>
+    <p>2.<span>웨인루니</span></p>
+    <p>3.<span>김덕배</span></p>
+  </body>
+
+  <script>
+    $("p").on("click", function () {
+      console.log($(this).html());
+      console.log($(this).text());
+    });
+
+    const pTag = $("p");
+    pTag.each(function (index, item) {
+      //   console.log(item.innerHTML);
+      console.log($(item).html());
+    });
+
+    //jQuery 객체가 아닌곳에 jQuery 함수를 쓰면 안되니까
+    //jQuery 객체로 만들어주면되는거지;
+
+    // html() ==> getter
+    // html("<span> ㅇ러ㅏ임너라ㅣㅁㄴㅇ </span>") setter
+  </script>
+</html>

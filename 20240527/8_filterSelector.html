@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+  <style>
+    ul {
+      border: 3px solid teal;
+      padding: 0;
+      list-style-type: none;
+      width: 500px;
+      border-radius: 10px;
+    }
+    li {
+      border: 2px solid tomato;
+      background-color: beige;
+      font-size: 2rem;
+      border-radius: 5px;
+      text-align: center;
+      padding: 10px 0;
+    }
+    table {
+      font-size: 2rem;
+    }
+    td {
+      width: 300px;
+      text-align: center;
+    }
+  </style>
+  <body>
+    <ul>
+      <li>one</li>
+      <li>two</li>
+      <li>three</li>
+      <li>four</li>
+      <li>five</li>
+      <li>six</li>
+      <li>seven</li>
+      <li>eight</li>
+      <li>nine</li>
+    </ul>
+
+    <table>
+      <tr>
+        <td>이름</td>
+        <td>주소</td>
+      </tr>
+      <tr>
+        <td>홍길동</td>
+        <td>대전</td>
+      </tr>
+      <tr>
+        <td>진달래</td>
+        <td>서울</td>
+      </tr>
+      <tr>
+        <td>길동홍</td>
+        <td>인천</td>
+      </tr>
+      <tr>
+        <td>둘리</td>
+        <td>부산</td>
+      </tr>
+    </table>
+  </body>
+  <script>
+    $("li:first").css({ fontSize: "5rem" });
+    $("li:last").css({ fontSize: "5rem" });
+    $("li:even").css({ backgroundColor: "pink" });
+    $("li:odd").css({ backgroundColor: "skyblue" });
+    $("li:gt(4)").css({ color: "white" });
+    $("li:lt(4)").css({ color: "blue" });
+    $("li:eq(4)").css({ color: "red" });
+
+    $("tr:even").css({ backgroundColor: "gray" });
+    $("tr:first ").css({ backgroundColor: "black", color: "white" });
+  </script>
+</html>
