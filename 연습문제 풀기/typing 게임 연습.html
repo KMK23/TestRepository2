@@ -80,7 +80,7 @@
         const span = document.createElement("span");
         span.innerHTML = el;
         span.classList.add("word");
-        span.getAttribute("id", el);
+        span.setAttribute("id", el);
         //랜덤
         span.style.top = `${Math.floor(Math.random() * maxPositionY)}px`;
         span.style.left = `${Math.floor(Math.random() * maxPositionX)}px`;
@@ -99,7 +99,7 @@
         if (count == words.length) {
           alert("clear");
           if (confirm("재도전?")) {
-            window.location.reload;
+            window.location.reload();
           }
         }
       }

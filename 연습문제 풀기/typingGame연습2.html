@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url("../resources/img/background.jpg");
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #container {
+      width: 90%;
+      height: 80%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
+    #input {
+      width: 200px;
+      height: 50px;
+      font-size: 1rem;
+      padding: 10px;
+      border: none;
+    }
+    .word {
+      color: white;
+      font-size: 30px;
+      font-weight: 500;
+      position: absolute;
+    }
+    .score {
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: white;
+      font-size: 2rem;
+      padding: 10px;
+    }
+  </style>
+  <body>
+    <body>
+      <div id="container">
+        <input id="input" type="text" placeholder="단어를 입력하세요." />
+      </div>
+      <div class="score">총점 : 0</div>
+    </body>
+    <script>
+      const words = [
+        "DW",
+        "JavaScript",
+        "DOM",
+        "BOM",
+        "Document",
+        "window",
+        "Event",
+      ];
+      // 컨테이너 크기 확인 및 변수 선언
+      const container = document.querySelector("#container");
+      const input = document.querySelector("#input");
+      const point = document.querySelector(".score");
+      let count = 0;
+      let score = 0;
+
+      const maxPositionX = container.offsetWidth - 90;
+      const maxPositionY = container.offsetHeight - 100;
+
+      // 단어를 컨테이너에 넣은다음 보여지게 하자 (랜덤 위치)
+
+      function init() {
+        words.forEach(function (el) {
+          //스팬 태그를 만들자
+          const span = document.createElement("span");
+          //스팬 태그로 감싸자
+          span.innerHTML = el;
+          //class 달자
+          span.classList.add("word");
+          //id 달자
+          span.setAttribute("id", el);
+          //랜덤 위치 잡기
+          span.style.top = `${Math.floor(Math.random() * maxPositionY)}px`;
+          span.style.left = `${Math.floor(Math.random() * maxPositionX)}px`;
+          //컨테이너에 추가
+          container.append(span);
+        });
+      }
+
+      // 실질적 게임.
+
+      function typing() {
+        const word = document.querySelector(`span[id=${input.value}]`);
+        if (word != null) {
+          word.remove();
+          score += 100;
+          point.innerHTML = `총 ${score} 점`;
+          count++;
+          if (count == words.length) {
+            alert("clear");
+            if (confirm("재도전?")) {
+              window.location.reload();
+            }
+          }
+        }
+        input.value = "";
+      }
+
+      function rainWord() {
+        const word = document.querySelectorAll(".word");
+        setInterval(function () {
+          word.forEach(function (el) {
+            const size = el.getBoundingClientRect();
+            el.style.top = `${size.top + -80}px`;
+            const inputHeight = input.offsetHeight;
+            if (
+              el.getBoundingClientRect().bottom >
+              container.getBoundingClientRect().bottom - inputHeight
+            ) {
+              el.remove();
+            }
+          });
+        }, 1000);
+      }
+
+      init();
+      rainWord();
+      input.addEventListener("change", typing);
+    </script>
+  </body>
+</html>
