@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+  <style>
+    .wrapper * {
+      border: 1px solid lightgray;
+      color: lightgray;
+      padding: 5px;
+      margin: 15px;
+      display: block;
+    }
+    .wrapper div {
+      width: 500px;
+    }
+  </style>
+  <body>
+    <div class="wrapper">
+      body div
+      <div>
+        div
+        <ul>
+          ul
+          <li>
+            li
+            <span id="span1">span</span>
+          </li>
+        </ul>
+      </div>
+      <div>
+        div
+        <ul>
+          ul
+          <li>
+            li
+            <span id="span2">span</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+  <script>
+    // $("#span1").parent().css({ border: "2px solid red", color: "red" });
+    // $("#span1").parents("ul").css({ border: "2px solid red", color: "red" });
+    // $("#span1")
+    //   .parentsUntil("div")
+    //   .css({ border: "2px solid red", color: "red" });
+    // $("#span1").closest("div").css({ border: "2px solid red", color: "red" });
+    // $(".wrapper > div")
+    //   .find("li")
+    //   .css({ border: "2px solid red", color: "red" });
+
+    // $("#span1")
+    //   .closest("div")
+    //   .next("div")
+    //   .find("#span2")
+    //   .css({ border: "2px solid red", color: "red" });
+
+    $("#span2")
+      .closest("div")
+      .prev()
+      .find("span")
+      .css({ border: "2px solid red", color: "red" });
+  </script>
+</html>

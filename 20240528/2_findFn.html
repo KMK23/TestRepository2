@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>찾기 함수</title>
+  </head>
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+  <style>
+    body {
+      height: 100vh;
+    }
+    .wrapper {
+      width: 500px;
+    }
+    .wrapper * {
+      border: 1px solid lightgray;
+      color: lightgray;
+      padding: 5px;
+      margin: 15px;
+      display: block;
+    }
+  </style>
+  <body>
+    <div class="wrapper">
+      <ul>
+        ul
+        <li class="start">li class = "start"</li>
+        <li class="my">li class = "my"</li>
+        <li>li</li>
+        <li class="my">li class = "my"</li>
+        <li class="stop">li class = "stop"</li>
+        <li>li</li>
+        <li>li</li>
+        <li>li</li>
+      </ul>
+    </div>
+  </body>
+  <script>
+    // $("li.start").next().css({ border: "2px solid red", color: "red" });
+    // $("li.start").nextAll().css({ border: "2px solid red", color: "red" });
+    // $("li.start")
+    //   .nextUntil("li.stop", ".my")
+    //   .css({ border: "2px solid red", color: "red" });
+    // $("li.stop").prev().css({ border: "2px solid red", color: "red" });
+    // $("li.stop").prevAll().css({ border: "2px solid red", color: "red" });
+    // $("li.stop")
+    //   .prevUntil("li.start")
+    //   .css({ border: "2px solid red", color: "red" });
+    // $("li.stop").parent().css({ border: "2px solid red", color: "red" });
+    // $("li.stop").parents().css({ border: "2px solid red", color: "red" });
+    // $("li.stop")
+    //   .parentsUntil("body")
+    //   .css({ border: "2px solid red", color: "red" });
+    // $("li.start").siblings().css({ border: "2px solid red", color: "red" });
+    // $("li.stop").siblings(".my").css({ border: "2px solid red", color: "red" });
+    // $("ul").find(".my").css({ border: "2px solid red", color: "red" });
+    // $("li.start").add("li.stop").css({ border: "2px solid red", color: "red" });
+  </script>
+</html>

@@ -13,14 +13,14 @@
   </body>
 
   <script>
-    $("p").on("click", function () {
-      console.log($(this).html());
-      console.log($(this).text());
-    });
+    // $("p").on("click", function () {
+    //   console.log($(this).html());
+    //   console.log($(this).text());
+    // });
 
     const pTag = $("p");
     pTag.each(function (index, item) {
-      //   console.log(item.innerHTML);
+      console.log(item.innerHTML);
       console.log($(item).html());
     });
 

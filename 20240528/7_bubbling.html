@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이벤트 버블링과 캡쳐링</title>
+  </head>
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+  <style>
+    /* body * {
+      margin: 10px;
+      border: 1px solid blue;
+      font-size: 2rem;
+    } */
+    form {
+      background-color: sandybrown;
+      position: relative;
+      width: 400px;
+      height: 400px;
+      text-align: center;
+      left: 350px;
+    }
+    div {
+      background-color: blueviolet;
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      top: 50px;
+      left: 50px;
+    }
+    p {
+      background-color: red;
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      top: 50px;
+      left: 50px;
+      margin: 0;
+    }
+  </style>
+  <!-- <body onclick="alert('body 태그 이벤트 핸들러')"> -->
+  <body>
+    <!-- <div onclick="alert('div에 할당한 핸들러')">
+      <em>
+        <code>EM</code>을 클릭했는데도 <code>DIV</code>에 할당한 핸들러가
+        동작합니다.
+      </em>
+    </div>
+    <br /><br /> -->
+    <!-- <form onclick="alert('form')">
+        FORM
+        <div onclick="alert('div')">
+            DIV
+            <p onclick="alert('p')">P</p>
+        </div>
+    </form> -->
+    <!-- 
+        거의 모든 이벤트는 버블링이 된다.
+        focus 외 버블링이 되지 않는게 몇개 있음.
+        
+        1. p 태그를 클릭하면 할당된 onclick 핸들러가 동작한다.
+        2. 바깥의 div 에 할당된 onclick 핸들러가 동작한다.
+        3. form 에 할당된 onclick 핸들러가 동작한다.
+        4. document 객체를 만날 때 까지 각 요소에 할당된 onclick 핸들러가 동작한다.
+     -->
+    <form id="form">
+      FORM
+      <div>
+        DIV
+        <p>P</p>
+      </div>
+    </form>
+    <button>클릭해유</button>
+  </body>
+  <script>
+    //h2[i] == e.target == this 이렇게 알고 있었는데.
+    // 버블링을 배우면 달라짐. h2[i] == e.target !== this 이렇게
+    // const form = document.querySelector("#form");
+    // form.addEventListener(
+    //   "click",
+    //   function (e) {
+    //     alert(`target: ${e.target.tagName}, this : ${this.tagName}`);
+    //   },
+    //   { capture: true }
+    // );
+    //실제 이벤트 핸들러가 달려있는것 : this
+    //실제 클릭 이벤트가 발생한 놈 : target
+
+    const allEl = document.querySelectorAll("*");
+    allEl.forEach(function (el) {
+      if (el.tagName !== "BUTTON") {
+        el.addEventListener(
+          "click",
+          function () {
+            alert(`캡쳐링: ${el.tagName}`);
+          },
+          // { capture: true }
+          true //도 가능
+        );
+      }
+    });
+
+    // const btn = document.querySelector("button");
+    // btn.addEventListener("click", function (e) {
+    //   alert("button 태그 이벤트 핸들러");
+    //   e.stopPropagation();
+    // });
+
+    //DOM 이벤트에서 정의한 이벤트 흐름 3단계
+    //1. 캡처링 단계 - 이벤트가 하위 요소로 전파되는 단계
+    //2. 타깃단계 - 이벤트가 실제 타깃 요소에 전달되는 단계
+    //3. 버블링 단계 - 이벤트가 상위 요소로 전파 되는 단계
+  </script>
+</html>

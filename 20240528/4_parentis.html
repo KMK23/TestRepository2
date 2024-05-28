@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+  <style>
+    div {
+      border: 3px solid orange;
+    }
+  </style>
+  <body>
+    <div>
+      <p>무궁화 꽃이 피었습니다.</p>
+    </div>
+    <p id="pTag">꽃이 피었다</p>
+    <div>
+      <p>꽃으로도 때리지 말라</p>
+    </div>
+  </body>
+  <script>
+    // $("p").on("click", function () {
+    //   //p태그들에 클릭 이벤트를 달아줘야함
+    //   //선택된 p태그를 가져와야함
+    //   const parent = $(this).parent();
+    //   //   console.log(parent);
+    //   //선택된 p태그의 부모 요소를 가져온다
+    //   //부모요소가 div 태그인지 확인을 해야한다.
+    //   if (parent.is("div")) {
+    //     //부모요소가 div 태그라면 선택된 p태그의 텍스트를 가져온다.
+    //     const text = $(this).html();
+    //     //새로운 p태그를 생성하여 부모 요소에 추가한다.(css 폰트 색상 변경 : 빨강)
+    //     const newPtag = document.createElement("p");
+    //     newPtag.innerHTML = text;
+    //     parent.append(newPtag);
+    //     $(newPtag).css("color", "red");
+    //     //부모 요소가 div 태그가 아니라면, '작업 대상이 아닙니다.' alert 출력
+    //   } else {
+    //     alert("작업 대상이 아닙니다.");
+    //   }
+    // });
+
+    // // p 태그들에 클릭 이벤트를 달아준다.
+    // $("p").on("click", function () {
+    //   // 선택된 p 태그를 가져온다.
+    //   const pTag = $(this);
+    //   // 선택된 p 태그의 부모요소를 가져온다.
+    //   const parent = pTag.parent();
+    //   // 부모요소가 div 태그인지 확인한다.
+    //   const parentEl = parent.prop("tagName").toLowerCase();
+    //   console.log(parentEl);
+    //   if (parentEl == "div") {
+    //     // 부모요소가 div 태그라면 선택된 p 태그의 텍스트를 가져온다.
+    //     const text = pTag.text();
+    //     // 새로운 p 태그를 생성하여 부모요소에 추가한다.(폰트색상 변경)
+    //     parent.append(`<p style="color: red;">${text}</p>`);
+    //     parent.append(pTag.clone(true).css("color", "red"));
+    //   } else {
+    //     // 부모요소가 div 태그가 아니라면 "작업대상이 아닙니다." 라는 문구를 출력(alert)
+    //     alert("작업 대상이 아닙니다.");
+    //   }
+    // });
+
+    $("div").on("click", "p", function (e) {
+      console.log(this);
+      const pTag = e.target;
+      $(this).parent("div").append($(pTag).clone().css("color", "red"));
+    });
+  </script>
+</html>
