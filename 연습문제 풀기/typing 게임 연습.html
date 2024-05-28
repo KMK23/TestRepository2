@@ -62,48 +62,41 @@
       "window",
       "Event",
     ];
-
-    const input = document.querySelector("#input");
-    const scorePanel = document.querySelector(".score");
+    // 컨테이너 박스 크기 확인
     const container = document.querySelector("#container");
+    const input = document.querySelector("#input");
+    const point = document.querySelector(".score");
     let count = 0;
     let score = 0;
 
-    //천천히 생각해봐
-    //container 사이즈를 확인해봐
-
     const maxPositionX = container.offsetWidth - 90;
+    console.log(maxPositionX);
     const maxPositionY = container.offsetHeight - 100;
 
-    //span 추가해서 화면ㅇ
-
+    // 단어들이 화면에 랜덤으로 뿌려져야함
     function init() {
+      //span 부터 달아
       words.forEach(function (el) {
-        //span 추가
         const span = document.createElement("span");
-        //단어들에 span 추가
         span.innerHTML = el;
-        //css 사용 위한 class
         span.classList.add("word");
-        //id 추가
-        span.setAttribute("id", el);
-        //랜덤으로 위치 잡기
+        span.getAttribute("id", el);
+        //랜덤
         span.style.top = `${Math.floor(Math.random() * maxPositionY)}px`;
         span.style.left = `${Math.floor(Math.random() * maxPositionX)}px`;
-        //화면추가
         container.append(span);
       });
     }
 
-    //사용자가 입력한거랑 단어가 맞는지 확인법.(id)
+    // 같은 id 가 있을시 제거
     function typing() {
       const word = document.querySelector(`span[id=${input.value}]`);
       if (word != null) {
         word.remove();
         score += 100;
-        scorePanel.innerHTML = `총점 : ${score} 점`;
+        point.innerHTML = `총 몇점 : ${score}`;
         count++;
-        if (count === words.length) {
+        if (count == words.length) {
           alert("clear");
           if (confirm("재도전?")) {
             window.location.reload;
@@ -113,19 +106,25 @@
       input.value = "";
     }
 
-    function wordRain() {
-      //word 라는 클래스가 추가된것들 모두 찾기
-      const words = document.querySelectorAll(".word");
-      //걔네들을 이용하여 일정시간마다 ..
+    // 단어들이 내려오게해야함
+    function rainWord() {
+      const word = document.querySelectorAll(".word");
+      //일정시간동안 계속 실행하게 해야해
       setInterval(function () {
-        words.forEach(function (el) {
-          const rectSize = el.getBoundingClientRect();
-          el.style.top = `${rectSize.top + -90}px`;
+        //모든 단어들을 꺼내서
+        word.forEach(function (el) {
+          //단어의 위치 찾기
+          const size = el.getBoundingClientRect();
+          //위에서 부터 조금씩 내려오게 하기
+          el.style.top = `${size.top + -90}px`;
+          //   인풋 높이 잡고
           const inputHeight = input.offsetHeight;
+          //단어들의 높이 > 컨테이너 - 인풋높이 라면 (true)
           if (
             el.getBoundingClientRect().bottom >
             container.getBoundingClientRect().bottom - inputHeight
           ) {
+            // 단어가 컨테이너 넘어가면 지워야하니까
             el.remove();
           }
         });
@@ -133,7 +132,7 @@
     }
 
     init();
-    wordRain();
+    rainWord();
     input.addEventListener("change", typing);
   </script>
 </html>
