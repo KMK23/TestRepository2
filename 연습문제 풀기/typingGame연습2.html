@@ -51,12 +51,11 @@
     }
   </style>
   <body>
-    <body>
-      <div id="container">
-        <input id="input" type="text" placeholder="단어를 입력하세요." />
-      </div>
-      <div class="score">총점 : 0</div>
-    </body>
+    <div id="container">
+      <input id="input" type="text" placeholder="단어를 입력하세요." />
+    </div>
+    <div class="score">총점 : 0</div>
+
     <script>
       const words = [
         "DW",
@@ -100,11 +99,11 @@
       // 실질적 게임.
 
       function typing() {
-        const word = document.querySelector(`span[id=${input.value}]`);
+        const word = document.querySelector(`input[id=${input.value}]`);
         if (word != null) {
           word.remove();
           score += 100;
-          point.innerHTML = `총 ${score} 점`;
+          point.innerHTML = `${score} 점`;
           count++;
           if (count == words.length) {
             alert("clear");

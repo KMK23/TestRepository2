@@ -65,7 +65,6 @@
       "window",
       "Event",
     ];
-    // 컨테이너 크기 확인 및 변수 선언
     const $container = $("#container");
     const $input = $("#input");
     const $point = $(".score");
@@ -77,18 +76,59 @@
 
     function init() {
       words.forEach((el) => {
-        const $span = $(`<span><span>`);
-        $($span).text(el);
-        $($span).addClass("word");
-        $($span).attr("id", el);
+        const $span = $(`<span></span>`);
+        $span.text(el);
+        $span.addClass("word");
+        $span.attr("id", el);
         $span.css({
           top: `${Math.floor(Math.random() * maxPositionY)}px`,
           left: `${Math.floor(Math.random() * maxPositionX)}px`,
+          position: "absolute",
         });
         $container.append($span);
       });
     }
 
-    function typing() {}
+    function typing() {
+      const $word = $(`#${$input.val()}`);
+      if ($word.length) {
+        $word.remove();
+        score += 100;
+        $point.html(`총 ${score} 점`);
+        count++;
+        if (count === words.length) {
+          alert("clear");
+          if (confirm("재도전?")) {
+            location.reload();
+          }
+        }
+      }
+      $input.val("");
+    }
+
+    function rainWord() {
+      setInterval(function () {
+        $(".word").each(function () {
+          const $el = $(this);
+          const size = $el[0].getBoundingClientRect();
+          $el.css("top", `${size.top - 100}px`);
+          const inputHeight = $input.outerHeight();
+          if (
+            $el[0].getBoundingClientRect().bottom >
+            $container[0].getBoundingClientRect().bottom - inputHeight
+          ) {
+            $el.remove();
+          }
+        });
+      }, 1000);
+    }
+
+    init();
+    rainWord();
+    $input.on("change", typing);
+
+    init();
+    rainWord();
+    input.on("change", typing);
   </script>
 </html>
