@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Authors</h1>
+    <ul id="authors"></ul>
+    <button>posts</button>
+    <button>comments</button>
+    <button>albums</button>
+    <button>photos</button>
+    <button>todos</button>
+    <button>users</button>
+  </body>
+  <script>
+    //get(받기) , post(등록) , put patch( 수정) , delete (삭제)
+    // fetch(비동기 통신을 할수있는 감싸는 함수)
+    //url 에서 도메인/posts(posts 전체)/1 하면 id 1번인거 한개
+    //RESTful API
+
+    // 대충 이런식의 구조
+    // posts ㅡ comments
+    //  |
+    // users ㅡ albums
+    //  |         |
+    // todos     photos
+    // 이러한 컬렉션의 문서중에 본인들의 key값이 있음. users는 id posts는 userId .. 이런식으로
+
+    const url = "https://jsonplaceholder.typicode.com/posts";
+    //fetch 함수는 promise 객체를 반환.
+    //promise ==> 비동기 통신에 대한 상태와 결과값을 담고 있는 객체
+    //promise stats 값
+    //pending : 진행중
+    //fulfilled : 작업(통신)성공
+    //rejected : 작업(통신)실패
+
+    //response.json():응답을 JSON 형태로 파싱한다.
+    //response.text():응답을 읽고 string 형태로 반환한다.
+    //response.formData():응답을 FormData 객체 형태로 반환한다.
+    // response.blob():응답을 Blob(바이너리 데이터) 형태로 반환한다.
+
+    console.log("start!!!");
+    fetch(url)
+      .then((response) => response.json())
+      //   .then((response) => response.text())
+      .then((result) => console.log(result));
+    //   .then((result) => console.log(JSON.parse(result)));
+    console.log("end!!!");
+    //start 콘솔이 먼저 찍힘
+    //fetch를 만나는데, 여기서 리턴하는 promise 의 then 함수 콜백을 등록
+    //뒤에있는 두번째 then 함수를 콜백을 등록(등록만 할 뿐 실행 X)
+    //서버(요청한쪽(jsonplacehorder))에서 response가 도착하면 then 함수에서 등록했던 콜백들이 실행
+  </script>
+</html>

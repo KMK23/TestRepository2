@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="../resources/js/jquery-3.6.4.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image: url("../resources/img/background.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    #container {
+      width: 90%;
+      height: 80%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      position: relative;
+    }
+    #input {
+      width: 300px;
+      height: 50px;
+      border: none;
+      font-size: 1.5rem;
+    }
+    .word {
+      color: white;
+      font-size: 2rem;
+      position: absolute;
+      font-weight: 500;
+    }
+    .score {
+      font-size: 2rem;
+      color: white;
+      position: absolute;
+      right: 0;
+      top: 0;
+      padding: 15px;
+    }
+  </style>
+  <body>
+    <div id="container">
+      <input id="input" type="text" placeholder="단어를 입력하세요." />
+    </div>
+    <div class="score">총점 : 0</div>
+  </body>
+  <script>
+    const words = [
+      "DW",
+      "JavaScript",
+      "DOM",
+      "BOM",
+      "Document",
+      "window",
+      "Event",
+    ];
+    // 컨테이너 크기 확인 및 변수 선언
+    const $container = $("#container");
+    const $input = $("#input");
+    const $point = $(".score");
+    let count = 0;
+    let score = 0;
+
+    const maxPositionX = $container.width() - 90;
+    const maxPositionY = $container.height() - 100;
+
+    function init() {
+      words.forEach((el) => {
+        const $span = $(`<span><span>`);
+        $($span).text(el);
+        $($span).addClass("word");
+        $($span).attr("id", el);
+        $span.css({
+          top: `${Math.floor(Math.random() * maxPositionY)}px`,
+          left: `${Math.floor(Math.random() * maxPositionX)}px`,
+        });
+        $container.append($span);
+      });
+    }
+
+    function typing() {}
+  </script>
+</html>
