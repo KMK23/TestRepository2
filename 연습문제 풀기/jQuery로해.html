@@ -6,7 +6,6 @@
     <title>Document</title>
   </head>
   <script src="../resources/js/jquery-3.6.4.js"></script>
-
   <style>
     * {
       box-sizing: border-box;
@@ -21,32 +20,32 @@
       background-size: cover;
     }
     #container {
-      width: 90%;
-      height: 80%;
       display: flex;
       justify-content: center;
       align-items: flex-end;
+      width: 90%;
+      height: 90%;
       position: relative;
     }
     #input {
       width: 300px;
       height: 50px;
-      border: none;
       font-size: 1.5rem;
+      border: none;
     }
     .word {
       color: white;
-      font-size: 2rem;
       position: absolute;
-      font-weight: 500;
+      font-size: 1.5rem;
+      font-weight: 600;
     }
     .score {
-      font-size: 2rem;
-      color: white;
       position: absolute;
+      color: white;
       right: 0;
       top: 0;
-      padding: 15px;
+      font-size: 2rem;
+      padding: 0;
     }
   </style>
   <body>
@@ -65,66 +64,67 @@
       "window",
       "Event",
     ];
-    const $container = $("#container");
-    const $input = $("#input");
-    const $point = $(".score");
+
+    const container = $("#container");
+    const input = $("#input");
+    const point = $(".score");
     let count = 0;
     let score = 0;
 
-    const maxPositionX = $container.width() - 90;
-    const maxPositionY = $container.height() - 100;
+    const positionX = container.outerWidth() - 90;
+    const positionY = container.outerHeight() - 90;
 
     function init() {
       words.forEach((el) => {
-        const $span = $(`<span></span>`);
-        $span.text(el);
-        $span.addClass("word");
-        $span.attr("id", el);
-        $span.css({
-          top: `${Math.floor(Math.random() * maxPositionY)}px`,
-          left: `${Math.floor(Math.random() * maxPositionX)}px`,
-          position: "absolute",
+        const span = $(`<span></span>`);
+        span.text(el);
+        span.addClass("word");
+        span.attr("id", el);
+        span.css({
+          top: `${Math.floor(Math.random() * positionY)}px`,
+          left: `${Math.floor(Math.random() * positionX)}px`,
         });
-        $container.append($span);
+        span.appendTo(container);
       });
     }
 
     function typing() {
-      const $word = $(`#${$input.val()}`);
-      if ($word.length) {
-        $word.remove();
+      const word = $(`span[id=${input.val()}]`);
+      if (word != null) {
+        word.remove();
         score += 100;
-        $point.html(`총 ${score} 점`);
+        point.text(`${score}점`);
         count++;
-        if (count === words.length) {
+        if (count == words.length) {
           alert("clear");
           if (confirm("재도전?")) {
             location.reload();
           }
         }
       }
-      $input.val("");
+      input.val("");
     }
 
     function rainWord() {
+      const words = $(".word");
       setInterval(function () {
-        $(".word").each(function () {
-          const $el = $(this);
-          const size = $el[0].getBoundingClientRect();
-          $el.css("top", `${size.top - 100}px`);
-          const inputHeight = $input.outerHeight();
+        words.each(function () {
+          const el = $(this);
+          const size = el[0]
+            .getBoundingClientRect()
+            .css("top", `${size.top + 1}px`);
+          const inputHeight = input.offsetHeight;
           if (
-            $el[0].getBoundingClientRect().bottom >
-            $container[0].getBoundingClientRect().bottom - inputHeight
+            el[0].getBoundingClientRect().bottom >
+            container[0].getBoundingClientRect().bottom - inputHeight
           ) {
-            $el.remove();
+            el[0].remove();
           }
         });
       }, 1000);
     }
-
     init();
     rainWord();
-    $input.on("change", typing);
+    input.on("change", typing);
   </script>
 </html>

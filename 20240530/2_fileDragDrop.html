@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    .dropBox {
+      width: 30vw;
+      height: 20vh;
+      border: 4px dashed #ddd;
+      margin: 0.6rem;
+      overflow: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 10px;
+      transition: 0.4s;
+    }
+    .dropBox.active {
+      background-color: #ddd;
+    }
+    .dropBox h1 {
+      font-size: 1.8rem;
+    }
+  </style>
+  <body>
+    <div class="dropBox">
+      <h1>이곳에 파일을 드랍해주세요</h1>
+    </div>
+  </body>
+  <script>
+    // box , h1
+    const box = document.querySelector(".dropBox");
+    const title = document.querySelector(".dropBox h1");
+
+    // dragover
+    box.addEventListener("dragover", (e) => {
+      e.preventDefault();
+    });
+    // 드래그한 파일이 최초 진입 했을 때(Enter)
+    box.addEventListener("dragenter", (e) => {
+      e.preventDefault();
+      box.classList.add("active");
+    });
+
+    // 드래그한 파일이 영역을 벗어 났을 때(leave)
+    box.addEventListener("dragleave", (e) => {
+      e.preventDefault();
+      box.classList.remove("active");
+    });
+
+    // 드래그한 파일 객체가 해당 영역에 들어올때(drop)
+    box.addEventListener("drop", (e) => {
+      e.preventDefault();
+      box.classList.remove("active");
+      //   const files = e.dataTransfer;
+      const files = [...e.dataTransfer.files];
+      //Array.from(e.dataTransfer.files) ==> 이것도 진짜 배열로 만드는 방법.
+      console.log(files);
+      //   const nameArr = [];
+      //   for (let i = 0; i < files.length; i++) {
+      //     const { name } = files[i];
+      //     nameArr.push(name);
+      //   }
+      const NameArr = files.map(function (v) {
+        return v.name;
+        //arrow function 으로하면 return 값이 빠지지...
+        console.log(NameArr);
+      });
+      title.innerHTML = NameArr.join("</br>");
+    });
+  </script>
+</html>
