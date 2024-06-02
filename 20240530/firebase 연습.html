@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <table border="1">
+      <tr>
+        <th>이름</th>
+        <th>나이</th>
+        <th>성별</th>
+        <th>이메일</th>
+        <th>전화번호</th>
+      </tr>
+    </table>
+  </body>
+  <script type="module">
+    import { db, addDatas, getDatas } from "../resources/js/firebase.js";
+    const memberData = await getDatas("member");
+    const tableTag = document.querySelector("table");
+    memberData.forEach((el) => {
+      const { name, age, email, gender, tel } = el.data();
+      tableTag.insertAdjacentHTML(
+        "beforeend",
+        `<tr>
+                <td>${name}</td>
+                <td>${age}</td>
+                <td>${gender}</td>
+                <td>${email}</td>
+                <td>${tel}</td>
+        </tr>`
+      );
+    });
+  </script>
+</html>

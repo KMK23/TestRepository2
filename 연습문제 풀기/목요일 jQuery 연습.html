@@ -68,16 +68,16 @@
     const container = $("#container");
     const input = $("#input");
     const point = $(".score");
-    let count = 0;
     let score = 0;
+    let count = 0;
 
     const positionX = container.outerWidth() - 90;
     const positionY = container.outerHeight() - 90;
 
     function init() {
-      words.forEach((el) => {
+      words.forEach(function (el) {
         const span = $(`<span></span>`);
-        span.text(el);
+        span.html(el);
         span.addClass("word");
         span.attr("id", el);
         span.css({
@@ -88,42 +88,7 @@
       });
     }
 
-    function typing() {
-      const word = $(`span[id=${input.val()}]`);
-      if (word != null) {
-        word.remove();
-        score += 100;
-        point.text(`${score}점`);
-        count++;
-        if (count == words.length) {
-          alert("clear");
-          if (confirm("재도전?")) {
-            location.reload();
-          }
-        }
-      }
-      input.val("");
-    }
-
-    function rainWord() {
-      const words = document.querySelectorAll(".word");
-      setInterval(function () {
-        words.forEach((el) => {
-          const size = el.getBoundingClientRect();
-          el.style.top = `${size.top + -90}px`;
-          const inputHeight = input.offsetHeight;
-          if (
-            el.getBoundingClientRect().bottom >
-            container.getBoundingClientRect().bottom - inputHeight
-          ) {
-            el.remove();
-          }
-        });
-      }, 1000);
-    }
-
+    function typing() {}
     init();
-    rainWord();
-    input.on("change", typing);
   </script>
 </html>
