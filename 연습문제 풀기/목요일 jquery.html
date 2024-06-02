@@ -5,45 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+  <script src="../resources/js/jquery-3.6.4.js"></script>
   <style>
     * {
       box-sizing: border-box;
     }
     body {
-      background-image: url("../resources/img/background.jpg");
-      background-repeat: no-repeat;
-      background-size: cover;
-      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
+      height: 100vh;
+      background-image: url("../resources/img/background.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
     }
     #container {
-      width: 90%;
-      height: 80%;
       display: flex;
       justify-content: center;
       align-items: flex-end;
+      width: 80%;
+      height: 90%;
       position: relative;
     }
     #input {
       width: 300px;
       height: 50px;
-      font-size: 2rem;
       border: none;
+      font-size: 1.5rem;
     }
     .word {
-      color: white;
       position: absolute;
+      color: white;
       font-size: 1.5rem;
+      font-weight: 700;
     }
     .score {
       position: absolute;
+      padding: 20px;
+      color: white;
+      font-size: 1.9rem;
       top: 0;
       right: 0;
-      font-size: 2rem;
-      color: white;
-      padding: 10px;
     }
   </style>
   <body>
@@ -52,7 +54,6 @@
     </div>
     <div class="score">총점 : 0</div>
   </body>
-
   <script>
     const words = [
       "DW",
@@ -64,29 +65,23 @@
       "Event",
     ];
 
-    //음 컨테이너의 크기를 알아야하고 변수선언을 맨위로 올리고
-
     const container = document.querySelector("#container");
     const input = document.querySelector("#input");
     const point = document.querySelector(".score");
     let count = 0;
     let score = 0;
-    const maxPositionX = container.offsetWidth - 90;
-    const maxPositionY = container.offsetHeight - 100;
+
+    const positionX = container.offsetWidth - 90;
+    const positionY = container.offsetHeight - 90;
+
     function init() {
       words.forEach((el) => {
-        //스팬만들어
         const span = document.createElement("span");
-        //스팬에 단어 넣어
         span.innerHTML = el;
-        //클래스 달아
         span.classList.add("word");
-        //id 달아
         span.setAttribute("id", el);
-        //랜덤 위치
-        span.style.top = `${Math.floor(Math.random() * maxPositionY)}px`;
-        span.style.left = `${Math.floor(Math.random() * maxPositionX)}px`;
-        //화면추가
+        span.style.top = `${Math.floor(Math.random() * positionY)}px`;
+        span.style.left = `${Math.floor(Math.random() * positionX)}px`;
         container.append(span);
       });
     }
@@ -96,7 +91,7 @@
       if (word != null) {
         word.remove();
         score += 100;
-        point.innerHTML = `총 ${score} 점`;
+        point.innerHTML = `${score}점`;
         count++;
         if (count == words.length) {
           alert("clear!!");
@@ -108,12 +103,12 @@
       input.value = "";
     }
 
-    function rainWord() {
-      const word = document.querySelectorAll(".word");
+    function strRain() {
+      const words = document.querySelectorAll(".word");
       setInterval(function () {
-        word.forEach((el) => {
+        words.forEach((el) => {
           const size = el.getBoundingClientRect();
-          el.style.top = `${size.top + -90}px`;
+          el.style.top = `${size.top + -50}px`;
           const inputHeight = input.offsetHeight;
           if (
             el.getBoundingClientRect().bottom >
@@ -124,25 +119,8 @@
         });
       }, 1000);
     }
-
-    function rainWord() {
-      setInterval(() => {
-        $(".word").each((index, el) => {
-          const rect = el.getBoundingClientRect();
-          const inputHeight = input.outerHeight();
-          $(el).css("top", `${rect.top + 1}px`);
-          if (
-            rect.bottom >
-            container.get(0).getBoundingClientRect().bottom - inputHeight
-          ) {
-            $(el).remove();
-          }
-        });
-      }, 50);
-    }
-
     init();
-    rainWord();
+    strRain();
     input.addEventListener("change", typing);
   </script>
 </html>
