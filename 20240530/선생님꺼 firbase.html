@@ -221,11 +221,17 @@
       const formElChildren = formEl.elements;
       const formElChildrenArr = [...formElChildren];
       console.log(formElChildrenArr);
-      //   const joinFormObj = {};
-      //   formElChildrenArr.forEach((input) => {
-      //     joinFormObj[input.name] = input.value;
-      //   });
+      //유사 배열이였기때문에 진짜 배열로 만들어준거야.
 
+      // console.log(formElChildrenArr);
+      // const joinFormObj = {};
+      // 서버로 보낼때는 객체 형식으로 보내야해서 위에 있는 배열을 객체로 바꿔야함
+      //빈 객체를 만들고
+      // formElChildrenArr.forEach((input) => {
+      //반복해서
+      // joinFormObj[input.name] = input.value;
+      //빈 배열에. input에 name 이니까 .input.name 이라 써야하는데
+      // 그렇게 쓰면 input 을 변수로 받아들여서 [ ]로 썼다.
       const joinFormObj = formElChildrenArr.reduce(
         (acc, cur) =>
           // acc[cur.name] = cur.value;
@@ -233,9 +239,13 @@
           // return { ...acc, [cur.name]: cur.value };
           ({ ...acc, [cur.name]: cur.value }),
         {}
+        //     {이건 {} 이건 key :    value   }
+        // ({ ...acc, [cur.name]: cur.value });
+        //닌자코드.. { 내용물}이 객체로 감싸 있기 때문에 return 을 쓰라고 vsCode가 하는데
+        // 그러니까 ()를 넣어줘야함.
       );
       console.log(joinFormObj);
-
+      //위의 코드를 memberInfo 에 넣어도 작동을해. 왜냐면
       const memberInfo = {
         name: document.querySelector("input[name='name']").value,
         age: Number(document.querySelector("input[name='age']").value),
@@ -243,12 +253,14 @@
         gender: document.querySelector("input[name='gender']").value,
         email: document.querySelector("input[name='email']").value,
       };
-      //   console.log(memberInfo);
+      // console.log(memberInfo);
       // 파이어베이스에 데이터를 저장
       const result = await addDatas("member", memberInfo);
       // 저장 결과가 성공 ==> 페이지 리로딩
       // 결과가 실패 ==> "저장을 실패했습니다." alert
       result ? getMembersHandleTrClick() : alert("저장을 실패했습니다");
+      //조건식이 들어가야 할 곳에 result 는 true냐 false 냐 밖에 없기때문에
+      //그냥 바로 작성한것이다.
     });
   </script>
 </html>

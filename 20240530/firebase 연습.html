@@ -43,6 +43,7 @@
         <input type="text" name="gender" />
       </p>
     </form>
+    <button id="saveBtn">데이터저장</button>
     <table border="1"></table>
     <br /><br />
     <button id="updateBtn">회원정보수정</button>
@@ -125,9 +126,28 @@
 
     //추가하는것부터 해보자
 
-    const btn = document.querySelector("saveBtn");
-    btn.addEventListener("click", function (e) {
+    const btn = document.querySelector("#saveBtn");
+    btn.addEventListener("click", async function () {
+      //formEl.elements 는 form 태그에서만 쓸수있음 ex)input, select, textarea 등 form 안에 쓰는거
       const formEl = document.forms[0];
+      const formElChildren = formEl.elements;
+      const formElChildrenArr = [...formElChildren];
+      const joinFormObj = formElChildrenArr.reduce((acc, cur) => {
+        //처음 acc에 {}가 들어와. ...은 스프레드 연산자로 ... 을쓰면 기존 객체의 모든속성 복사
+        return { ...acc, [cur.name]: cur.value };
+        // 이렇게 해서 { 안에 key:value 값이 들어간거야}
+      }, {});
     });
+    const memberInfo = {
+      name: document.querySelector("input[name='name']").value,
+      age: Number(document.querySelector("input[name='age']").value),
+      tel: document.querySelector("input[name='tel']").value,
+      gender: document.querySelector("input[name='gender']").value,
+      email: document.querySelector("input[name='email']").value,
+    };
+    //파이어베이스에 데이터를 저장
+    const result = await addDatas("member", memberInfo);
+    // memberInfo 자리는 오브젝트 네임
+    result ? getMembersHandleTrClick() : alert("저장을 실패했습니다.");
   </script>
 </html>
