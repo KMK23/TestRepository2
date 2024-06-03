@@ -1,0 +1,102 @@
+html {
+  font-family: Pretendard;
+}
+body {
+  background-color: #000;
+  margin: 0;
+  color: #fff;
+}
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  padding: 16px;
+  font-weight: 700;
+  background-image: linear-gradient(#000, rbga(0, 0, 0, 0));
+}
+.wrap {
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+  /* 최대 1080px 주고 width 100%를 주었고 마진 가로를 줘서 모니터가 아무리 커져도
+  나머지 옆쪽은 여백이 된다. 이거 프로젝트나 내꺼 포트폴리오 할때 쓰며 될듯
+  */
+  padding: 32px;
+}
+.bg {
+  width: 100%;
+  opacity: 0.5;
+}
+.hero {
+  position: relative;
+}
+.hero-heading {
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  /* top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; */
+  inset: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1));
+  margin: -160px 0 0;
+}
+.hero-heading > h1 {
+  font-weight: 400;
+  font-size: 80px;
+  color: #fff;
+  text-align: center;
+}
+.small {
+  font-size: 48px;
+  color: rgba(217, 217, 217, 0.5);
+}
+.big {
+  font-weight: 700;
+}
+.headline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 176px;
+}
+.headline-heading {
+  font-weight: 700;
+  font-size: 56px;
+  margin: 32px;
+}
+.headline-description {
+  font-size: 24px;
+}
+
+.promotion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 200px 0;
+  padding: 80px 180px;
+  background-color: #280357;
+}
+.promotion h2 {
+  font-weight: 600;
+  font-size: 40px;
+  margin: 24px;
+}
+.promotion p {
+  font-size: 24px;
+  margin: 24px;
+}
+.promotionBtn {
+  border: 1px solid #fff;
+  padding: 24px;
+  border-radius: 16px;
+  background-color: transparent;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+}

@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+  <style>
+    tr {
+      cursor: pointer;
+      height: 50px;
+    }
+    .selected {
+      background-color: yellow;
+    }
+  </style>
   <body>
     <form name="joinForm">
       <p>
@@ -30,7 +39,25 @@
     </form>
     <button id="saveBtn">데이터저장</button>
 
-    <table border="1">
+    <table border="1"></table>
+    <br /><br />
+    <button id="updateBtn">회원정보수정</button>
+    <button id="saveUpdateBtn">회원정보저장</button>
+    <button id="deleteBtn">회원삭제</button>
+  </body>
+  <script type="module">
+    import {
+      db,
+      getDatas,
+      addDatas,
+      deleteDatas,
+    } from "../resources/js/firebase.js";
+    //모듈타입의 스크립트 안에서의 첫번째는 async 없이 await 쓸수있음.
+    async function getmembers() {
+      console.log("getmembers 함수 시작");
+      const snapshot = await getDatas("member");
+      const tableTag = document.querySelector("table");
+      let tagStr = `
       <tr>
         <th>이름</th>
         <th>나이</th>
@@ -38,27 +65,102 @@
         <th>이메일</th>
         <th>전화번호</th>
       </tr>
-    </table>
-  </body>
-  <script type="module">
-    import { db, getDatas, addDatas } from "../resources/js/firebase.js";
-    //모듈타입의 스크립트 안에서의 첫번째는 async 없이 await 쓸수있음.
-    const snapshot = await getDatas("member");
-    const tableTag = document.querySelector("table");
-    snapshot.forEach((doc) => {
-      const { name, age, gender, tel, email } = doc.data();
-      tableTag.insertAdjacentHTML(
-        "beforeend",
-        `
-            <tr>
+      `;
+      snapshot.forEach((doc) => {
+        const { name, age, gender, tel, email } = doc.data();
+        // tableTag.insertAdjacentHTML(
+        //   "beforeend",
+        //   `
+        //       <tr>
+        //           <td>${name}</td>
+        //           <td>${age}</td>
+        //           <td>${gender}</td>
+        //           <td>${email}</td>
+        //           <td>${tel}</td>
+        //       </tr>
+        //   `
+        // );
+        tagStr += `
+               <tr>
                 <td>${name}</td>
                 <td>${age}</td>
                 <td>${gender}</td>
                 <td>${email}</td>
                 <td>${tel}</td>
-            </tr>
-        `
-      );
+                <input type="hidden" value = '${doc.id}'/>
+                </tr>
+                
+                `;
+        // console.log(doc.id);
+      });
+
+      tableTag.innerHTML = tagStr;
+      // console.log("getmembers 함수 종료");
+    }
+    //멤버 조회 및 이벤트 핸들러 등록하는 함수
+    function getMembersHandleTrClick() {
+      getmembers().then(handleTrClick);
+    }
+    getMembersHandleTrClick();
+    function handleTrClick() {
+      // console.log("handleTrClick 이벤트 시작");
+      //tr 태그에 click 이벤트 적용
+      const trs = document.querySelectorAll("tr");
+      trs.forEach((el) => {
+        el.addEventListener("click", function (e) {
+          // console.log(e.target);
+          if (e.target.tagName != "TH") {
+            el.classList.toggle("selected");
+          }
+
+          //toggle 은 class 있는것들은 빼주고 없는것들은 넣어주고
+          //tr에다 건 이유는 배경 전체를 바꿀꺼니까
+          //근데 th 도 색깔이 들어가니까.. 그걸 빼야해 현재 지금 버블링중이야
+          //그래서 tagName 이 들어가야함.
+        });
+      });
+      console.log("handleTrClick 이벤트 종료");
+    }
+    //삭제하기
+    const deleteBtn = document.querySelector("#deleteBtn");
+    deleteBtn.addEventListener("click", function () {
+      const selectedTrs = document.querySelectorAll("tr.selected");
+      if (selectedTrs.length == 0) {
+        alert("삭제할 데이터가 없음");
+        return false;
+      }
+      //회원정보수정하기
+      const updateBtn = document.getElementById("updateBtn");
+      updateBtn.addEventListener("click", function () {
+        const selectedTrs = document.querySelectorAll("tr.selected");
+        if (selectedTrs.length == 0) {
+          // alert("수정할 회원을 선택해주세요.");
+          return false;
+        } else if (selectedTrs.length >= 2) {
+          // alert("회원정보 수정은 하나씩만 가능합니다.");
+          return false;
+        }
+
+        const selectedTr = selectedTrs[0];
+        const trChildren = selectedTr.children;
+        console.log(trChildren);
+        for (let i = 0; i < trChildren.length; i++) {
+          trchildren[i].addEventListener("click", (e) => {
+            e.stopPropagation();
+          });
+          const tdText = trChildren[i].innerText;
+          trChildren[i].innerHTML = `<input type='text' value='${tdText}' />`;
+        }
+      });
+      //문서ID 가져오기
+      selectedTrs.forEach((tr) => {
+        console.log("getMembersHandleTrClick 시작");
+        const docId = tr.lastElementChild.value;
+        // console.log(docId);
+        deleteDatas("member", docId);
+        console.log("getMembersHandleTrClick");
+      });
+      getMembersHandleTrClick();
     });
 
     const btn = document.getElementById("saveBtn");
@@ -103,17 +205,17 @@
       const result = await addDatas("member", memberInfo);
       //저장 결과가 성공 ==> 페이지 리로딩
       //결과가 실패 ==> "저장을 실패 했습니다." alert
-      result ? window.location.reload() : alert("저장을 실패했습니다.");
+      result ? getMembersHandleTrClick() : alert("저장을 실패했습니다.");
       //조건식이 들어가야 할 곳에 result 는 true냐 false 냐 밖에 없기때문에
       //그냥 바로 작성한것이다.
     });
-    let value;
+    // let value;
 
-    try {
-      value = zero;
-      //   value = 0;
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   value = zero;
+    //   //   value = 0;
+    // } catch (error) {
+    //   console.log(error);
+    // }
   </script>
 </html>

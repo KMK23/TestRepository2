@@ -5,8 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+  <style>
+    tr {
+      cursor: pointer;
+      height: 50px;
+    }
+    .selected {
+      background-color: yellow;
+    }
+    .active {
+      pointer-events: auto;
+    }
+    .nonActive {
+      pointer-events: none;
+    }
+  </style>
   <body>
-    <table border="1">
+    <form name="joinForm">
+      <p>
+        <label>이름 : </label>
+        <input type="text" name="name" />
+      </p>
+      <p>
+        <label>나이 : </label>
+        <input type="text" name="age" />
+      </p>
+      <p>
+        <label>이메일 : </label>
+        <input type="text" name="email" />
+      </p>
+      <p>
+        <label>전화번호 : </label>
+        <input type="text" name="tel" />
+      </p>
+      <p>
+        <label>성별 : </label>
+        <input type="text" name="gender" />
+      </p>
+    </form>
+    <table border="1"></table>
+    <br /><br />
+    <button id="updateBtn">회원정보수정</button>
+    <button id="saveUpdateBtn">회원정보저장</button>
+    <button id="deleteBtn">회원삭제</button>
+  </body>
+  <script type="module">
+    import { db, addDatas, getDatas } from "../resources/js/firebase.js";
+    // const memberData = await getDatas("member");
+    // const tableTag = document.querySelector("table");
+    // memberData.forEach((el) => {
+    //   const { name, age, email, gender, tel } = el.data();
+    //   tableTag.insertAdjacentHTML(
+    //     "beforeend",
+    //     `<tr>
+    //             <td>${name}</td>
+    //             <td>${age}</td>
+    //             <td>${gender}</td>
+    //             <td>${email}</td>
+    //             <td>${tel}</td>
+    //     </tr>`
+    //   );
+    // });
+
+    async function getMembers() {
+      const snapshot = await getDatas("member");
+      const tableTag = document.querySelector("table");
+      let tagStr = `
       <tr>
         <th>이름</th>
         <th>나이</th>
@@ -14,24 +78,56 @@
         <th>이메일</th>
         <th>전화번호</th>
       </tr>
-    </table>
-  </body>
-  <script type="module">
-    import { db, addDatas, getDatas } from "../resources/js/firebase.js";
-    const memberData = await getDatas("member");
-    const tableTag = document.querySelector("table");
-    memberData.forEach((el) => {
-      const { name, age, email, gender, tel } = el.data();
-      tableTag.insertAdjacentHTML(
-        "beforeend",
-        `<tr>
-                <td>${name}</td>
-                <td>${age}</td>
-                <td>${gender}</td>
-                <td>${email}</td>
-                <td>${tel}</td>
-        </tr>`
-      );
+      `;
+      snapshot.forEach((el) => {
+        const { name, age, email, tel, gender } = doc.data();
+        tagStr += ` <tr>
+                   <td class="name">${name}</td>
+                   <td class="age">${age}</td>
+                   <td class="gender">${gender}</td>
+                   <td class="email">${email}</td>
+                   <td class="tel">${tel}</td>
+                   <input type='hidden' value='${doc.id}' />
+               </tr>
+           `;
+      });
+      tableTag.innerHTML = tagStr;
+    }
+
+    // 멤버 조회 및 이벤트 핸들로 등록하는 함수
+
+    // 내가 클릭했을떄 그 테이블에서 리스트가 선택되는지 확인좀 해보기 위해 클래스 넣고 뺴기
+    function handleTrClick() {
+      //tr들 다가져와서
+      const trs = document.querySelectorAll("tr");
+      //tr이 갯수가 많잖아 왜나면 데이너 내에 한명이 있는게 아니라 회원이 개많을수도있으니까
+      //반복문쓰고
+      trs.forEach((el) => {
+        //각 나온 정보들한테 클릭이벤트달고
+        el.addEventListener("click", function (e) {
+          //근데 TH는 클릭되면 안되잖아
+          if (this.tagName != "TH") {
+            //th 제외 나머지 toggle 해서 selected 달아 (toggle 은 클래스 있는놈은 빼고 없는놈은 넣고)
+            tr.classList.toggle("selected");
+          }
+        });
+      });
+    }
+    //위에 클릭해서 그게 선택되면 색깔바뀌게 해놨어 그다음에 이제 삭제 버튼 이벤트 준비
+    const deleteBtn = document.querySelector("#deleteBtn");
+    deleteBtn.addEventListener("click", function (e) {
+      const selectedTrs = document.querySelectorAll("tr.selected");
+      if (selectedTrs.length == 0) {
+        alert("삭제할 데이터가 없습니다");
+        return false;
+      }
+    });
+
+    //추가하는것부터 해보자
+
+    const btn = document.querySelector("saveBtn");
+    btn.addEventListener("click", function (e) {
+      const formEl = document.forms[0];
     });
   </script>
 </html>
