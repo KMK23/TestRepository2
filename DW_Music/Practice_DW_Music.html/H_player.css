@@ -1,0 +1,54 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  font-family: pretendard;
+}
+body {
+  background-color: black;
+  color: white;
+  font-size: 16px;
+}
+.player {
+  width: 100%;
+  height: 100px;
+}
+.progress-bar {
+  background-color: #4d4d54;
+}
+.progress {
+  background-color: #7000ff;
+  width: 80%;
+  height: 10px;
+}
+.player-main {
+  background-color: rgba(48, 48, 55, 0.7);
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  gap: 24px;
+}
+
+.playBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 100px;
+}
+
+.time {
+  display: flex;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
