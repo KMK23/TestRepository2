@@ -1,0 +1,154 @@
+* {
+  box-sizing: border-box;
+  font-family: pretendard;
+}
+html {
+  word-break: keep-all;
+}
+body {
+  background-color: black;
+  color: white;
+  margin: 0;
+}
+/* 첫번째 section 시작 */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  font-weight: 700;
+  background-image: linear-gradient(black, rgba(0, 0, 0, 0));
+  z-index: 1;
+}
+.wrap {
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+}
+.hero {
+  position: relative;
+}
+.bg {
+  width: 100%;
+  opacity: 0.5;
+}
+.hero-heading {
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1));
+  margin: -160px 0 0;
+}
+.small {
+  font-size: 48px;
+  color: gray;
+}
+.big {
+  font-weight: 700;
+}
+/* 첫번째 section 끝 */
+
+/* 두번째 section 시작 */
+
+.hero-headline {
+  font-weight: 400;
+  font-size: 80px;
+}
+.hero-heading > h1 {
+  font-size: 80px;
+  text-align: center;
+}
+.headline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 176px;
+}
+.headline-heading {
+  font-size: 48px;
+}
+.headline-desc {
+  font-size: 24px;
+}
+/* 두번째 section 끝 */
+
+/* 세번째 section 시작 */
+.promotion {
+  /* width: 100%; */
+  background-color: #280357;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 180px;
+  margin: 200px 0;
+}
+
+.promotion-text {
+  display: flex;
+  flex-direction: column;
+}
+.promotion-text > h2 {
+  font-size: 32px;
+}
+.promotion-text > p {
+  font-size: 24px;
+}
+.promotionBtn {
+  border: 1px solid white;
+  padding: 24px;
+  font-size: 24px;
+  background-color: transparent;
+  color: white;
+  border-radius: 16px;
+  cursor: pointer;
+}
+/* 세번째 끝 */
+
+/* 네번쨰 시작 */
+.plans {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 120px;
+}
+.card {
+  border: 1px solid white;
+  border-radius: 15px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+.card.Event {
+  border: 1px solid #7f5fff;
+}
+.event-title {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  background-color: #7f5fff;
+  font-size: 18px;
+  padding: 5px;
+  border-radius: 10px;
+}
+.card.Event > h2 {
+  color: #7f5fff;
+}
+.lastcard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.card h3,
+li,
+p {
+  text-align: center;
+}
+.card.wide {
+  grid-column: 1/3;
+}

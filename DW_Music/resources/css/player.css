@@ -1,0 +1,69 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  font-family: "Pretendard";
+}
+body {
+  background-color: #000;
+  color: #fff;
+  font-size: 15px;
+  /* background-image: url("../../../resources/img/coffe.jpg"); */
+}
+.progress-bar {
+  background-color: #4d4d54;
+}
+.progress {
+  background-color: #7000ff;
+  width: 80%;
+  height: 10px;
+}
+.player {
+  backdrop-filter: blur(10px);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100px;
+}
+.player-main {
+  background-color: rgba(48, 48, 55, 0.7);
+  margin-right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 16px 40px;
+}
+.title {
+  color: #d9d9d9;
+}
+.artist {
+  color: #8c8993;
+}
+.time {
+  color: #8c8993;
+  margin-right: 30px;
+  text-align: right;
+}
+.player {
+  width: 100%;
+  height: 100px;
+}
+.info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 260px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.info,
+.time {
+  flex-basis: 300px;
+}

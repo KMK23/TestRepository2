@@ -253,6 +253,10 @@
         gender: document.querySelector("input[name='gender']").value,
         email: document.querySelector("input[name='email']").value,
       };
+      //memberInfo 이렇게 써야하는데 원래는. 근데 귀찮으니까 그리고 지저분
+      // 그래서 joinFormObj 를 만들어서 써준거야.
+      //그래서 memberInfo 대신에 joinFormObj 를 써도 됌
+
       // console.log(memberInfo);
       // 파이어베이스에 데이터를 저장
       const result = await addDatas("member", memberInfo);

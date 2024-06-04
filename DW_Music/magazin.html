@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+  />
+  <link rel="stylesheet" href="resources/css/magazin.css" />
+  <body>
+    <main>
+      <section>
+        <div class="featured">
+          <img
+            class="featured-thumb"
+            src="resources/img/img_main_banner.png"
+            alt=""
+          />
+          <div class="featured-content">
+            <div class="featured-tag">뮤직 매거진</div>
+            <h2 class="featured-title">여행에서 <br />다시 일상으로</h2>
+            <p class="featured-description">
+              비행기 표를 예매하고 짐을 챙기는 순간부터 여행이 시작된 것 같은
+              기분이죠. 화려한 여행지의 추억을 뒤로하고 다시 일상으로 돌아온
+              사람들을 위한 파워풀한 음악을 준비했습니다. 여행에서 재충전한
+              에너지를 모아서 힘찬 한주를 시작해보는건 어떨까요?
+            </p>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h2 class="section-title">이달의 플레이리스트</h2>
+        <div class="playlists" id="playlists"></div>
+      </section>
+      <section>
+        <h2 class="section-title">추천 아티스트</h2>
+        <div class="artists" id="artists"></div>
+      </section>
+      <section>
+        <h2 class="section-title">느낌 별 스테이션</h2>
+        <div class="stations" id="stations"></div>
+      </section>
+      <section>
+        <div class="charts-header">
+          <h2 class="section-title charts-title">이달의 Top 100</h2>
+          <a class="charts-see-all" href="#">모두보기</a>
+        </div>
+        <ol class="charts" id="chart"></ol>
+      </section>
+    </main>
+  </body>
+  <script>
+    const playlists = document.getElementById("playlists");
+    const playlistinfoArr = [
+      {
+        src: "resources/img/img_playlist_1.png",
+        title: "여행을 떠나요",
+      },
+      {
+        src: "resources/img/img_playlist_2.png",
+        title: "금요일 저녁 카페에서",
+      },
+      {
+        src: "resources/img/img_playlist_3.png",
+        title: "이제 집중할 시간",
+      },
+      {
+        src: "resources/img/img_playlist_4.png",
+        title: "몰디브 한잔",
+      },
+      {
+        src: "resources/img/img_playlist_5.png",
+        title: "K-Pop 믹스",
+      },
+      {
+        src: "resources/img/img_playlist_6.png",
+        title: "공부를 위한 클래식",
+      },
+      {
+        src: "resources/img/img_playlist_7.png",
+        title: "한국 시티팝 20선",
+      },
+      {
+        src: "resources/img/img_playlist_8.png",
+        title: "편안하게 느긋하게",
+      },
+      {
+        src: "resources/img/img_playlist_9.png",
+        title: "고요한 밤을 위한 BGM",
+      },
+    ];
+    playlistinfoArr.forEach((info) => {
+      playlists.insertAdjacentHTML(
+        // 처음 파라미터 위치, 두번째 문자열
+        "beforeend",
+        `
+          <div class="playlist">
+            <img
+                  class="playlist-thumb"
+                  src='${info.src}'
+                  alt=""
+                  />
+                  <div class="playlist-title">${info.title}</div>
+                  <div class="playlist-artist">DW Music</div>
+                  </div>`
+      );
+      //이렇게 넣을꺼야 라고 알려주면되는거지.
+    });
+
+    // 추천아티스트
+    const artists = document.querySelector("#artists");
+    const artistNameArr = [
+      "린가드",
+      "베컴같은느낌",
+      "인디언",
+      "코왜빨개",
+      "담배맛있게피네",
+    ];
+    artistNameArr.forEach((name, idx) => {
+      artists.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div class="artist">
+            <img
+              class="artists-profile"
+              src="resources/img/img_artist_${idx + 1}.png"
+              alt=""
+            />
+            <div class="artist-name">${name}</div>
+          </div>
+        `
+      );
+    });
+    const stations = document.querySelector("#stations");
+    for (let i = 1; i < 10; i++) {
+      stations.insertAdjacentHTML(
+        "beforeend",
+        `
+          <img class="station" src="resources/img/img_station_${i}.png" alt="" />
+        `
+      );
+    }
+
+    const charts = document.querySelector("#chart");
+    const chartArr = [
+      { title: "FRAGILE", artists: "세라핌", updown: "up" },
+      { title: "Hype Girl", artists: "Oldjeans", updown: "down" },
+      { title: "사랑은 늘 도망가", artists: "임빌런", updown: "up" },
+      { title: "Black", artists: "pink", updown: "down" },
+      { title: "취중고백", artists: "필", updown: "none" },
+      { title: "지아", artists: "Snowman", updown: "up" },
+      { title: "Hollywood", artists: "검정바지", updown: "up" },
+      { title: "i Think I Like Her", artists: "찰리원더", updown: "none" },
+      { title: "London", artists: "체인스모킹", updown: "down" },
+      { title: "사건의 수평선", artists: "윤아", updown: "up" },
+    ];
+    let updown;
+    chartArr.forEach((el, idx) => {
+      if (el.updown == "up") {
+        updown = "▲";
+      } else if (el.updown == "down") {
+        updown = "▼";
+      } else {
+        updown = "-";
+      }
+      charts.insertAdjacentHTML(
+        "beforeend",
+        `
+            <li class="chart" id="chart">
+                    <img
+                      class="chart-cover"
+                      src="resources/img/img_chart_${idx + 1}.png"
+                      alt=""
+                    />
+                    <div class="chart-info">
+                      <div class="chart-rank">
+                        <div class="chart-number">${idx + 1}</div>
+                        <span class="chart-change ${el.updown}">${updown}</span>
+                      </div>
+                      <div>
+                        <div class="chart-title">${el.title}</div>
+                        <div class="chart-artist">${el.artists}</div>
+                      </div>
+                    </div>
+                  </li>`
+      );
+    });
+
+    // <span class="chart-change ${el.updown == "▲" ? "up" : ""}">${
+    // 이렇게도 가능. 근데 updown : up 이게 아니라 저 모양으로 넣어야함
+  </script>
+</html>
