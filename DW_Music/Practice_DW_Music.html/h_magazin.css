@@ -1,0 +1,115 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  font-family: pretendard;
+}
+body {
+  background-color: #000;
+  color: #fff;
+}
+section {
+  max-width: 1120px;
+  width: 100%;
+  margin: 80px auto;
+  padding: 0 36px;
+}
+.title1 {
+  display: flex;
+  gap: 40px;
+}
+.title1-img {
+  border-radius: 16px;
+}
+.title1-text {
+  display: flex;
+  flex-direction: column;
+}
+.title1-magazin {
+  background-color: gray;
+  width: max-content;
+  padding: 14px;
+  border-radius: 16px;
+  color: #b9b9b9;
+}
+.title1-text > h1 {
+  font-size: 40px;
+}
+.title1-pTag {
+  font-size: 16px;
+  color: gray;
+}
+.playlists {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.playlist {
+  flex-basis: 22%;
+}
+.playlistImg {
+  border-radius: 15px;
+  width: 100%;
+}
+.title {
+  font-size: 24px;
+}
+.artist {
+  color: gray;
+}
+
+.artists {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+}
+.artist-name {
+  text-align: center;
+}
+.station {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.stationImg {
+  border-radius: 16px;
+}
+.chartchart {
+  display: flex;
+  justify-content: space-between;
+}
+.gridtype {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.chart {
+  display: flex;
+  gap: 40px;
+}
+.chartImg {
+  border-radius: 16px;
+  width: 160px;
+  height: 160px;
+}
+.title {
+  font-size: 36px;
+}
+.chart-infr {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.singer {
+  color: gray;
+  font-size: 24px;
+}
+.rank {
+  background-color: gray;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
