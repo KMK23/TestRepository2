@@ -48,7 +48,26 @@
           <h2 class="section-title charts-title">이달의 Top 100</h2>
           <a class="charts-see-all" href="#">모두보기</a>
         </div>
-        <ol class="charts" id="chart"></ol>
+        <ol class="charts" id="chart">
+          <li class="chart" id="chart">
+            <img
+              class="chart-cover"
+              src="resources/img/img_chart_${idx + 1}.png"
+              alt=""
+            />
+            <div class="chart-info">
+              <div class="chart-rank">
+                <div class="chart-number">${idx + 1}</div>
+                <span class="chart-change ${el.updown}">${updown}</span>
+              </div>
+              <div>
+                <div class="chart-title">${el.title}</div>
+                <div class="chart-artist">${el.artists}</div>
+              </div>
+            </div>
+          </li>
+          `
+        </ol>
       </section>
     </main>
   </body>

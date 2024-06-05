@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  font-family: pretendard;
+  word-break: keep-all;
+}
+body {
+  background-color: black;
+  color: white;
+  margin: 0;
+}
+.wrap {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 32px;
+}
+.bg {
+  width: 100%;
+  opacity: 0.5;
+}
+.hero {
+  position: relative;
+}
+.hero-heading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1));
+  margin: -160px 0 0;
+}
+.hero-heading > h1 {
+  font-weight: 400;
+  font-size: 80px;
+  color: #fff;
+  text-align: center;
+}
+.small {
+  font-size: 48px;
+  color: gray;
+}
+.big {
+  font-weight: 800;
+}
+.headline.wrap {
+  display: flex;
+  justify-content: space-between;
+}
+.headline-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.headline-text > h1 {
+  font-size: 80px;
+}
+.headline-text > p {
+  font-size: 24px;
+  text-align: center;
+}
+.promotion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 200px 0;
+  padding: 80px 180px;
+  background-color: #280357;
+}
+.promotion-banner {
+  display: flex;
+  justify-content: space-between;
+}
+.promotion-content {
+  display: flex;
+  flex-direction: column;
+}
+.promotion-content h1 {
+  font-size: 40px;
+}
+.promotion-content p {
+  font-size: 24px;
+}
+.membership {
+  background-color: transparent;
+  border: 2px solid white;
+  font-size: 24px;
+  padding: 24px;
+  color: white;
+  border-radius: 16px;
+}
+.card {
+  border: 2px solid white;
+  padding: 56px 96px;
+  position: relative;
+  border-radius: 16px;
+  text-align: center;
+}
+.card h3 {
+  font-size: 32px;
+}
+.plans {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+}
+.card.evnet {
+  border-color: #7f5fff;
+}
+.card.evnet > .event-badge {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  background-color: #7f5fff;
+  padding: 12px;
+  border-radius: 16px;
+}
+.membership-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.card.wide {
+  grid-column: 1/3;
+}

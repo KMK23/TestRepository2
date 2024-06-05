@@ -1,0 +1,136 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  font-family: pretendard;
+  word-break: keep-all;
+  font-size: 16px;
+}
+body {
+  background-color: black;
+  color: white;
+}
+section {
+  max-width: 1120px;
+  width: 100%;
+  margin: 80px auto;
+  padding: 0 36px;
+}
+.featured {
+  display: flex;
+  gap: 48px;
+}
+.featuredImg {
+  border-radius: 16px;
+}
+.featured-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.featured-tag {
+  background-color: #18181b;
+  color: #565662;
+  width: fit-content;
+  padding: 8px 16px;
+  border-radius: 16px;
+  font-size: 24px;
+}
+.featured-title {
+  font-weight: 700;
+  font-size: 40px;
+  color: #d9d9d9;
+  margin: 0;
+}
+.featured-description {
+  margin: 0;
+  color: #868686;
+}
+.playlists {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.playlist {
+  display: flex;
+  flex-direction: column;
+
+  flex-basis: 22%;
+}
+.playlist-thumb {
+  border-radius: 16px;
+  width: 100%;
+}
+.playlist-artist {
+  color: #868686;
+  margin: 0;
+}
+.artists {
+  display: flex;
+  gap: 32px;
+}
+.artist {
+  text-align: center;
+}
+.stations {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+.station {
+  width: 100%;
+  border-radius: 16px;
+}
+.charts-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.chart {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.chart-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.chart-rank {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.chart-number {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+.charts-see-all {
+  color: #d9d9d9;
+  text-decoration: none;
+}
+.chart-number {
+  background-color: #1a1a1a;
+}
+.chart-change.up {
+  color: #d93045;
+}
+.chart-change {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.2);
+}
+.chart-artist {
+  font-weight: 500;
+  font-size: 24px;
+  color: #868686;
+}
