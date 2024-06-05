@@ -9,8 +9,37 @@
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
   />
+  <link rel="stylesheet" href="h_home.css" />
+  <link rel="stylesheet" href="h_player.css" />
   <link rel="stylesheet" href="h_magazin.css" />
   <body>
+    <!-- 사이드바 시작 -->
+    <div class="sidebar">
+      <p class="logo"><span class="logoBi">DW</span>Music</p>
+      <ul class="menu-items">
+        <li class="menu-item">
+          <img src="../resources/img/icon_home.svg" />뮤직홈
+        </li>
+        <li class="menu-item">
+          <img src="../resources/img/icon_album.svg" alt="" />추천 앨범
+        </li>
+        <li class="menu-item">
+          <img src="../resources/img/icon_playlist.svg" alt="" />뮤직 매거진
+        </li>
+        <li class="menu-item">
+          <img src="../resources/img/icon_genre.svg" alt="" />장르별 보기
+        </li>
+      </ul>
+      <ul class="menu-items">
+        <li class="menu-item">혼자 보내는 조용한...</li>
+        <li class="menu-item">꼭 들어야 할 해외...</li>
+        <li class="menu-item">90년대 힙합 개론</li>
+        <li class="menu-item">스타벅스 음악 024</li>
+        <li class="menu-item">New Playlist</li>
+      </ul>
+    </div>
+    <!-- 사이드바 끝 -->
+    <!-- 매거진 시작 -->
     <main>
       <section>
         <div class="title1">
@@ -50,27 +79,57 @@
         </div>
         <ul class="charts" id="charts">
           <!-- <li class="chart">
-            <img
-              class="chartImg"
-              src="../resources/img/img_chart_1.png"
-              alt=""
-            />
-            <div class="chart-info">
-              <div class="rank">
-                <div class="chart-rank">1</div>
-                <span class="chart-change up">▲</span>
+              <img
+                class="chartImg"
+                src="../resources/img/img_chart_1.png"
+                alt=""
+              />
+              <div class="chart-info">
+                <div class="rank">
+                  <div class="chart-rank">1</div>
+                  <span class="chart-change up">▲</span>
+                </div>
+                <div class="title">제목없음</div>
+                <div class="artist">가수명</div>
               </div>
-              <div class="title">제목없음</div>
-              <div class="artist">가수명</div>
-            </div>
-          </li> -->
+            </li> -->
         </ul>
       </section>
     </main>
+    <!-- 매거진 끝 -->
+    <!-- 플레이서 시작 -->
+    <div class="player">
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+      <div class="player-main">
+        <div class="info">
+          <img src="../resources/img/img_current_song.png" class="img" />
+          <div class="title">제목없음</div>
+          <div class="artist">차지연</div>
+        </div>
+        <div class="control">
+          <img src="../resources/img/icon_before.svg" width="48" height="48" />
+          <img src="../resources/img/icon_pause.svg" width="48" height="48" />
+          <img src="../resources/img/icon_after.svg" width="48" height="48" />
+        </div>
+        <div class="time">2:34/4:23</div>
+      </div>
+    </div>
+    <!-- 플레이서 끝 -->
   </body>
   <script>
-    // 홈버튼 눌러서 메인으로 이동
+    // home 페이지에서 메뉴 눌렀을 때 main 페이지로 가는것
+    const menuItems = document.querySelectorAll(".menu-item");
+    menuItems.forEach((el, idx) => {
+      el.addEventListener("click", function () {
+        if (idx === 0) {
+          location.href = "H_main.html";
+        }
+      });
+    });
 
+    // 매거진
     const playlists = document.querySelector("#playlists");
     const playlistArr = [
       { title: "여행을 떠나요" },
