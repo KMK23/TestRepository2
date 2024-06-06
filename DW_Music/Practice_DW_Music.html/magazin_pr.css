@@ -1,0 +1,71 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  font-family: pretendard;
+  word-break: keep-all;
+}
+body {
+  background-color: black;
+  color: white;
+  margin: 0;
+  padding: 48px 24px;
+}
+.container {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+}
+section {
+  margin: 40px 0;
+}
+.magazin1 {
+  display: flex;
+  gap: 48px;
+}
+.magazinImg {
+  border-radius: 16px;
+}
+.magazin-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.musicMG {
+  background-color: gray;
+  width: fit-content;
+  padding: 16px;
+  border-radius: 16px;
+}
+.magazin-content h1 {
+  font-size: 48px;
+}
+.magazin-content p {
+  color: gray;
+}
+.playlists {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.playlistImg {
+  border-radius: 16px;
+  width: 100%;
+}
+.playlist p {
+  color: gray;
+}
+.artists {
+  display: flex;
+  gap: 24px;
+}
+.singer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.stations {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}

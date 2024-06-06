@@ -12,24 +12,22 @@
   <link rel="stylesheet" href="hh_main.css" />
   <body>
     <header>
-      <div class="wrap"><span id="DW">DW Music</span></div>
+      <div class="wrap"><span>DW Music</span></div>
     </header>
     <section class="hero">
-      <div class="hero">
-        <video
-          class="bg"
-          src="../resources/videos/bg.mp4"
-          loop
-          autoplay
-          muted
-        ></video>
-        <div class="hero-heading">
-          <h1>
-            <span class="small">코딩을 넘어<br /></span>
-            <span class="big">음악의 즐거움</span>
-            까지
-          </h1>
-        </div>
+      <video
+        class="bg"
+        src="../resources/videos/bg.mp4"
+        loop
+        autoplay
+        muted
+      ></video>
+      <div class="hero-heading">
+        <h1>
+          <span class="small">코딩을 넘어<br /></span>
+          <span class="big">음악의 즐거움</span>
+          까지
+        </h1>
       </div>
     </section>
     <section class="headline wrap">
@@ -96,9 +94,9 @@
     </section>
   </body>
   <script>
-    const DW = document.querySelector("#DW");
-    DW.addEventListener("click", function () {
-      location.href = "";
+    const mainBtn = document.querySelector("div.wrap > span");
+    mainBtn.addEventListener("click", function () {
+      location.href = "hh_player.html";
     });
   </script>
 </html>

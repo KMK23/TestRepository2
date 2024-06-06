@@ -1,0 +1,135 @@
+html {
+  font-family: "Pretendard";
+  word-break: keep-all;
+}
+body {
+  background-color: #000;
+  margin: 0;
+  color: #fff;
+}
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+.wrap {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1080px;
+  padding: 32px;
+}
+.wrap span {
+  cursor: pointer;
+}
+.hero {
+  position: relative;
+}
+.bg {
+  width: 100%;
+  opacity: 0.5;
+}
+.hero-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1));
+}
+.hero-heading h1 {
+  font-size: 80px;
+  font-weight: 400;
+  text-align: center;
+}
+.small {
+  color: gray;
+  font-size: 48px;
+}
+.big {
+  font-weight: 800;
+}
+.headline.wrap {
+  display: flex;
+  justify-content: space-between;
+}
+.phoneImg {
+  width: 500px;
+  height: 500px;
+}
+.headlinebox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.headlinebox h1 {
+  font-size: 80px;
+}
+.membership {
+  background-color: #280357;
+  display: flex;
+  justify-content: space-between;
+  padding: 64px 156px;
+}
+.membership-content {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.contentBig {
+  font-size: 48px;
+  font-weight: 700;
+}
+.contentSmall {
+  font-size: 24px;
+}
+.membershipBtn {
+  border: 2px solid white;
+  background-color: transparent;
+  font-size: 24px;
+  border-radius: 16px;
+  color: white;
+  padding: 16px 56px;
+}
+.cards {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+}
+.card {
+  border: 2px solid white;
+  padding: 56px 90px;
+  border-radius: 16px;
+}
+.card.event {
+  border-color: #7f5fff;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.event-title {
+  background-color: #7f5fff;
+  width: fit-content;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 8px;
+  border-radius: 16px;
+  color: black;
+}
+.card.event > h1 {
+  color: #7f5fff;
+  text-align: center;
+}
+.info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.card.wide {
+  grid-column: 1/3;
+}

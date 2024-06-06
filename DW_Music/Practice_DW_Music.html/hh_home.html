@@ -10,6 +10,8 @@
     href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
   />
   <link rel="stylesheet" href="hh_home.css" />
+  <link rel="stylesheet" href="hh_magazin.css" />
+  <link rel="stylesheet" href="hh_player.css" />
   <body>
     <div class="sidebar">
       <p class="logo"><span class="Bi">DW</span>Music</p>
@@ -35,5 +37,217 @@
         <li class="menu-item">+ New Playlist</li>
       </ul>
     </div>
+    <!-- 매거진 영역  -->
+    <main>
+      <section>
+        <div class="featured">
+          <img
+            src="../resources/img/img_main_banner.png"
+            alt=""
+            class="featuredImg"
+          />
+          <div class="featured-content">
+            <div class="featured-tag">뮤직 매거진</div>
+            <h1 class="featured-title">여행에서<br />다시 일상으로</h1>
+            <p class="featured-description">
+              비행기 표를 예매하고 짐을 챙기는 순간부터 여행이 시작된 것 같은
+              기분이죠. 화려한 여행지의 추억을 뒤로하고 다시 일상으로 돌아온
+              사람들을 위한 파워풀한 음악을 준비했습니다. 여행에서 재충전한
+              에너지를 모아서 힘찬 한주를 시작해보는건 어떨까요?
+            </p>
+          </div>
+        </div>
+      </section>
+      <section>
+        <h1>이달의 플레이리스트</h1>
+        <div class="playlists" id="playlists">
+          <!-- <div class="playlist">
+            <img
+              src="../resources/img/img_playlist_1.png"
+              alt=""
+              class="playlist-thumb"
+            />
+            <h2 class="playlist-title">여행을 떠나요</h2>
+            <p class="playlist-artist">DW Music</p>
+          </div> -->
+        </div>
+      </section>
+      <section>
+        <h1>추천 아티스트</h1>
+        <div class="artists" id="artists">
+          <!-- <div class="artist">
+            <img
+              src="../resources/img/img_artist_1.png"
+              alt=""
+              class="artists-profile"
+            />
+          </div>
+          <div class="artist-name">린가드</div> -->
+        </div>
+      </section>
+      <section>
+        <h1>느낌별 스테이션</h1>
+        <div class="stations" id="stations">
+          <!-- <div class="station">
+            <img src="../resources/img/img_station_1.png" alt="" />
+          </div> -->
+        </div>
+      </section>
+      <section>
+        <div class="charts-header">
+          <h1 class="charts-title">이달의 Top100</h1>
+          <a href="#" class="charts-see-all">모두보기</a>
+        </div>
+        <div class="charts" id="charts">
+          <!-- <div class="chart">
+            <img
+              src="../resources/img/img_chart_1.png"
+              alt=""
+              class="chartImg"
+            />
+            <div class="chart-info">
+              <div class="chart-rank">
+                <div class="chart-number">1</div>
+                <span class="chart-change">▲</span>
+              </div>
+              <div class="chart-title">사건의 수평선</div>
+              <div class="chart-artist">윤아</div>
+            </div>
+          </div> -->
+        </div>
+      </section>
+    </main>
+    <div class="player">
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+      <div class="player-main">
+        <div class="player-info">
+          <img src="../resources/img/img_current_song.png" alt="" />
+          <div class="title">제목없음</div>
+          <div class="artist">노래쟁이</div>
+        </div>
+        <div class="playerBtn">
+          <img src="../resources/img/icon_before.svg" alt="" />
+          <img src="../resources/img/icon_pause.svg" alt="" />
+          <img src="../resources/img/icon_after.svg" alt="" />
+        </div>
+        <div class="time">2:34/4:23</div>
+      </div>
+    </div>
   </body>
+  <script>
+    const menuitem = document.querySelectorAll(".menu-item");
+    menuitem.forEach((el) => {
+      el.addEventListener("click", function () {
+        location.href = "hh_main.html";
+      });
+    });
+    const playlists = document.querySelector("#playlists");
+    const playlistArr = [
+      { title: "여행을 떠나요" },
+      { title: "금요일 저녁 카페에서" },
+      { title: "이제 집중할 시간" },
+      { title: "몰디브 한잔" },
+      { title: "K-Pop 믹스" },
+      { title: "공부를 위한 클래식" },
+      { title: "한국 시티팝 20선" },
+      { title: "편안하게 느긋하게" },
+      { title: "고요한 밤을 위한 BGM" },
+    ];
+
+    playlistArr.forEach((el, idx) => {
+      playlists.insertAdjacentHTML(
+        "beforeend",
+        `
+      <div class="playlist">
+            <img
+              src="../resources/img/img_playlist_${idx + 1}.png"
+              alt=""
+              class="playlist-thumb"
+            />
+            <h2 class="playlist-title">${el.title}</h2>
+            <p class="playlist-artist">DW Music</p>
+          </div>
+      `
+      );
+    });
+
+    const artists = document.querySelector("#artists");
+    const artistsArr = [
+      { artists: "린가드" },
+      { artists: "베컴" },
+      { artists: "여자가수" },
+      { artists: "빨간코" },
+      { artists: "담배쟁이" },
+    ];
+    artistsArr.forEach((el, idx) => {
+      artists.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div class="artist">
+            <img
+              class="artists-profile"
+              src="../resources/img/img_artist_${idx + 1}.png"
+              alt=""
+            />
+            <h1 class="artist-name">${el.artists}</h1>
+          </div>
+        `
+      );
+    });
+    const station = document.querySelector("#stations");
+    for (i = 1; i < 10; i++) {
+      station.insertAdjacentHTML(
+        "beforeend",
+        ` 
+            <img class="station" src="../resources/img/img_station_${i}.png" alt="" />
+        `
+      );
+    }
+
+    const charts = document.querySelector("#charts");
+    const chartsArr = [
+      { title: "FRAGILE", artists: "세라핌", updown: "up" },
+      { title: "Hype Girl", artists: "Oldjeans", updown: "down" },
+      { title: "사랑은 늘 도망가", artists: "임빌런", updown: "up" },
+      { title: "Black", artists: "pink", updown: "down" },
+      { title: "취중고백", artists: "필", updown: "none" },
+      { title: "지아", artists: "Snowman", updown: "up" },
+      { title: "Hollywood", artists: "검정바지", updown: "up" },
+      { title: "i Think I Like Her", artists: "찰리원더", updown: "none" },
+      { title: "London", artists: "체인스모킹", updown: "down" },
+      { title: "사건의 수평선", artists: "윤아", updown: "up" },
+    ];
+    let updown;
+    chartsArr.forEach((el, idx) => {
+      if (el.updown == "up") {
+        updown = "▲";
+      } else if (el.updown == "down") {
+        updown = "▼";
+      } else {
+        updown = "-";
+      }
+      charts.insertAdjacentHTML(
+        "beforeend",
+        `
+      <div class="chart">
+            <img
+              src="../resources/img/img_chart_${idx + 1}.png"
+              alt=""
+              class="chartImg"
+            />
+            <div class="chart-info">
+              <div class="chart-rank">
+                <div class="chart-number">${idx + 1}</div>
+                <span class="chart-change ${el.updown}">${updown}</span>
+              </div>
+              <div class="chart-title">${el.title}</div>
+              <div class="chart-artist">${el.artists}</div>
+            </div>
+          </div>
+      `
+      );
+    });
+  </script>
 </html>

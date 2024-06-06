@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+  />
+  <link rel="stylesheet" href="magazin_pr.css" />
+  <body>
+    <div class="container">
+      <section class="magazin1">
+        <img
+          src="../resources/img/img_main_banner.png"
+          alt=""
+          class="magazinImg"
+        />
+
+        <div class="magazin-content">
+          <div class="musicMG">뮤직 매거진</div>
+          <h1>여행에서<br />다시 일상으로</h1>
+          <p>
+            비행기 표를 예매하고 짐을 챙기는 순간부터 여행이 시작된 것 같은
+            기분이죠. 화려한 여행지의 추억을 뒤로하고 다시 일상으로 돌아온
+            사람들을 위한 파워풀한 음악을 준비했습니다. 여행에서 재충전한
+            에너지를 모아서 힘찬 한주를 시작해보는건 어떨까요?
+          </p>
+        </div>
+      </section>
+      <section class="playlist">
+        <h1>이달의 플레이리스트</h1>
+        <div class="playlists" id="playlists">
+          <!-- <div class="playlistbox">
+            <img
+              src="../resources/img/img_playlist_1.png"
+              class="playlistImg"
+            />
+            <h1 class="title">여행을 떠나요</h1>
+            <p class="artist">DW Music</p>
+          </div> -->
+        </div>
+      </section>
+      <section>
+        <h1>추천 아티스트</h1>
+        <div class="artists" id="artists">
+          <!-- <div class="artist">
+            <img src="../resources/img/img_artist_1.png" alt="" />
+            <p>린가드</p>
+          </div> -->
+        </div>
+      </section>
+      <section>
+        <h1>느낌별 스테이션</h1>
+        <div class="stations" id="stations">
+          <!-- <img
+            src="../resources/img/img_station_1.png"
+            class="station"
+            alt=""
+          /> -->
+        </div>
+      </section>
+      <section></section>
+    </div>
+  </body>
+  <script>
+    const playlists = document.querySelector("#playlists");
+    const playlistArr = [
+      { title: "여행을 떠나요" },
+      { title: "금요일 저녁 카페에서" },
+      { title: "이제 집중할 시간" },
+      { title: "몰디브 한잔" },
+      { title: "K-Pop 믹스" },
+      { title: "공부를 위한 클래식" },
+      { title: "한국 시티팝 20선" },
+      { title: "편안하게 느긋하게" },
+      { title: "고요한 밤을 위한 BGM" },
+    ];
+    playlistArr.forEach((el, idx) => {
+      playlists.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div class="playlistbox">
+            <img
+              src="../resources/img/img_playlist_${idx + 1}.png"
+              class="playlistImg"
+            />
+            <h1 class="title">${el.title}</h1>
+            <p class="artist">DW Music</p>
+          </div>
+        
+        `
+      );
+    });
+    const artist = document.querySelector("#artists");
+    const artistArr = [
+      "린가드",
+      "베컴같은느낌",
+      "인디언",
+      "코왜빨개",
+      "담배맛있게피네",
+    ];
+    artistArr.forEach((el, idx) => {
+      artist.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div class="singer">
+            <img src="../resources/img/img_artist_${idx + 1}.png" alt="" />
+            <p>${el}</p>
+          </div>
+        `
+      );
+    });
+    const stations = document.querySelector("#stations");
+    for (let i = 1; i < 10; i++) {
+      stations.insertAdjacentHTML(
+        "beforeend",
+        `
+        <img
+            src="../resources/img/img_station_${i}.png"
+            class="station"
+            alt=""
+          />`
+      );
+    }
+  </script>
+</html>

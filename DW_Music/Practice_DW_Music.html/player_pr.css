@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  font-family: pretendard;
+}
+body {
+  background-color: black;
+  color: white;
+  margin: 0;
+}
+.player {
+  backdrop-filter: blur(15px);
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+}
+.progress-bar {
+  background-color: #4d4d54;
+  height: 10px;
+}
+.progress {
+  background-color: #7000ff;
+  height: 100%;
+  width: 60%;
+}
+.player-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.player-info {
+  display: flex;
+  align-items: center;
+  padding: 16px 28px;
+  gap: 36px;
+}
+.title {
+  font-weight: bold;
+}
+.artist {
+  color: gray;
+}
+.player-info,
+.time {
+  flex-basis: 300px;
+}
+.time {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
