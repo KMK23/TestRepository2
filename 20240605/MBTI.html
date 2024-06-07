@@ -47,8 +47,40 @@
       </div>
     </div>
   </body>
-  <script>
+  <script type="module">
+    import { getDatas } from "./resources/js/firebase.js";
     const items = document.querySelector("#items");
+
+    async function getMbtiInfo() {
+      const datas = await getDatas("mbtiColor");
+      let idx = 1;
+      datas.forEach((doc) => {
+        const info = doc.data();
+        items.insertAdjacentHTML(
+          "afterbegin",
+          `
+<li class="item">
+            <div class="item-id">${idx}</div>
+            <div class="item-mbti">${info.mbti}</div>
+            <div class="item-arrow">
+              <img
+                class="item-arrow-icon"
+                src="resources/img/arrow.svg"
+                alt=""
+              />
+            </div>
+            <div
+              class="item-color-chip"
+              style="background-color: ${info.code}"
+            ></div>
+            <div class="item-color-code">${info.code.toUpperCase()}</div>
+          </li>
+`
+        );
+        idx++;
+      });
+    }
+    getMbtiInfo();
     const itemsArr = [
       { mbti: "ENFP", code: "#efb578" },
       { mbti: "ENFP", code: "#8649b6" },
@@ -71,28 +103,28 @@
       { mbti: "ENFP", code: "#c1ffc0" },
       { mbti: "INFJ", code: "#5f6600" },
     ];
-    itemsArr.forEach((el, idx) => {
-      items.insertAdjacentHTML(
-        "afterbegin",
-        `
-<li class="item">
-            <div class="item-id">${idx + 1}</div>
-            <div class="item-mbti">${el.mbti}</div>
-            <div class="item-arrow">
-              <img
-                class="item-arrow-icon"
-                src="resources/img/arrow.svg"
-                alt=""
-              />
-            </div>
-            <div
-              class="item-color-chip"
-              style="background-color: ${el.code}"
-            ></div>
-            <div class="item-color-code">${el.code.toUpperCase()}</div>
-          </li>
-`
-      );
-    });
+    //     itemsArr.forEach((el, idx) => {
+    //       items.insertAdjacentHTML(
+    //         "afterbegin",
+    //         `
+    // <li class="item">
+    //             <div class="item-id">${idx + 1}</div>
+    //             <div class="item-mbti">${el.mbti}</div>
+    //             <div class="item-arrow">
+    //               <img
+    //                 class="item-arrow-icon"
+    //                 src="resources/img/arrow.svg"
+    //                 alt=""
+    //               />
+    //             </div>
+    //             <div
+    //               class="item-color-chip"
+    //               style="background-color: ${el.code}"
+    //             ></div>
+    //             <div class="item-color-code">${el.code.toUpperCase()}</div>
+    //           </li>
+    // `
+    //       );
+    //     });
   </script>
 </html>

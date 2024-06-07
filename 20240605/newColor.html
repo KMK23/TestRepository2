@@ -52,7 +52,8 @@
       <button class="submit">컬러 등록</button>
     </div>
   </body>
-  <script>
+  <script type="module">
+    import { addDatas } from "./resources/js/firebase.js";
     const mbtioptions = document.querySelector("#mbti-options");
     const mbtiArr = [
       { char: "E", name: "외향형" },
@@ -136,7 +137,7 @@
     const randomBtn = document.querySelector(".random");
     randomBtn.addEventListener("click", function () {
       const colorArr = [];
-      for (i = 0; i < 3; i++) {
+      for (let i = 0; i < 3; i++) {
         colorArr.push(parseInt(Math.random() * 256));
       }
       const hexColorCode = colorArr
@@ -145,9 +146,44 @@
       colorInput.value = `#${hexColorCode.toUpperCase()}`;
       colorChip.style.backgroundColor = `#${hexColorCode}`;
     });
+
     //이 방법이 16진수로 바꾸는 방법.
     //padStart는 한자리로 나오는 애들이 앞에 0이 붙어서 나온다.
     //2라는 숫자는 최대 길이, 모자라면 뒤에 있는"0"으로 채우겠다 는 뜻
     //padEnd는 뒷자리에 붙는다.
+
+    const submitBtn = document.querySelector("button.submit");
+    submitBtn.addEventListener("click", async function () {
+      //input type으로 만들어서 form 태그 로 보내버릴수 있다.
+      //input type ="hidden"으로 해서 안에 있는 span 태그 안에 글자만.
+      //mbti 가져오기.
+      const selectedArr = document.querySelectorAll(".selected > span");
+      console.log(selectedArr);
+      if (selectedArr.length != 4) {
+        alert("4가지의 MBTI 유형을 모두 선택하셔야 합니다.");
+        return false;
+      }
+      const mbtiVal = Array.from(selectedArr).reduce((acc, cur) => {
+        return acc + cur.innerText;
+      }, "");
+      console.log(mbtiVal);
+
+      // color code 가져오기
+      const colorCode = colorInput.value.toLowerCase();
+      console.log(colorCode);
+
+      // 객체형태로 만들기
+      const addObj = { mbti: mbtiVal, code: colorCode };
+      console.log(addObj);
+      //addDatas 함수 호출하기
+
+      const result = await addDatas("mbtiColor", addObj);
+      if (result) {
+        alert("MBTI 컬러 등록 성공");
+        window.location.reload();
+      } else {
+        alert("MBTI 컬러 등록 실패. 관리자에게 문의바람.");
+      }
+    });
   </script>
 </html>
