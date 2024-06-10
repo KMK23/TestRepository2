@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // 배열 선언
+    let fruits = new Array();
+    fruits = ["사과", "오렌지", "자두"];
+    //변수를 사용하지 않고 여러개의 값을 순차적으로 사용하기 위해 배열을 한다.
+
+    const apple = "사과";
+    const orange = "오렌지";
+    const plum = "자두";
+    //아니면 이렇게 변수를 따로 사용해야해 귀찮아.
+
+    console.log(fruits[0]);
+    console.log(fruits[1]);
+    console.log(fruits[2]);
+
+    fruits[0] = "포도";
+    //['포도', '오렌지', '자두']
+    fruits[3] = "레몬";
+    // ['포도', '오렌지', '자두', '레몬']
+    fruits.push("맹고");
+    //['포도', '오렌지', '자두', '레몬', '맹고']
+    let remove = fruits.pop();
+    console.log(remove);
+    fruits.unshift("딸기");
+    console.log(fruits);
+    remove = fruits.shift();
+    console.log(remove);
+    for (let i = 0; i < fruits.length; i++) {
+      //   console.log(fruits[i]);
+    }
+
+    let arrayByArray = [
+      [1, 2, 3],
+      [4, 5, 6],
+      [7, 8, 9],
+    ];
+    console.log(arrayByArray[1][1]); //5를 꺼내고 싶으면 이렇게
+    for (let i = 0; i < arrayByArray.length; i++) {
+      for (let j = 0; j < arrayByArray[i].length; j++) {
+        // console.log(arrayByArray[i][j]);
+        //모든걸 다꺼냈다.
+      }
+    }
+
+    // 배열의 인접한 요소의 총합이 최대인 부분 배열을 찾아보자
+    let arr = [-1, 2, 3, -9, 11];
+    //-1 부터 시작
+    // -1
+    // -1 +2
+    // -1 + 2+ 3
+    // -1 + 2 + 3+ -9
+    // -1 + 2 + 3+ -9 + 11
+    //2부터 시작
+    // 2
+    // 2 + 3
+    // 2 + 3+ -9
+    // 2 + 3+ -9 + 11
+
+    let maxSum = 0;
+    for (let i = 0; i < arr.length; i++) {
+      let sum = 0;
+      for (let j = i; j < arr.length; j++) {
+        sum += arr[j];
+        maxSum = Math.max(maxSum, sum);
+      }
+    }
+    console.log(maxSum);
+
+    //객체 (object)
+    let obj = {};
+    obj = new Object();
+    obj.name = "홍길동";
+    obj["age"] = 20;
+    document.write(`<h1>이름은 ${obj["name"]}이고 나이는 ${obj["age"]}</h1>`);
+    obj.addr = "대전광역시 유성구 관평동 한신에스메카 334호";
+    obj.tel = "010-1235-1234";
+
+    // let searchingVal = prompt("얻고싶은 정보를 입력해(name, age, tel, addr)");
+    // document.write(`<h1>${obj[searchingVal]}</h1>`);
+
+    // 일반 객체에서 사용할 수 있는 순회 관련 함수
+    // 키 값을 확인 할수 있는 함수
+    console.log(Object.keys(obj));
+    //이렇게 작성하면 배열 값으로 나온다.
+
+    //프로퍼티의 값을 확인 할 수 있는 함수
+    console.log(Object.values(obj));
+
+    //key, value 둘다 확인 하는 방법.
+    console.log(Object.entries(obj));
+
+    let salaries = {
+      john: 200,
+      mary: 250,
+      sam: 400,
+    };
+    // let sum1 = 0;
+    // salareis.forEach(val =>{sum1 += val})
+    const sum = Object.values(salaries).reduce((x, y) => x + y, 0);
+    console.log(sum);
+  </script>
+</html>

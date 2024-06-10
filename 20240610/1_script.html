@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>스크립트 리마인드</title>
+  </head>
+  <body></body>
+  <script type="text/javascript">
+    //변수선언
+    var a; //var 키워드 사용은 지양해
+    let b;
+    const c = 0;
+
+    // 변수는 데이터를 저장할때 쓰이는 '이름이 붙은 저장소' (담을 그릇)
+    let message; //선언만 되어있는 변수. undifined 값이 들어있음
+    message = "Hello";
+
+    // 변수 명명 규칙
+    // 1. 변수명에는 문자와 숫자, 특수문자가 들어 갈 수 있는데, ($, _)
+    // 2. 첫번째 문자는 숫자가 될 수 없다.
+    // 3. 예약어는 사용 X
+
+    // let $1234 = 0;
+    // console.log($1234);
+
+    //클래스라는것을 작성할때는 앞에 _를 붙이자는 약간의 약속이 있음
+    let _content = "text";
+    //앞에 $는 jQuery 라는걸 알려준다..
+    // let $obj = $("#id");
+    // let obj = document.getElementById("id");
+
+    //예약어 안돼
+    // let if
+    // let for
+
+    // admin과 name이라는 변수를 선언
+    let admin;
+    let name;
+    // name의 값으로 John 을 할당
+    name = "john";
+    // name 값을 admin에 똑같이 넣어
+    admin = name;
+    // admin 의 값을 alert 창으로 띄어서 john이 출력되야 해
+    // alert(admin);
+
+    //기본 연산자
+    let str1 = "hi";
+    let str2 = "single quotes";
+    let str3 = `can embed another ${str1} `;
+    let str4 = str1 + str2;
+    let num = 1;
+    // let str5 = str1 + num1; // 'hello' + 1 ==> 'hellow' + '1'
+    let num2 = 5;
+    let strNum = "2";
+    let sum = num2 + strNum; // 52
+    // let numSum = num2 + parseInt(strNum);
+    // let numSum = num2 + Number(strNum);
+    let numSum = +strNum + num2;
+    console.log(numSum);
+
+    //조건문
+    // let money = 50000;
+    // let price = 40000;
+    // if (money > price) {
+    //   alert(`살수있음. 남은돈 : ${money - price}원`);
+    // } else {
+    //   alert(`못사 오버페이 : ${money - price}`);
+    // }
+
+    // let grade = +prompt("점수를 입력하세요");
+    //60점 미만은 F 학점
+    //60점 이상 부터 100점까지 10점씩 구간을 나눠서 D C B A 학점을 주려고 한다.
+
+    // if (grade >= 90 && grade <= 100) {
+    //   alert("A학점");
+    // } else if (grade >= 80 && grade <= 89) {
+    //   alert("B학점");
+    // } else if (grade >= 70 && grade <= 79) {
+    //   alert("C학점");
+    // } else if (grade >= 60 && grade <= 69) {
+    //   alert("D학점");
+    // } else {
+    //   alert("F학점");
+    // }
+
+    // grade < 60 ? alert("F학점"):
+    // (grade >= 60 && grade <= 69) ? alert("D학점") :
+    // (grade >= 70 && grade <= 79) ? alert("C학점") :
+    // (grade >= 80 && grade <= 89) ? alert("B학점") :
+    // (grade >= 90 && grade <= 100) ? alert("A학점") :
+    //이렇게 작성 할 수도 있지만.. 가독성 떨어짐
+
+    //조건식의 불린형 변환
+    //조건문의 조건식을 평가하고 그 결과를 불린값으로 변환한다.
+    //불린값으로 변환하기 전에 falsey 한 값이냐 truethy 한 값이냐 를 판단한다.
+    //falsey 한 값 : 0, false, "", null, undifined, NaN
+    // if (str1) {
+    //   alert("참 입니다.");
+    // }
+
+    // 조건부 연산자 '?'
+    let num3 = +prompt("1번 숫자써");
+    let num4 = +prompt("2번 숫자써");
+    let total = 0;
+    // if (num3 > num4) {
+    //   let total = num3 - num4;
+    // } else {
+    //   let total = num4 - num3;
+    // }
+    alert(`두수의 차이는 ${total}`);
+    total = num3 > num4 ? num3 - num4 : num4 - num3;
+
+    //nullish 병합 연산자
+    let aa;
+    let bb = 10;
+    if (aa !== null && aa !== undefined) {
+      alert(aa);
+    } else {
+      alert(bb);
+    }
+
+    alert(aa ?? bb);
+    //aa 가 null or undefined 가 아니라면 aa로 나오고 맞다면 bb로 나온다
+    // 지금 작성한 이게 위에꺼랑 똑같다.
+
+    //반복문
+    while (condition) {
+      //반복문의 본문
+    }
+
+    do {
+      //조건 따지지 않고 반드시 한번은 실행
+    } while (condition);
+
+    // for(let i = 1; i < 11; i++){
+
+    // }
+
+    for (let i = 0; i < 11; i = i + 2) {
+      //짝수를 구하라면 if(i % 2 == 0) 이렇게 쓰는데
+      // 3의 배수는 제외
+      if (i % 3 == 0) {
+        // continue;
+        // 이걸 실행하려면 일반 식보다 밑에 있으면
+        //먼저 읽히지 않으니 위에 써야한다.
+        break;
+      }
+    }
+    outer: for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < 10; j++) {
+        if (j % 3 == 0) {
+          break outer;
+          // 이렇게 i 반복문앞에 이름을 달아주면 i꺼를 멈출수 있어
+          //원래는 가장 가까운거 멈추는데
+        }
+      }
+    }
+  </script>
+</html>
