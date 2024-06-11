@@ -31,6 +31,11 @@
       <li><span class="check">&check;</span>할 일 4</li>
       <li><span class="check">&check;</span>할 일 5</li>
     </ul>
+
+    <div class="container">
+      <input type="text" class="row" />행 <input type="text" class="col" />열
+      <button class="submitBtn">작성</button>
+    </div>
   </body>
   <script>
     const checkedLi = document.querySelectorAll("li");
@@ -41,7 +46,15 @@
       });
     });
 
-    const inputTag = document.createElement("input");
-    document.write(inputTag);
+    const row = document.querySelector(".row").value;
+    const col = document.querySelector(".col").value;
+
+    const tableTag = document.createElement("table");
+    for (let i = 0; i < row.length; i++) {
+      const trTags = document.createElement("tr");
+      for (let j = 0; j < col.length; j++) {
+        const rdTags = document.createElement("td");
+      }
+    }
   </script>
 </html>
