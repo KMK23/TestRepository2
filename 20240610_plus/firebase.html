@@ -41,13 +41,20 @@
     .selected {
       background-color: yellow;
     }
+    .active {
+      display: inline-block;
+    }
+    .nonActive {
+      display: none;
+    }
   </style>
   <body>
     <div class="container">
       <div>
         <div class="btns">
           <button id="saveBtn">회원정보저장</button>
-          <button id="updateBtn">회원정보수정</button>
+          <button id="updateBtn" class="active">회원정보수정</button>
+          <button id="saveUpdateBtn" class="nonActive">수정정보저장</button>
           <button id="deleteBtn">회원정보삭제</button>
         </div>
         <table border="1">
@@ -94,11 +101,11 @@
           "beforeend",
           `
             <tr data-id=${doc.id}>
-                <td>${name}</td>
-                <td>${gender}</td>
-                <td>${age}</td>
-                <td>${email}</td>
-                <td>${tel}</td>
+                <td class="name">${name}</td>
+                <td class="gender">${gender}</td>
+                <td class="age">${age}</td>
+                <td class="email">${email}</td>
+                <td class="tel">${tel}</td>
             </tr>
 
             `
@@ -135,15 +142,16 @@
         "afterend",
         `
             <tr data-id=${result.id}>
-                <td>${name}</td>
-                <td>${gender}</td>
-                <td>${age}</td>
-                <td>${email}</td>
-                <td>${tel}</td>
+                <td class="name">${name}</td>
+                <td class="gender">${gender}</td>
+                <td class="age">${age}</td>
+                <td class="email">${email}</td>
+                <td class="tel">${tel}</td>
             </tr>
 
       `
       );
+      input.value = "";
     });
 
     //회원 정보 삭제(다중 삭제 가능)
@@ -160,6 +168,52 @@
           return false;
         }
       });
+    });
+
+    //회원정보 수정
+    const updateBtn = document.querySelector("#updateBtn");
+    const saveUpdateBtn = document.querySelector("#saveUpdateBtn");
+
+    updateBtn.addEventListener("click", function () {
+      saveUpdateBtn.classList.remove("nonActive");
+      saveUpdateBtn.classList.add("active");
+      updateBtn.classList.remove("active");
+      updateBtn.classList.add("nonActive");
+
+      const selectedTr = document.querySelector(".selected");
+      const trChildren = [...selectedTr.children];
+      console.log(trChildren);
+      trChildren.forEach((td) => {
+        td.innerHTML = `<input type="text" value="${td.innerText}"/>`;
+        // td들에게 input tag를 넣어주고 그 안에 value를 innerText로 해줌으로써
+        // 텍스트를 저장하기 위해 준비한거지
+        td.addEventListener("click", function (e) {
+          e.stopPropagation();
+          //위에것들으 왜하냐면 input에다가 작성하려고 클릭했는데 노란색(selected)가
+          //빠지거나 생기거나 그래서 버블링을 막으려고 한거야
+        });
+      });
+    });
+    saveUpdateBtn.addEventListener("click", function () {
+      saveUpdateBtn.classList.remove("active");
+      saveUpdateBtn.classList.add("nonActive");
+      updateBtn.classList.remove("nonActive");
+      updateBtn.classList.add("active");
+
+      const selectedTr = document.querySelector(".selected");
+      const trChildren = [...selectedTr.children];
+      let newTdStr = "";
+      const updateObj = {};
+      trChildren.forEach((td) => {
+        const className = td.classList.value;
+        const value = td.firstElementChild.value;
+        newTdStr += `<td class="${className}">${value}</td>`;
+        updateObj[className] = value;
+      });
+      selectedTr.innerHTML = newTdStr;
+      console.log(updateObj);
+      const docId = selectedTr.getAttribute("data-id");
+      updateDatas("member", docId, updateObj);
     });
   </script>
 </html>

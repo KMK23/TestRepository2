@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>4의 배수일까 아닐까</h1>
+    </div>
+  </body>
+  <script>
+    // function four() {
+    //   const qs = +prompt("숫자를 입력하세요");
+    //   const pTag = document.createElement("p");
+    //   document.querySelector(".container").append(pTag);
+    //   if (qs % 4 == 0) {
+    //     pTag.innerHTML = `${qs}은 4의 배수4 입니다.`;
+    //   } else {
+    //     pTag.innerHTML = `${qs}는 4의 배수가 아닙니다`;
+    //   }
+    // }
+    // four();
+    let count = 0;
+    function three() {
+      const th = +prompt("숫자를 입력하세요");
+      for (let i = 3; i < th; i++) {
+        if (i % 3 == 0) {
+          count++;
+          const userNum = i;
+          document.write(`${i},`);
+        }
+      }
+      document.write(`<p>${count}</p>`);
+    }
+    three();
+  </script>
+</html>

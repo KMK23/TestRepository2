@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    function sumMulti(x, y) {
+      if (x == y) {
+        return x * y;
+      } else {
+        return x + y;
+      }
+    }
+    console.log(sumMulti(10, 10));
+    console.log(sumMulti(5, 10));
+
+    let result;
+    function userNum() {
+      const user1 = +prompt("1번숫자");
+      const user2 = +prompt("2번숫자");
+      if (user1 > user2) {
+        alert(`${user1}가 ${user2}보다 큽니다.`);
+      } else if (user2 > user1) {
+        alert(`${user2}가 ${user1}보다 큽니다.`);
+      } else {
+        alert("두 숫자는 같습니다.");
+      }
+    }
+    userNum();
+  </script>
+</html>
