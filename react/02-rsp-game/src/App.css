@@ -1,10 +1,13 @@
 .App {
   max-width: 600px;
   margin: 20px auto;
-  text-align: center;
   background-color: #ffd43b;
   position: relative;
   padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .App-titleBox {
   display: flex;
@@ -35,8 +38,64 @@
   font-size: 64px;
   padding-bottom: 24px;
 }
+.that {
+  text-align: center;
+}
 .box {
-  background-color: #ffd56f;
+  background-color: #fddf97;
   padding: 16px 32px;
   border-radius: 16px;
+}
+.rspVerBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.resultBox {
+  text-align: center;
+  width: 80%;
+  height: 150px;
+  background-color: beige;
+  display: flex;
+  justify-content: center;
+  border-radius: 24px;
+  margin-top: 24px;
+}
+.resultBox h3 {
+  color: black;
+}
+.resultBox h4 {
+  color: black;
+}
+.rspBox {
+  display: flex;
+  justify-content: space-around;
+  padding: 40px;
+  width: 100%;
+}
+
+.Img {
+  width: 100px;
+  height: 100px;
+  background-color: #fdedc8;
+  padding: 32px;
+  border-radius: 50%;
+}
+.Img:hover {
+  background-color: #fdedc8ce;
+}
+.myRSP,
+.otherRSP {
+  position: relative;
+  display: flex;
+}
+.myChoice {
+  position: absolute;
+  top: 35%;
+  left: 25%;
+}
+.otherChoice {
+  position: absolute;
+  top: 35%;
+  left: 30%;
 }
