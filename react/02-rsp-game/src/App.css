@@ -1,6 +1,42 @@
 .App {
-  width: 100%;
-  max-width: 800px;
+  max-width: 600px;
   margin: 20px auto;
   text-align: center;
+  background-color: #ffd43b;
+  position: relative;
+  padding: 16px;
+}
+.App-titleBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.App-titleBox img {
+  align-self: flex-start;
+  flex-direction: row;
+  position: absolute;
+  top: 30px;
+  right: 10px;
+}
+.pointBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 50px;
+}
+.pointBox * {
+  margin: 0;
+}
+.point {
+  font-size: 64px;
+}
+.pointBox .qt {
+  font-size: 64px;
+  padding-bottom: 24px;
+}
+.box {
+  background-color: #ffd56f;
+  padding: 16px 32px;
+  border-radius: 16px;
 }
