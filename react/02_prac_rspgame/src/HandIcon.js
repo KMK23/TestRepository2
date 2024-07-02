@@ -1,15 +1,14 @@
-import rock from "./assets/rock.svg";
-import scissor from "./assets/scissor.svg";
-import paper from "./assets/paper.svg";
-
-const IMGAGE = {
-  rock: rock,
-  scissor: scissor,
-  paper: paper,
+import rockImg from "./assets/rock.svg";
+import scissorImg from "./assets/scissor.svg";
+import paperImg from "./assets/paper.svg";
+const IMAGES = {
+  rock: rockImg,
+  scissor: scissorImg,
+  paper: paperImg,
 };
 
 function HandIcon({ value, className }) {
-  const src = IMGAGE[value];
+  const src = IMAGES[value];
   return <img src={src} className={className} />;
 }
 

@@ -1,16 +1,15 @@
 import HandIcon from "./HandIcon";
+import "./HandButton.css";
 
 function HandButton({ value, onClick }) {
-  const HandleClick = () => {
+  const handleClick = () => {
     onClick(value);
   };
   return (
-    <button className="HandButton" onClick={HandleClick}>
+    <button className="HandButton" onClick={handleClick}>
       <HandIcon value={value} className="HandButton-icon" />
     </button>
   );
 }
 
 export default HandButton;
-
-//  고양이가 머리를 하면?
