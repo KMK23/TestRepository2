@@ -3,7 +3,11 @@ import logoImg from "../assets/logo.png";
 import "./App.css";
 import ReviewForm from "./ReviewForm";
 
-function App(props) {
+function AppSortButton({ children }) {
+  return <button className="AppSortButton selected">{children}</button>;
+}
+
+function App() {
   return (
     <div className="App">
       <nav className="App-nav">
@@ -19,7 +23,10 @@ function App(props) {
         <div className="App-ReviewForm">
           <ReviewForm />
         </div>
-        <div className="App-sorts"></div>
+        <div className="App-sorts">
+          <AppSortButton>최신순</AppSortButton>
+          <AppSortButton>베스트순</AppSortButton>
+        </div>
         <div className="App-ReviewList"></div>
       </div>
       <footer className="App-footer">
