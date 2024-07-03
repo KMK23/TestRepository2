@@ -1,0 +1,8 @@
+.ReviewListItem {
+  display: flex;
+  align-items: center;
+}
+.ReviewListItem-img {
+  width: 182px;
+  height: 262px;
+}

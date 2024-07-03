@@ -120,7 +120,7 @@ function App() {
             className={`Hand ${isWin == 0 ? "" : isWin == 1 ? "" : "winner"}`}
           >
             <HandIcon className="Hand-icon" value={otherHand} />
-            {/* 여기에다 쓴 className 은 우리가 아는 className이 아니고 props 이야 */}
+            {/* 여기에다 쓴 className 은 우리가 아는 className이 아니고 props 이야 그래서 HandIcon 에서 className={className}을 써준거야*/}
           </div>
         </div>
         {/* 배점 */}
