@@ -1,6 +1,5 @@
 import React from "react";
 import Rating from "./Rating";
-// import src from "./assets/764e74efc2eca6a270a3b5e71d3189d3.jpg";
 import "./ReviewList.css";
 
 function formatDate(value) {

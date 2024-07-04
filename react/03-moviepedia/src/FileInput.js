@@ -2,11 +2,20 @@ import React from "react";
 import placeholderImg from "./assets/preview-placeholder.png";
 import "./FileInput.css";
 import resetImg from "./assets/ic-reset.png";
-function FileInput(props) {
+function FileInput({ setFile, name }) {
+  const handleFileChange = (e) => {
+    const nextFile = e.target.files[0];
+    setFile(name, nextFile);
+  };
   return (
     <div className="FileInput">
       <img src={placeholderImg} alt="사진" className="FileInput-preview" />
-      <input type="file" className="FileInput-hidden-overlay" />
+      <input
+        type="file"
+        accept="image/*"
+        className="FileInput-hidden-overlay"
+        onChange={handleFileChange}
+      />
       <button className="FileInput-clear-button">
         <img src={resetImg} alt="" />
       </button>
