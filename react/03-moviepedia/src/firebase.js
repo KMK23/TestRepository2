@@ -13,9 +13,16 @@ import {
   orderBy,
   limit,
   startAfter,
+  getDoc,
   // getDoc,
 } from "firebase/firestore";
-
+import {
+  deleteObject,
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytes,
+} from "firebase/storage";
 const firebaseConfig = {
   apiKey: "AIzaSyAUi7Uvi3g2C5INykAnx9Os7y7kqRX7QbM",
   authDomain: "movie-edit-c7ed4.firebaseapp.com",
@@ -81,25 +88,71 @@ async function getDatasByOrderLimit(collectionName, options) {
 
 async function addDatas(collectionName, dataObj) {
   try {
-    // 문서 ID 수동
-    // const saveDoc = await doc(db, collectionName, "2");
-    // console.log(`Doc(결과)${saveDoc}`);
-    // const saveResult = await setDoc(saveDoc, dataObj);
-    // setDoc 은 return 이 없어서 처리를 해주어야 한다.
-    // console.log(`setDoc(결과)${saveResult}`);
+    const uuid = crypto.randomUUID();
+    const path = `movie/${uuid}`;
+    const url = await uploadImg(path, dataObj.imgUrl);
+
+    dataObj.imgUrl = url;
+
+    //createdAt, upDatedAt ==> 현재날짜를 밀리세컨즈로 바꿔서 넣어주면됌
+    const time = new Date().getTime();
+    dataObj.createdAt = time;
+    dataObj.updatedAt = time;
+
+    //id 필드의 값 ==> 가장 마지막 id + 1
+    const lastId = await getLastNum(collectionName, "id");
+    dataObj.id = lastId + 1;
     // 문서 ID 자동
     const collect = await collection(db, collectionName);
-    await addDoc(collect, dataObj);
+    const result = await addDoc(collect, dataObj);
+    const docSnap = await getDoc(result); //documentReference
+    const resultData = { ...docSnap.data(), docId: docSnap.id };
 
-    return true;
+    return resultData;
   } catch (error) {
     return false;
   }
 }
 
-async function deleteDatas(collectionName, docId) {
-  const docRef = await doc(db, collectionName, docId);
-  await deleteDoc(docRef);
+async function getLastNum(collectionName, field) {
+  const q = query(
+    collection(db, collectionName),
+    orderBy(field, "desc"),
+    limit(1)
+  );
+  const lastDoc = await getDocs(q);
+  const lastNum = lastDoc.docs[0].data()[field];
+  return lastNum;
+}
+
+async function uploadImg(path, imgFile) {
+  // 스토리지 객체 가져오기
+  const storage = getStorage();
+  // 저장할 이미지 객체 생성
+  const imgRef = ref(storage, path);
+  // File 객체를 스토리지에 저장
+  await uploadBytes(imgRef, imgFile);
+  // 저장한 File의 url을 가져오기
+  const url = await getDownloadURL(imgRef);
+  return url;
+}
+
+// async function deleteDatas(collectionName, docId, ...args) {
+//args 는 배열로 된다 1,2번은 필수 3번 args 는 있어도 되고 없어도 되고
+async function deleteDatas(collectionName, docId, imgUrl) {
+  //1. 스토리지 객체 가져온다
+  const storage = getStorage();
+  try {
+    //2. 스토로지에서 이미지 삭제
+    const deleteRef = ref(storage, imgUrl);
+    await deleteObject(deleteRef);
+    //3. 컬렉션에서 문서 삭제
+    const docRef = await doc(db, collectionName, docId);
+    await deleteDoc(docRef);
+    return true;
+  } catch (error) {
+    return false;
+  }
   // deleteDoc("삭제할 문서 객체")
 }
 

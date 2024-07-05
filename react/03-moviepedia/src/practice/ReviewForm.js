@@ -12,7 +12,7 @@ function ReviewForm(props) {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log(e.target.name, e.target.value);
+
     handleChange(name, value);
   };
 
