@@ -13,6 +13,7 @@ const INITIAL_VALUE = {
 function ReviewForm({ addData, handleAddSuccess }) {
   const [values, setValues] = useState(INITIAL_VALUE);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = (name, value) => {
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
   };

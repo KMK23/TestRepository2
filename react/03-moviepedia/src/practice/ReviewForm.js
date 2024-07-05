@@ -19,7 +19,7 @@ function ReviewForm(props) {
   return (
     <form className="ReviewForm">
       <div>
-        <FileInput setFile={handleChange} name="imgUrl" />
+        <FileInput setFile={handleChange} inputName="imgUrl" />
       </div>
       <div className="Form-container">
         <input
@@ -28,7 +28,7 @@ function ReviewForm(props) {
           onChange={handleInputChange}
           name="title"
         />
-        <RatingStar />
+        <RatingStar inputName="rating" setRating={handleChange} />
         <textarea
           placeholder="내용"
           onChange={handleInputChange}
