@@ -1,7 +1,7 @@
 import React from "react";
 import Rating from "./Rating";
 
-function RatingStar(props) {
+function RatingStar({ inputName, setRating }) {
   return (
     <div>
       <Rating />

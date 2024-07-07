@@ -12,14 +12,14 @@ function ReviewForm(props) {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    console.log(e.target.name, e.target.value);
+
     handleChange(name, value);
   };
 
   return (
     <form className="ReviewForm">
       <div>
-        <FileInput setFile={handleChange} name="imgUrl" />
+        <FileInput setFile={handleChange} inputName="imgUrl" />
       </div>
       <div className="Form-container">
         <input
@@ -28,7 +28,7 @@ function ReviewForm(props) {
           onChange={handleInputChange}
           name="title"
         />
-        <RatingStar />
+        <RatingStar inputName="rating" setRating={handleChange} />
         <textarea
           placeholder="내용"
           onChange={handleInputChange}
