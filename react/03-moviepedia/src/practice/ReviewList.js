@@ -17,7 +17,12 @@ function ReviewListItem({ item }) {
         <p className="ReviewListItem-date">{formatDate(item.createdAt)}</p>
         <p className="ReviewListItem-content">{item.content}</p>
         <div className="ReviewListItem-buttons">
-          <button className="ReviewListItem-edit-button">수정</button>
+          <button
+            className="ReviewListItem-edit-button"
+            onClick={handleEditClick}
+          >
+            수정
+          </button>
           <button className="ReviewListItem-delete-button">삭제</button>
         </div>
       </div>

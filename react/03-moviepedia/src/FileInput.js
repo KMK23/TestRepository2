@@ -3,8 +3,8 @@ import placeholderImg from "./assets/preview-placeholder.png";
 import "./FileInput.css";
 import resetImg from "./assets/ic-reset.png";
 
-function FileInput({ setFile, inputName, value }) {
-  const [preview, setPreview] = useState();
+function FileInput({ setFile, inputName, value, initialPreview }) {
+  const [preview, setPreview] = useState(initialPreview);
   //스크립트에서 id, class 에 접근할때 query, getElbyId 등 쓰는것처럼 쓰는 훅이야
   const inputRef = useRef();
 
@@ -57,7 +57,7 @@ function FileInput({ setFile, inputName, value }) {
       <img
         src={preview || placeholderImg}
         alt="사진"
-        className="FileInput-preview"
+        className={`FileInput-preview ${preview ? "selected" : ""}`}
       />
       <input
         type="file"

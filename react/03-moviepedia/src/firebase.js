@@ -77,7 +77,7 @@ async function getDatasByOrderLimit(collectionName, options) {
   // const q = query(컬렉션정보, 조건1, 조건2, ..., 조건(못말리는아저쒸...))
   const snapshot = await getDocs(q);
   const lastQuery = snapshot.docs[snapshot.docs.length - 1];
-  console.log(lastQuery);
+  // console.log(lastQuery);
   const resultData = snapshot.docs.map((doc) => ({
     docId: doc.id,
     ...doc.data(),
@@ -158,14 +158,36 @@ async function deleteDatas(collectionName, docId, imgUrl) {
 
 //이게 결국에 firebase 에 내용을 가져오고 수정하고 저장하고 삭제하고 이런것들을
 //하기위해 이쪽에 함수를 만드는거야.
-async function updateDatas(collectionName, docId, updateinfoObj) {
-  // doc(db, collectionName, 문서ID);
-  // getDoc(문서레퍼런스 )
-  // updateDoc(문서데이터, 수정할 정보객체 )
-
+async function updateDatas(collectionName, dataObj, docId) {
+  console.log(dataObj.imgUrl);
   const docRef = await doc(db, collectionName, docId);
-  // const docData = await getDoc(docRef);
-  await updateDoc(docRef, updateinfoObj);
+  // 수정할 데이터 양식 생성 => id, title, content, rating, createdAt, updatedAt, imgUrl 인데 필요없는거 뺴면 title, content , rating, updatedAt, imgUrl 이렇게 5개만 필요하겠네
+  const time = new Date().getTime(); // ==> 현재시간 밀리세컨즈로 바꾼다
+  dataObj.updatedAt = time;
+  //사진 파일이 수정 되면 ==> 기존 사진 삭제 ==> 새로운 사진 추가 ==> url 받아와서 imgUrl 값 셋팅
+
+  if (dataObj.imgUrl !== null) {
+    //기존 사진 url 가져오기
+    const docSnap = await getDoc(docRef);
+    const prevImgUrl = docSnap.data().imgUrl;
+    //스토리지에서 기존사진 삭제
+    const storage = getStorage();
+    const deleteRef = ref(storage, prevImgUrl);
+    await deleteObject(deleteRef);
+    //새로운 사진 추가
+    const uuid = crypto.randomUUID();
+    const path = `movie/${uuid}`;
+    const url = await uploadImg(path, dataObj.imgUrl);
+    dataObj.imgUrl = url;
+  } else {
+    //imgUrl 프로퍼티 삭제 (사진 안바뀌었을때는 imgUrl 에 null 값이니까 그럼 사진에 엑박뜨니까)
+    delete dataObj["imgUrl"];
+  }
+  //사진 파일 수정 안되면 ==> 변경 데이터만 업데이트
+  await updateDoc(docRef, dataObj);
+  const updatedData = await getDoc(docRef);
+  const resultData = { docId: updatedData.id, ...updatedData.data() };
+  return resultData;
 }
 export {
   db,
