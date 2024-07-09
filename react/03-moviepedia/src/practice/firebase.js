@@ -32,10 +32,13 @@ const db = getFirestore(app);
 async function getDatas(collectionName) {
   const collect = await collection(db, collectionName);
   const snapshot = await getDocs(collect);
-  const resultData = snapshot.docs.map((doc) => ({
-    docId: doc.id,
-    ...doc.data(),
-  }));
+  const resultData = snapshot.docs.map((doc) => {
+    console.log(doc);
+    return {
+      docId: doc.id,
+      ...doc.data(),
+    };
+  });
 
   return resultData;
 }
