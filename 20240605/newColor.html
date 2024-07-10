@@ -140,6 +140,7 @@
       for (let i = 0; i < 3; i++) {
         colorArr.push(parseInt(Math.random() * 256));
       }
+      console.log(colorArr);
       const hexColorCode = colorArr
         .map((rgb) => rgb.toString(16).padStart(2, "0"))
         .join("");

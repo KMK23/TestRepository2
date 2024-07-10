@@ -1,27 +1,23 @@
-import styles from "./Home.module.css";
 import { Link } from "react-router-dom";
-import ColorSurvey from "../components/ColorSurvey";
+import styles from "./PracHome.module.css";
 import { useState, useEffect } from "react";
-import mock from "../lib/mock.json";
+import mockItem from "../lib/mock.json";
+import ColorSurvey from "../components/ColorSurvey";
 import { getAllDatas } from "../lib/firebase";
 
-function Home(props) {
+function PracHome(props) {
   const [mbti, setMBTI] = useState([]);
 
   const handleLoad = async () => {
-    //파이어베이스에서 데이터 가져오기
     const resultData = await getAllDatas("mbtiColor", "id");
-    //mbti state 에 셋팅
+
     setMBTI(resultData);
   };
 
   useEffect(() => {
     handleLoad();
-    // setMBTI(mock); getAllDatas 써서 파이어베이스에있는 정보 다 가져왔으니 이제 안써도 됌(mock)필요없음
   }, []);
 
-  console.log(mock);
-  //   console.log(styles);
   return (
     <div className={styles.container}>
       <div className={styles.headerContainer}>
@@ -43,8 +39,8 @@ function Home(props) {
           +새 컬러 등록하기
         </Link>
         <ul className={styles.items}>
-          {mbti.map((mk, idx) => {
-            return <ColorSurvey mk={mk} key={idx} />;
+          {mbti.map((item, idx) => {
+            return <ColorSurvey item={item} key={idx} />;
           })}
         </ul>
       </main>
@@ -52,4 +48,4 @@ function Home(props) {
   );
 }
 
-export default Home;
+export default PracHome;

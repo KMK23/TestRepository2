@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from "react";
-import styles from "./New.module.css";
 import { Link } from "react-router-dom";
+import styles from "./PracNew.module.css";
 import MBTISelect from "../components/MBTISelect";
+import { useState } from "react";
 import ColorInput from "../components/ColorInput";
 
-function New(props) {
+function PracNew(props) {
   const [formValue, setFormValue] = useState({
-    mbti: "ESTP",
+    mbti: "INTJ",
     colorCode: "f2f2f2",
   });
 
   const handleChange = (name, value) => {
-    setFormValue((prevFormValue) => {
-      return { ...prevFormValue, [name]: value };
+    setFormValue(() => {
+      return { [name]: value };
     });
   };
+  console.log(formValue);
 
   return (
     <div className={styles.container}>
@@ -27,8 +28,8 @@ function New(props) {
       <section className={styles.section}>
         <h4 className={styles.sectionHeading}>MBTI</h4>
         <MBTISelect
-          MBTIValue={formValue.mbti}
-          handleChange={(newMbti) => handleChange("mbti", newMbti)}
+          mbtivalue={formValue.mbti}
+          onChange={(item) => handleChange("mbti", item)}
         />
       </section>
       <section className={styles.section}>
@@ -37,12 +38,12 @@ function New(props) {
           <button className={styles.random}>
             <img className={styles.repeatIcon} src="/images/repeat.svg" />
           </button>
+          <ColorInput />
         </h2>
-        <ColorInput />
       </section>
       <button className={styles.submit}>컬러 등록</button>
     </div>
   );
 }
 
-export default New;
+export default PracNew;
