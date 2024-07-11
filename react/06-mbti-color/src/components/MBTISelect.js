@@ -32,7 +32,7 @@ function MBTISelect({ MBTIValue, handleChange }) {
     if (MBTIValue[selectedGruopNum] !== selectedmbti) {
       console.log(selectedGruopNum);
       console.log(selectedmbti);
-      const beforeValue = MBTIValue.slice(0, selectedGruopNum); null undefined
+      const beforeValue = MBTIValue.slice(0, selectedGruopNum); 
       const afterValue = MBTIValue.slice(selectedGruopNum + 1);
       const nextValue = beforeValue + selectedmbti + afterValue;
       handleChange(nextValue);

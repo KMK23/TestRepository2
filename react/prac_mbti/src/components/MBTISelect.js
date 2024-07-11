@@ -15,7 +15,7 @@ function MBTIOption({ option, selected, changeMBTI }) {
   const { mbti, desc, groupNum } = option;
   const className = `${styles.mbtiOption} ${selected ? styles.selected : ""}`;
   const handleMbtiClick = () => {
-    console.log(groupNum, mbti);
+    // console.log(groupNum, mbti);
     changeMBTI(groupNum, mbti);
   };
   return (

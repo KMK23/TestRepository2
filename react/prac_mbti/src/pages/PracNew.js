@@ -7,15 +7,15 @@ import ColorInput from "../components/ColorInput";
 function PracNew(props) {
   const [formValue, setFormValue] = useState({
     mbti: "INTJ",
-    colorCode: "f2f2f2",
+    colorCode: "#f2f2f2",
   });
 
   const handleChange = (name, value) => {
-    setFormValue(() => {
-      return { [name]: value };
+    setFormValue((prev) => {
+      return { ...prev, [name]: value };
     });
   };
-  console.log(formValue);
+  // console.log(formValue);
 
   return (
     <div className={styles.container}>
@@ -38,7 +38,12 @@ function PracNew(props) {
           <button className={styles.random}>
             <img className={styles.repeatIcon} src="/images/repeat.svg" />
           </button>
-          <ColorInput />
+          <ColorInput
+            colorCodeValue={formValue.colorCode}
+            handleChange={(newColorCode) =>
+              handleChange("colorCode", newColorCode)
+            }
+          />
         </h2>
       </section>
       <button className={styles.submit}>컬러 등록</button>

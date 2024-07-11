@@ -70,7 +70,7 @@ async function getDatasByOrderLimit(collectionName, options) {
   } else {
     q = query(collect, orderBy(options.order, "desc"), limit(options.limit));
   }
-  // const q = query(컬렉션정보, 조건1, 조건2, ..., 조건(못말리는아저쒸...))
+  // const q = query(컬렉션정보, 조건1, 조건2, ..., 조건
   const snapshot = await getDocs(q);
   const lastQuery = snapshot.docs[snapshot.docs.length - 1];
   console.log(lastQuery);
