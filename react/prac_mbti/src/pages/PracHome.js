@@ -9,7 +9,7 @@ function PracHome(props) {
   const [mbti, setMBTI] = useState([]);
 
   const handleLoad = async () => {
-    const resultData = await getAllDatas("mbtiColor", "id");
+    const { resultData } = await getAllDatas("pracMBTIColor", "id");
 
     setMBTI(resultData);
   };
