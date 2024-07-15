@@ -1,0 +1,42 @@
+.nav {
+  position: relative;
+  padding: 15px 0;
+  box-shadow: var(--box-shadow);
+  /* css에서 변수를 호출할때 var을 쓴다 */
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-family: "PeoplefirstFightingTTF";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2406-2@1.0/PeoplefirstFightingTTF.woff2")
+    format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-size: 20px;
+}
+.logo > span {
+  background-color: #545454;
+  color: white;
+  padding: 0 3px;
+  margin-right: 2px;
+}
+ul.menu {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  gap: 30px;
+}
+ul.menu.dark a,
+ul.menu.dark a:hover,
+ul.menu.dark a:active {
+  color: red;
+}
+ul.menu a:hover,
+ul.menu a:active {
+  text-decoration: underline;
+}
