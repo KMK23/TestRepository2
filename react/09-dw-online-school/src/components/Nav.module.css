@@ -2,6 +2,7 @@
   position: relative;
   padding: 15px 0;
   box-shadow: var(--box-shadow);
+  background-color: white;
   /* css에서 변수를 호출할때 var을 쓴다 */
 }
 .container {
@@ -13,9 +14,10 @@
   font-family: "PeoplefirstFightingTTF";
   src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2406-2@1.0/PeoplefirstFightingTTF.woff2")
     format("woff2");
-  font-weight: medium;
+  font-weight: 900;
   font-style: normal;
   font-size: 20px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
 }
 .logo > span {
   background-color: #545454;
