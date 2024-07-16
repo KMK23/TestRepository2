@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import Container from "./Container";
 import styles from "./ListPage.module.css";
-import catalog from "../assets/catalog.svg";
 import cn from "classnames";
-function ListPage({}) {
+
+function ListPage({ heading, className, description, image }) {
   return (
     <>
-      <div className={cn(styles.bg, styles.catalog)}>
-        <img className={styles.icon} src={catalog} />
+      <div className={cn(styles.bg, className)}>
+        <img className={styles.icon} src={image} />
         <div className={styles.texts}>
-          <h1 className={styles.heading}>모든코스</h1>
-          <p className={styles.description}>
-            자체 제작된 코스들로 기초를 쌓으시요
-          </p>
+          <h1 className={styles.heading}>{heading}</h1>
+          <p className={styles.description}>{description}</p>
         </div>
       </div>
       <Container className={styles.container}></Container>
