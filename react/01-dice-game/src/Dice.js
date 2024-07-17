@@ -24,8 +24,8 @@ const DICE_IMAGES = {
 };
 
 function Dice({ color = "blue", num = 1 }) {
-  //   console.log(color);
-  //   console.log(num);
+  console.log(color);
+  console.log(num);
   const src = DICE_IMAGES[color][num - 1];
   return <img src={src} />;
 }
