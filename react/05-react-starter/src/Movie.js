@@ -1,8 +1,11 @@
-import React from "react";
+import React, { startTransition, useRef } from "react";
 import "./Movie.css";
 import tempImg from "./assets/벚꽃.png";
 
 function Movie({ movie }) {
+  const ref = useRef();
+  console.log(`콘솔로 찍은 ref ${ref}`);
+
   const { title, year, summary, medium_cover_image, genres } = movie;
   return (
     <div className="movie">
