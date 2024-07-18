@@ -61,7 +61,7 @@ function CourseListPage(props) {
       <p className={styles.count}>총 {items.length}개 코스</p>
       <div className={styles.courseList}>
         {items.map((course, idx) => (
-          <CourseItem item={course} key={idx} />
+          <CourseItem course={course} key={idx} />
         ))}
       </div>
     </ListPage>

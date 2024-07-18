@@ -7,8 +7,8 @@ import getCourseColor from "../utils/getCourseColor";
 
 const DIFFICULTY = ["입문", "초급", "중급", "고급"];
 
-function CourseItem({ item }) {
-  const { title, summary, language, difficulty, code, photoUrl } = item;
+function CourseItem({ course }) {
+  const { title, summary, language, difficulty, code, photoUrl, slug } = course;
   const courseColor = getCourseColor(code);
   const thumbStyle = {
     borderColor: courseColor,
@@ -20,7 +20,10 @@ function CourseItem({ item }) {
       </div>
       <div className={styles.content}>
         <h2 className={styles.title}>
-          <Link>{title}</Link>
+          <Link to={`/courses/${slug}`} state={{ course }}>
+            {title}
+          </Link>
+          {/* 여기에 있는 ${slug } 값은 useParams 를 쓸때 value 값이 된다 */}
         </h2>
         <p className={styles.description}>{summary}</p>
         <div>

@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Input from "./Input";
-import Button from "./Button";
+import Button from "./LoginButton";
 import kakaoImg from "./kakao.svg";
 
 const Container = styled.div`

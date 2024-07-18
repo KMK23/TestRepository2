@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import Container from "./Container";
 import styles from "./ListPage.module.css";
-import catalog from "../assets/catalog.svg";
 import cn from "classnames";
-import question from "../assets/community.svg";
+import catalogImg from "../assets/catalog.svg";
+import communityImg from "../assets/community.svg";
 
 const dataDict = {
   catalog: {
-    src: catalog,
-    title: "모든코스",
-    description: "자체 제작된 코스들로 기초를 쌓으세요",
+    src: catalogImg,
+    title: "모든 코스",
+    description: "자체 제작된 코스들로 기초를 쌓으세요.",
   },
   community: {
-    src: question,
+    src: communityImg,
     title: "커뮤니티",
-    description: "DW온라인스쿨의 2만 수강생들과 함께 공부해봐요",
+    description: "DW온라인스쿨의 2만 수강생들과 함께 공부해봐요.",
   },
 };
 
