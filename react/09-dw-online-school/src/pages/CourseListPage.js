@@ -4,13 +4,16 @@ import searchImg from "../assets/search.svg";
 import styles from "./CourseListpage.module.css";
 import CourseItem from "../components/CourseItem";
 import { getDatas } from "../api/firebase";
+import Warn from "../components/Warn";
 
 let listItem;
 
 function CourseListPage(props) {
   const [items, setItems] = useState([]);
   const [typing, setTyping] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   const handleLoad = async () => {
+    setIsLoading(true);
     // 파이어베이스의 courses 컬렉션의 데이터를 가져와.
     const resultData = await getDatas("courses");
     // 전체데이터 변수에 저장
@@ -19,6 +22,7 @@ function CourseListPage(props) {
     // console.log(resultData);
     // items state에 set 해준다.
     setItems(resultData);
+    setIsLoading(false);
   };
 
   const handleKeywordChange = (e) => {
@@ -59,11 +63,19 @@ function CourseListPage(props) {
         </button>
       </form>
       <p className={styles.count}>총 {items.length}개 코스</p>
-      <div className={styles.courseList}>
-        {items.map((course, idx) => (
-          <CourseItem course={course} key={idx} />
-        ))}
-      </div>
+      {items.length == 0 && !isLoading ? (
+        <Warn
+          className={styles.emptyList}
+          title="조건에 맞는 코스가 없어요"
+          description="올바른 검색어가 맞는지 다시 한번 확인 해주세요"
+        />
+      ) : (
+        <div className={styles.courseList}>
+          {items.map((course, idx) => (
+            <CourseItem course={course} key={idx} />
+          ))}
+        </div>
+      )}
     </ListPage>
   );
 }

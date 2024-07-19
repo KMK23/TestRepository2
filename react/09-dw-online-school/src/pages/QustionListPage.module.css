@@ -29,14 +29,6 @@
   width: 24px;
   height: 24px;
 }
-.courseList {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: 20px;
-}
-.emptyList {
-}
 .count {
   margin: 20px 0;
   font-size: 14px;

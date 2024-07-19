@@ -1,0 +1,32 @@
+.questionList {
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+}
+.className {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.title {
+  font-size: 18px;
+}
+.count {
+  color: red;
+}
+.date {
+  color: rgb(0, 17, 255);
+}
+.writer {
+  position: relative;
+}
+.icon {
+  position: absolute;
+  right: 24px;
+  top: -25px;
+}

@@ -1,9 +1,13 @@
 import { initializeApp } from "firebase/app";
 import {
+  arrayRemove,
+  arrayUnion,
   collection,
+  doc,
   getDocs,
   getFirestore,
   query,
+  updateDoc,
   where,
 } from "firebase/firestore";
 
@@ -67,4 +71,33 @@ async function getMember(values) {
   }
   return { memberObj, message };
 }
-export { getDatas, getData, getMember };
+
+async function updateDatas(collectionName, docId, updateObj, option) {
+  //문서의 레퍼런스 객체가 필요.
+  const docRef = doc(db, collectionName, docId);
+  // 이건 option 이 있을때 없을때를 가르는거고 나중에 범용성을 위해서 ..
+  // 그래서 option이 없을떄 그냥 일반적인 updateDatas처럼 쓴것
+  try {
+    if (!option) {
+      await updateDoc(docRef, updateObj);
+    } else {
+      // 여기는 수정하고자 하는 필드명을
+      // 여기서 courseList 라고 필드 명을 써버리면 하나의 필드에 배열을 저장하는 다른 함수가 있을때 쓰지 못하니까
+      // 수정이 필요한지 삭제를 하려는지에 따라 또 조건을 건다
+      if (option.type == "ADD") {
+        await updateDoc(docRef, {
+          [option.fieldName]: arrayUnion(updateObj),
+        });
+      } else if (option.type == "DELETE") {
+        await updateDoc(docRef, {
+          [option.fieldName]: arrayRemove(updateObj),
+        });
+      }
+    }
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+export { getDatas, getData, getMember, updateDatas };
