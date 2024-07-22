@@ -1,0 +1,13 @@
+.Avatar {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+
+  object-fit: cover;
+  /* 
+  Object-fit :
+  원래 본인이 갖고있던 비율을 유지하면서 컨텐츠 박스를 꽉 채운다. 만약 비율이 맞지 않으면 이미지가 잘려나간다.
+  
+  이미지 사진 넣을때 생각해
+  */
+}
