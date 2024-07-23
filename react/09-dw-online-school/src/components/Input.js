@@ -1,29 +1,26 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const SIZE = {
+const SIZES = {
   large: 24,
   medium: 20,
   small: 16,
 };
 
 const Input = styled.input`
+  font-size: 16px;
   border: none;
-  border-bottom: 2px solid #eeeeee;
-
+  border-bottom: 2px solid ${({ $error }) => $error ? '#f44336' : '#eeeeee'};
+  padding: 8px 0;
   outline: none;
-  /* outline 은 포커스 됐을때의 색상이라고 생각 */
-  padding: 12px 12px;
-  width: 100%;
-  font-size: ${({ size }) => SIZE[size] ?? SIZE["medium"]}px;
   display: block;
-  border-radius: 10px;
+  width: 100%;
+
   &:focus {
-    border-color: ${({ $error }) => ($error ? "#f44336" : "#7760b4")};
+    border-color: ${({ $error }) => $error ? '#f44336' : '#7760b4'};
   }
-  border-radius: ${({ $round }) => ($round ? "999px" : "")};
+
   &::placeholder {
-    font-size: 16px;
-    color: lightgray;
+    color: #c4c5cd;
   }
 `;
 

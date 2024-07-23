@@ -1,15 +1,12 @@
-import React from "react";
-import Card from "./Card";
-import styles from "./QuestionItem.module.css";
-import { Link } from "react-router-dom";
-import Avatar from "./Avatar";
-import DateText from "./DateText";
+import React from 'react';
+import Card from './Card';
+import { Link } from 'react-router-dom';
+import Avatar from './Avatar';
+import styles from './QuestionItem.module.css';
+import DateText from './DateText';
 
 function QuestionItem({ question }) {
-  console.log(question);
-  const { createdAt, title, writer, answers } = question;
-  console.log(writer.profile.photo);
-
+  const { title, answers, createdAt, writer } = question;
   return (
     <Card className={styles.questionItem}>
       <div className={styles.info}>

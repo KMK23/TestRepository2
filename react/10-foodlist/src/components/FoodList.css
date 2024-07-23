@@ -1,0 +1,81 @@
+.FormListItem {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  padding: 22px;
+  border-radius: 15px;
+  box-shadow: 0 0 9px rgba(100, 125, 118, 0.09);
+  background-color: #fff;
+}
+.FormList-title-calorie {
+  display: flex;
+}
+.FormListItem-img {
+  width: 182px;
+  height: 262px;
+  object-fit: cover;
+  border-radius: 15px;
+  object-position: center;
+}
+
+.FormListItem-rows {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 22px 0 18px;
+  gap: 10px;
+  flex: 1 1;
+}
+.FormListItem-rows .FormListItem-title {
+  margin: 0;
+  font-weight: 400;
+  font-size: 24px;
+  flex: 1 1;
+}
+.FormListItem-rows .FormListItem-calorie {
+  margin-bottom: 8px;
+  background-color: gray;
+}
+.FormListItem-rows .FormListItem-date {
+  margin: 0 0 5px;
+  color: #dbdbdb;
+  font-size: 14px;
+  letter-spacing: -0.25px;
+}
+.FormListItem-rows .FormListItem-content {
+  flex: 1 1;
+  margin: 0 0 5px;
+  overflow: hidden;
+  color: #545457;
+  font-size: 16px;
+  letter-spacing: -0.2px;
+}
+.FormListItem-rows .FormListItem-buttons {
+  display: flex;
+  gap: 20px;
+}
+.FormListItem-edit-button,
+.FormListItem-delete-button {
+  padding: 0;
+  border: none;
+  color: #000;
+  font-size: 16px;
+  letter-spacing: -0.28;
+  background: transparent;
+  cursor: pointer;
+}
+.FormListItem-delete-button {
+  color: #ff0023;
+}
+.FormList {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.FormList > li {
+  padding: 30px 0;
+}
+.FormList > li:first-child {
+  padding-top: 0;
+}

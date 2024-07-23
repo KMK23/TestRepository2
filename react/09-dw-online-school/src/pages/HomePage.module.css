@@ -1,5 +1,5 @@
 .bg {
-  background-image: linear-gradient(
+  background: linear-gradient(
     135deg,
     #f9f9f9 48%,
     #ebebeb 48% 78%,
@@ -15,17 +15,17 @@
 }
 .texts {
   display: flex;
+  flex: 1 1;
   flex-direction: column;
   justify-content: center;
   margin-right: 100px;
-  flex: 1 1;
 }
 .heading {
   margin: 15px 0;
   font-weight: 500;
 }
-.heading span {
-  box-shadow: inset 0 -14px limegreen;
+.heading > span {
+  box-shadow: inset 0 -14px #ebebeb;
   padding-bottom: 4px;
 }
 .description {
@@ -36,8 +36,8 @@
 }
 .figure {
   padding: 20px;
-  text-align: center;
   flex: 1 1;
+  text-align: center;
 }
 .figure img {
   max-width: 418px;

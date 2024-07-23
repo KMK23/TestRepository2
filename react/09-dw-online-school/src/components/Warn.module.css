@@ -16,6 +16,7 @@
 .description {
   font-weight: 500;
   color: #878787;
+  margin: 0;
 }
 .big .description {
   font-size: 18px;

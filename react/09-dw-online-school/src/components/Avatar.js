@@ -1,10 +1,9 @@
-import React from "react";
-import cn from "classnames";
-import styles from "./Avatar.module.css";
+import React from 'react';
+import styles from './Avatar.module.css';
+import tempImg from '../assets/person.png';
 
-function Avatar({ className, photoUrl, name }) {
-  return (
-    <img className={cn(styles.Avatar, className)} src={photoUrl} title={name} />
-  );
+function Avatar({ photoUrl, name }) {
+  return <img className={styles.avatar} src={photoUrl} title={name} />;
 }
+
 export default Avatar;

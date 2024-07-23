@@ -16,7 +16,7 @@ a:visited {
   text-decoration: none;
 }
 
-/* 전역 변수 선언 */
+/* 전역 변수선언 */
 :root {
   --box-shadow: 5px 5px 10px 0 rgba(0, 0, 0, 0.05);
 }
@@ -32,5 +32,5 @@ a:visited {
 .body {
   position: relative;
   flex-grow: 1;
-  /* margin: 10px 0 0; */
+  /* margin: 10px 0; */
 }

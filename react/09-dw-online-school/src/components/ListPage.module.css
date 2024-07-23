@@ -19,7 +19,7 @@
   font-size: 22px;
   font-weight: bold;
 }
-.decription {
+.description {
   margin: 0;
   font-size: 12px;
   font-weight: 500;
@@ -27,11 +27,11 @@
 .catalog .heading {
   color: #545454;
 }
-.catalog .decription {
+.catalog .description {
   color: #878787;
 }
 .community .heading,
-.community .decription {
+.community .description {
   color: #fff;
 }
 .container {
