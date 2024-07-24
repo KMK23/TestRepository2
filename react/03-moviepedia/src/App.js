@@ -64,6 +64,7 @@ function App() {
 
   const handleMoreClick = () => {
     handleLoad({ order: order, limit: LIMIT, lq: lq });
+    console.log(lq);
   };
 
   const handleDelete = async (docId, imgUrl) => {

@@ -52,21 +52,6 @@ async function getDatas(collectionName) {
   return resultData;
 }
 
-// 필드, 조건, 부합하는 값을 가져와야 정렬가능 ==> 정렬을 위한 함수야
-// options 객체 형태로 넘겨줄꺼임 그 객체에는 order 라는 프로퍼티를 넣어줄꺼야
-async function getDatasByOrder(collectionName, options) {
-  const collect = await collection(db, collectionName);
-  // const q = query(컬렉션정보, 조건1, 조건2, ...)
-  const q = query(collect, orderBy(options.order, "desc"));
-  const snapshot = await getDocs(q);
-  const resultData = snapshot.docs.map((doc) => ({
-    docId: doc.id,
-    ...doc.data(),
-  }));
-
-  return resultData;
-}
-
 async function getDatasByOrderLimit(collectionName, options) {
   const { fieldName, limits, lq } = options;
   let q;
@@ -84,7 +69,6 @@ async function getDatasByOrderLimit(collectionName, options) {
       limit(limits)
     );
   }
-  // 만약 정렬을 두개 하고 싶으면 orderBy를 한개 더 쓰면 된다
   const snapshot = await getDocs(q);
   const docs = snapshot.docs;
   const lastQuery = docs[docs.length - 1];
@@ -143,24 +127,4 @@ async function getLastNum(collectionName, field) {
   return lastId;
 }
 
-async function deleteDatas(collectionName, docId, imgUrl) {
-  const storage = getStorage();
-  try {
-    const deleteRef = ref(storage, imgUrl);
-    await deleteObject(deleteRef);
-    const docRef = await doc(db, collectionName, docId);
-    await deleteDoc(docRef);
-    return true;
-  } catch (error) {
-    return false;
-  }
-}
-
-export {
-  db,
-  getDatas,
-  getDatasByOrder,
-  getDatasByOrderLimit,
-  addDatas,
-  deleteDatas,
-};
+export { getDatas, addDatas, getDatasByOrderLimit };
