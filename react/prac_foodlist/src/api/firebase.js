@@ -101,7 +101,11 @@ async function addDatas(collectionName, dataObj) {
   dataObj.updatedAt = time;
 
   //컬렉션에 저장
-  await addDoc(getCollection(collectionName), dataObj);
+  const result = await addDoc(getCollection(collectionName), dataObj);
+  const docSnap = await getDoc(result);
+  // getDoc에 넣는게 documentReference를 넣어야하는데 이미 result로 만들었어
+  const resultData = { ...docSnap.data(), docId: docSnap.id };
+  return resultData;
 }
 
 async function uploadImage(path, file) {
@@ -127,4 +131,18 @@ async function getLastNum(collectionName, field) {
   return lastId;
 }
 
-export { getDatas, addDatas, getDatasByOrderLimit };
+async function deleteDatas(collectionName, docId, imgUrl) {
+  const storage = getStorage();
+  try {
+    const deleteRef = ref(storage, imgUrl);
+    await deleteObject(deleteRef);
+
+    const deleteDocRef = doc(db, collectionName, docId);
+    await deleteDoc(deleteDocRef);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
+
+export { getDatas, addDatas, getDatasByOrderLimit, deleteDatas };

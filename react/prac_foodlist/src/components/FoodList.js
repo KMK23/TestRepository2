@@ -1,12 +1,18 @@
 import React from "react";
+import "./FoodList.css";
 
 const formatDate = (value) => {
   const date = new Date(value);
   return `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
 };
 
-function FoodListItem({ item }) {
-  const { imgUrl, title, calorie, content, createdAt } = item;
+function FoodListItem({ item, handleDelete }) {
+  const { imgUrl, title, calorie, content, createdAt, docId } = item;
+  console.log(item);
+
+  const handleDeleteClick = () => {
+    handleDelete(docId, imgUrl);
+  };
   return (
     <div className="FoodListItem">
       <img className="FoodListItem-preview" src={imgUrl} />
@@ -20,7 +26,12 @@ function FoodListItem({ item }) {
           <p className="FoodListItem-date">{formatDate(createdAt)}</p>
           <div className="FoodListItem-buttons">
             <button className="FoodListItem-edit-button">수정</button>
-            <button className="FoodListItem-delete-button">삭제</button>
+            <button
+              className="FoodListItem-delete-button"
+              onClick={handleDeleteClick}
+            >
+              삭제
+            </button>
           </div>
         </div>
       </div>
@@ -28,14 +39,15 @@ function FoodListItem({ item }) {
   );
 }
 
-function FoodList({ items }) {
+function FoodList({ items, handleDelete }) {
+  console.log(items);
   return (
-    <ul>
-      {items.map((item) => {
+    <ul className="FoodList">
+      {items.map((item) => (
         <li>
-          <FoodListItem item={item} />
-        </li>;
-      })}
+          <FoodListItem item={item} handleDelete={handleDelete} />
+        </li>
+      ))}
     </ul>
   );
 }

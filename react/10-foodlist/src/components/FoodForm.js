@@ -21,8 +21,16 @@ function sanitize(type, value) {
   }
 }
 
-function FoodForm(props) {
-  const [values, setValues] = useState(INITIAL_VALUES);
+function FoodForm({
+  onCancel,
+  onSubmitSuccess,
+  onSubmit,
+  initialValues = INITIAL_VALUES,
+  // App 에서는 initialValues가 없으니까 기본값으로 INITIAL_VALUES를 넣은것
+  initialPreview,
+}) {
+  const [values, setValues] = useState(initialValues);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (name, value) => {
     setValues((prev) => ({
@@ -40,7 +48,12 @@ function FoodForm(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const resultData = await addDatas("foods", values);
+    setIsSubmitting(true);
+    const resultData = await onSubmit("foods", values);
+    onSubmitSuccess(resultData);
+
+    setIsSubmitting(false);
+    setValues(INITIAL_VALUES);
   };
   return (
     <form className="FoodForm" onSubmit={handleSubmit}>
@@ -49,7 +62,9 @@ function FoodForm(props) {
         onChange={handleChange}
         name="imgUrl"
         value={values.imgUrl}
+        initialPreview={initialPreview}
       />
+      {/* 여기있는 value를 src에 들어가게 만들어야해 왜냐면 value는 url 이니까 */}
       <div className="FoodForm-rows">
         <div className="FoodForm-title-calorie">
           <input
@@ -67,7 +82,20 @@ function FoodForm(props) {
             name="calorie"
             value={values.calorie}
           />
-          <button className="FoodForm-submit-button" type="submit">
+          {onCancel && (
+            <button
+              className="FoodForm-cancel-button"
+              type="button"
+              onClick={() => onCancel(null)}
+            >
+              취소
+            </button>
+          )}
+          <button
+            className="FoodForm-submit-button"
+            type="submit"
+            disabled={isSubmitting}
+          >
             확인
           </button>
         </div>

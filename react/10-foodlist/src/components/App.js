@@ -6,7 +6,14 @@ import FoodList from "./FoodList";
 import footerLogo from "../assets/logo-text.png";
 import backgroundImg from "../assets/background.png";
 import { useEffect, useState } from "react";
-import { deleteDatas, getDatas, getDatasByOrderLimit } from "../api/firebase";
+import {
+  addDatas,
+  deleteDatas,
+  getDatas,
+  getDatasByOrderLimit,
+  updateDatas,
+} from "../api/firebase";
+import LocaleSelected from "./LocaleSelected";
 
 const LIMIT = 5;
 let listItems;
@@ -25,6 +32,7 @@ function AppSortButton({ children, selected, onClick }) {
 
 function App() {
   const [items, setItems] = useState([]);
+
   const [order, setOrder] = useState("createdAt");
   const [lq, setLq] = useState();
   // lastQuery를 관리하기위해 만든 state이다.
@@ -50,8 +58,11 @@ function App() {
       setHasNext(false);
     }
     // 여기있는 lastQuery는 계속 가지고 있어야해. 그래야 마지막에 화면에 나온게 뭔지 알수 있지
+    listItems = resultData;
   };
+  console.log(items);
 
+  console.log(listItems);
   // const handleLoad = async (options) => {
   //   const { resultData, lastQuery } = await getDatasByOrderLimit(
   //     "foods",
@@ -74,22 +85,42 @@ function App() {
     setKeyword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSearch = (e) => {
     e.preventDefault();
     setItems(
-      listItems.filter((item) => {
+      items.filter((item) => {
         return item.title.includes(keyword);
       })
     );
   };
 
   const handleDelete = async (docId, imgUrl) => {
-    const result = await deleteDatas("foods", docId, imgUrl);
+    //item 에서 docId 를 받아온다.
+
+    //db에서 데이터 삭제(스토리지에 있는 사진 파일도 삭제, database에 있는 데이터 삭제) ==> 스토리지에 파일은 imgUrl이 , database는 docId 필요
+    const { result, message } = await deleteDatas("foods", docId, imgUrl);
     if (!result) {
-      alert("저장된 이미지 파일이 없습니다. \n관리자에게 문의하세요");
-      return false;
+      alert(message);
+      return;
     }
-    setItems((prev) => prev.filter((item) => item.docId !== docId));
+    //삭제 성공 시 화면에 그 결과를 반영해야한다.
+    setItems((prevItems) =>
+      prevItems.filter(function (item) {
+        return item.docId !== docId;
+      })
+    );
+  };
+
+  const handleAddSuccess = (resultData) => {
+    setItems((prevItems) => [resultData, ...prevItems]);
+  };
+
+  const handleUpdateSuccess = (result) => {
+    setItems((prev) => {
+      // 수정된 아이템 인덱스 찾기
+      const splitIdx = prev.findIndex((item) => item.id === result.id);
+      return [...prev.slice(0, splitIdx), result, ...prev.slice(splitIdx + 1)];
+    });
   };
 
   useEffect(() => {
@@ -104,10 +135,10 @@ function App() {
       </div>
       <div className="App-container">
         <div className="App-FoodForm">
-          <FoodForm />
+          <FoodForm onSubmit={addDatas} onSubmitSuccess={handleAddSuccess} />
         </div>
         <div className="App-filter">
-          <form className="App-search" onSubmit={handleSubmit}>
+          <form className="App-search" onSubmit={handleSearch}>
             <input
               className="App-search-input"
               onChange={handleKeyWordChange}
@@ -131,7 +162,12 @@ function App() {
             </AppSortButton>
           </div>
         </div>
-        <FoodList items={items} handleDelete={handleDelete} />
+        <FoodList
+          items={items}
+          handleDelete={handleDelete}
+          onUpdate={updateDatas}
+          onUpdateSuccess={handleUpdateSuccess}
+        />
         {hasNext && (
           <button onClick={handleMoreClick} className="App-load-more-button">
             더보기
@@ -141,10 +177,7 @@ function App() {
       <div className="App-footer">
         <div className="App-footer-container">
           <img src={footerLogo} />
-          <select>
-            <option>한국어</option>
-            <option>English</option>
-          </select>
+          <LocaleSelected />
           <div className="App-footer-menu">
             서비스 이용 약관 | 개인정보 처리방침
           </div>
