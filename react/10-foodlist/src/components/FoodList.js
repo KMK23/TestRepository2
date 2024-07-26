@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./FoodList.css";
 import FoodForm from "./FoodForm";
+import useTranslate from "../hooks/useTranslate";
 
 function formatDate(value) {
   const date = new Date(value);
@@ -8,6 +9,7 @@ function formatDate(value) {
 }
 
 function FoodListItem({ item, handleDelete, onEdit }) {
+  const t = useTranslate();
   const { title, calorie, content, imgUrl, createdAt, id, docId } = item;
   const handleDeleteClick = () => {
     handleDelete(docId, imgUrl);
@@ -32,13 +34,13 @@ function FoodListItem({ item, handleDelete, onEdit }) {
               className="FoodListItem-edit-button"
               onClick={handleEditClick}
             >
-              수정
+              {t("edit button")}
             </button>
             <button
               className="FoodListItem-delete-button"
               onClick={handleDeleteClick}
             >
-              삭제
+              {t("delete button")}
             </button>
           </div>
         </div>
@@ -60,7 +62,8 @@ function FoodList({ items, handleDelete, onUpdate, onUpdateSuccess }) {
           // 사용자가 화면에서 직접 입력했던 것들이 initialValues
           // imgUrl에 null 값을 넣은 이유는 imgUrl을 갖고 있는 value가  문자열이기 때문에 오류가 나 그래서 null을 넣어준거야
           function handleSubmit(collectionName, dataObj) {
-            const result = onUpdate(collectionName, dataObj, docId);
+            const result = onUpdate(collectionName, dataObj, docId, imgUrl);
+            // 여기있는 imgUrl 은 item 이 갖고있는 문자열이다
             return result;
           }
 

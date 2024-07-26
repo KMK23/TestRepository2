@@ -3,9 +3,9 @@ import resetImg from "../assets/ic-reset-white.png";
 import "./FileInput.css";
 import { useState, useEffect } from "react";
 
-function FileInput({ onChange, name, value }) {
-  const [preview, setPreview] = useState();
-
+function FileInput({ onChange, name, value, initialPreview }) {
+  console.log(value);
+  const [preview, setPreview] = useState(initialPreview);
   const handleChange = (e) => {
     const nextValue = e.target.files[0];
     onChange(name, nextValue);
@@ -19,6 +19,7 @@ function FileInput({ onChange, name, value }) {
     if (!value) return;
     const nextPreview = URL.createObjectURL(value);
     console.log(nextPreview);
+
     setPreview(nextPreview);
     return () => {
       setPreview(null);

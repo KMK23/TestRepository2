@@ -15,6 +15,7 @@ import {
   startAfter,
   getDoc,
   // getDoc,
+  where,
 } from "firebase/firestore";
 import {
   deleteObject,
@@ -181,33 +182,61 @@ async function deleteDatas(collectionName, docId, imgUrl) {
   // }
 }
 
-async function updateDatas(collectionName, dataObj, docId) {
+async function updateDatas(collectionName, dataObj, docId, imgUrl) {
+  //문서 업데이트시 필요한 함수 (updateDoc)=> doc참조객체, 수정할 데이터 객체
   const docRef = await doc(db, collectionName, docId);
-  // 수정할 데이터 양식 생성=> title,content,calorie,updateAt,imgUrl
+  //수정 시점
+  //저장되어있는 시간관련 필드들의 값이 밀리세컨드로 되어있기 때문에 getTime()함수 사용
   const time = new Date().getTime();
-  dataObj.updatedAt = time;
-  //사진 파일이 수정 되면 ==>기존 사진 삭제 ==> 새로운 사진추가 ==> url 받아와서 imgUrl 값 셋팅
 
-  if (dataObj.imgUrl !== null) {
-    //기존 사진 url 가져오기
-    const docSnap = await getDocs(docRef);
-    const prevImgUrl = docSnap.data().imgUrl;
-    //스토리지에서 기존 사진 삭제
-    const storage = getStorage();
-    const deleteRef = ref(storage, prevImgUrl);
-    await deleteObject(deleteRef);
-    //새로운 사진 추가
-    const uuid = crypto.randomUUID();
-    const path = `food/${uuid}`;
-    const url = await uploadImage(path, dataObj.imgUrl);
-    dataObj.imgUrl = url;
-  } else {
-    //imgUrl 프로퍼티 삭제(사진 안바뀌었을때는 imgUrl에 null 값이니까 그럼 엑박뜸)
+  // 사진 파일을 변경하지 않았을때
+  if (dataObj.imgUrl === null) {
+    // 사진이 변경되지 않았을때 imgUrl 값이 null로 넘어 오기 때문에
+    // 그 상태로 문서를 update 해버리면 imgUrl 값이 null 로 바뀐다.
+    // 그렇기 때문에 updateObj 에서 imgUrl 프로퍼티를 삭제해준다.
     delete dataObj["imgUrl"];
+  } else {
+    // 사진 파일을 변경했을 때
+    // 기존 사진 삭제
+
+    //1.스토리지 객체 생성
+    const storage = getStorage();
+    //2. 삭제할 파일 참조 객체 생성
+    const deleteRef = ref(storage, imgUrl);
+    await deleteObject(deleteRef);
+
+    //변경한 사진을 스토리지에 저장
+    const url = await uploadImage(createPath("food/"), dataObj.imgUrl);
+    //스토리지에 저장하고 그 파일의 url을 가져와서 dataObj의 imgUrl을 변경해준다.
+    //왜? ==> 기존 dataObj에 있는 imgUrl은 "File"객체이고,
+    //우리가 데이터베이스에 저장해야 할 imgUrl은 문자열 url 이기 때문에
+    dataObj.imgUrl = url;
   }
+
+  //updatedAt 필드에 넣어줄 시간 데이터를 dataObj에 넣어준다
+  dataObj.updatedAt = time;
+
+  // 문서 필드 데이터 수정
+
   await updateDoc(docRef, dataObj);
-  const updateData = await getDoc(docRef);
-  const resultData = { docId: updateData.id, ...updateData.data() };
+  // 업데이트 하고 나서 문서 데이터가 필요해 왜나면 그걸 이용해서 id도 찾고 뭐도 찾고 하니까
+  //그래서 docRef라는 문서 참조 객체를 가져와서 .data(), docId를 뽑아냈어
+  // 이건 일반적으로 getDatas 할때 뽑아낸거랑 똑같아
+  const docSnap = await getDoc(docRef);
+  const resultData = { ...docSnap.data(), docId };
+  return resultData;
+}
+
+async function getSearchDatas(collectionName, options) {
+  const q = query(
+    getCollection(collectionName),
+    where("title", ">=", options.search),
+    where("title", "<=", options.search + "\uf8ff"),
+    limit(options.limits)
+  );
+  const snapshot = await getDocs(q);
+  const docs = snapshot.docs;
+  const resultData = docs.map((doc) => ({ ...doc.data(), docId: doc.id }));
   return resultData;
 }
 
@@ -219,4 +248,5 @@ export {
   addDatas,
   deleteDatas,
   updateDatas,
+  getSearchDatas,
 };

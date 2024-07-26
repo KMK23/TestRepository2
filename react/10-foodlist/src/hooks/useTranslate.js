@@ -1,4 +1,4 @@
-import { useLocale } from "../contexts/FoodContext";
+import { useLocale } from "../contexts/LocaleContext";
 
 const dict = {
   ko: {
@@ -31,7 +31,15 @@ const dict = {
 
 function useTranslate() {
   const locale = useLocale();
-  const translate = (key) => dict[locale][key] || "";
+  // "ko" or "en" 이냐를 구별하는것
+  // const translate = (key) => dict[locale][key] || "";
+  const translate = (key) => {
+    const language = dict[locale];
+    //  이렇게 쓴게 locale 이 ko, en 구별해주니까..
+    // 그리고 변수처리한거야
+    const value = language[key];
+    return value;
+  };
   return translate;
 }
 

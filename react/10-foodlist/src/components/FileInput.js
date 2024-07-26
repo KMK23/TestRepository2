@@ -7,10 +7,6 @@ function FileInput({ name, value, onChange, initialPreview }) {
   const [preview, setPreview] = useState(initialPreview);
 
   // 미리보기를 보여줄때의 url은 value에 들어가는게 아니고
-  // value는 미디어소스, 블롭타입만 들어와야해
-  // 그래서 위에 prop 으로 받은 value는 문자열이야
-
-  //value를 문자열이 받게 되니까 오류가 나
 
   const handleChange = (e) => {
     const nextValue = e.target.files[0];
@@ -24,6 +20,9 @@ function FileInput({ name, value, onChange, initialPreview }) {
   useEffect(() => {
     if (!value) return;
     const nextPreview = URL.createObjectURL(value);
+    // value는 미디어소스, 블롭타입만 들어와야해
+    // 그래서 위에 prop 으로 받은 value는 문자열이야
+    //value를 문자열이 받게 되니까 오류가 나
     console.log(nextPreview);
     setPreview(nextPreview);
     return () => {

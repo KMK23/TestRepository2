@@ -3,6 +3,7 @@ import FileInput from "./FileInput";
 import "./FoodForm.css";
 import { useState } from "react";
 import { addDatas } from "../api/firebase";
+import useTranslate from "../hooks/useTranslate";
 
 const INITIAL_VALUES = {
   title: "",
@@ -31,6 +32,7 @@ function FoodForm({
 }) {
   const [values, setValues] = useState(initialValues);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const t = useTranslate();
 
   const handleChange = (name, value) => {
     setValues((prev) => ({
@@ -88,7 +90,7 @@ function FoodForm({
               type="button"
               onClick={() => onCancel(null)}
             >
-              취소
+              {t("cancel button")}
             </button>
           )}
           <button
@@ -96,7 +98,7 @@ function FoodForm({
             type="submit"
             disabled={isSubmitting}
           >
-            확인
+            {t("confirm button")}
           </button>
         </div>
         <textarea

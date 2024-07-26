@@ -21,8 +21,14 @@ function sanitize(type, value) {
   }
 }
 
-function FoodForm({ onSubmit, onSubmitSuccess }) {
-  const [values, setValues] = useState(INITIAL_VALUES);
+function FoodForm({
+  onSubmit,
+  onSubmitSuccess,
+  initialValues = INITIAL_VALUES,
+  initialPreview,
+  onCancel,
+}) {
+  const [values, setValues] = useState(initialValues);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (name, value) => {
@@ -39,15 +45,21 @@ function FoodForm({ onSubmit, onSubmitSuccess }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    const resultData = await onSubmit("foods", values);
+    const resultData = await onSubmit("PracFoods", values);
     onSubmitSuccess(resultData);
 
     setIsSubmitting(false);
     setValues(INITIAL_VALUES);
   };
+  console.log(values);
   return (
     <form className="FoodForm" onSubmit={handleSubmit}>
-      <FileInput name="imgUrl" value={values.imgUrl} onChange={handleChange} />
+      <FileInput
+        name="imgUrl"
+        value={values.imgUrl}
+        onChange={handleChange}
+        initialPreview={initialPreview}
+      />
       <div className="FoodForm-rows">
         <div className="FoodForm-title-calorie">
           <input
@@ -65,13 +77,16 @@ function FoodForm({ onSubmit, onSubmitSuccess }) {
             value={values.calorie}
             onChange={handleInputChange}
           />
-          <button
-            className="FoodForm-submit-button"
-            type=""
-            disabled={isSubmitting}
-          >
-            수정
-          </button>
+          {onCancel && (
+            <button
+              className="FoodForm-submit-button"
+              type="button"
+              disabled={isSubmitting}
+              onClick={onCancel}
+            >
+              취소
+            </button>
+          )}
           <button
             className="FoodForm-submit-button"
             type="submit"

@@ -11,9 +11,11 @@ import {
   deleteDatas,
   getDatas,
   getDatasByOrderLimit,
+  getSearchDatas,
   updateDatas,
 } from "../api/firebase";
 import LocaleSelected from "./LocaleSelected";
+import useTranslate from "../hooks/useTranslate";
 
 const LIMIT = 5;
 let listItems;
@@ -32,13 +34,13 @@ function AppSortButton({ children, selected, onClick }) {
 
 function App() {
   const [items, setItems] = useState([]);
-
+  const [search, setSearch] = useState("");
   const [order, setOrder] = useState("createdAt");
   const [lq, setLq] = useState();
   // lastQuery를 관리하기위해 만든 state이다.
   const [hasNext, setHasNext] = useState(true);
   // 더보기버튼을 관리 하기 위해 만든 state이다
-  const [keyword, setKeyword] = useState("");
+  const t = useTranslate();
 
   const handleLoad = async (options) => {
     const { resultData, lastQuery } = await getDatasByOrderLimit(
@@ -49,7 +51,7 @@ function App() {
 
     if (!options.lq) {
       setItems(resultData);
-    } else {
+    } else if (options.lq) {
       setItems((prev) => [...prev, ...resultData]);
     }
 
@@ -58,7 +60,6 @@ function App() {
       setHasNext(false);
     }
     // 여기있는 lastQuery는 계속 가지고 있어야해. 그래야 마지막에 화면에 나온게 뭔지 알수 있지
-    listItems = resultData;
   };
   console.log(items);
 
@@ -79,19 +80,6 @@ function App() {
   const handleMoreClick = () => {
     handleLoad({ fieldName: order, limits: LIMIT, lq: lq });
     // 그냥 handleLoad 넣어주면 되는데 위에 options 라고 객체 넣어주기로 했으니까 파라미터에 객체방식으로 데이터를 넣어준거야
-  };
-
-  const handleKeyWordChange = (e) => {
-    setKeyword(e.target.value);
-  };
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    setItems(
-      items.filter((item) => {
-        return item.title.includes(keyword);
-      })
-    );
   };
 
   const handleDelete = async (docId, imgUrl) => {
@@ -123,6 +111,23 @@ function App() {
     });
   };
 
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const handleSearchSubmit = async (e) => {
+    e.preventDefault();
+    if (search === "") {
+      handleLoad({ fieldName: order, limits: LIMIT, lq: undefined });
+    } else {
+      const resultData = await getSearchDatas("foods", {
+        limits: LIMIT,
+        search: search,
+      });
+      setItems(resultData);
+    }
+  };
+
   useEffect(() => {
     handleLoad({ fieldName: order, limits: LIMIT, lq: undefined });
   }, [order]);
@@ -138,11 +143,8 @@ function App() {
           <FoodForm onSubmit={addDatas} onSubmitSuccess={handleAddSuccess} />
         </div>
         <div className="App-filter">
-          <form className="App-search" onSubmit={handleSearch}>
-            <input
-              className="App-search-input"
-              onChange={handleKeyWordChange}
-            />
+          <form className="App-search" onSubmit={handleSearchSubmit}>
+            <input className="App-search-input" onChange={handleSearchChange} />
             <button className="App-search-button">
               <img src={searChImg} />
             </button>
@@ -152,13 +154,13 @@ function App() {
               selected={order === "createdAt"}
               onClick={handleNewestClick}
             >
-              최신순
+              {t("newest")}
             </AppSortButton>
             <AppSortButton
               onClick={handleCalorieClick}
               selected={order === "calorie"}
             >
-              칼로리순
+              {t("calorie")}
             </AppSortButton>
           </div>
         </div>
@@ -170,7 +172,7 @@ function App() {
         />
         {hasNext && (
           <button onClick={handleMoreClick} className="App-load-more-button">
-            더보기
+            {t("load more ")}
           </button>
         )}
       </div>
@@ -179,7 +181,7 @@ function App() {
           <img src={footerLogo} />
           <LocaleSelected />
           <div className="App-footer-menu">
-            서비스 이용 약관 | 개인정보 처리방침
+            {t("terms of service")} | {t("privary policy")}
           </div>
         </div>
       </div>

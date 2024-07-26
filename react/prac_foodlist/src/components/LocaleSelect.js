@@ -1,20 +1,18 @@
-// import React, { useContext } from "react";
-import "./LocaleSelected.css";
+import React from "react";
 import { useLocale, useSetLocale } from "../contexts/LocaleContext";
 
-function LocaleSelect({ props }) {
-  // const { locale, setLocale } = useContext(LocaleContext);
+function LocaleSelect(props) {
   const locale = useLocale();
   const setLocale = useSetLocale();
-
+  debugger;
   const handleChange = (e) => {
     setLocale(e.target.value);
   };
 
   return (
-    <select className="LocaleSelect" onChange={handleChange} value={locale}>
+    <select onChange={handleChange} value={locale}>
       <option value="ko">한국어</option>
-      <option value="en">English</option>
+      <option value="en">영어</option>
     </select>
   );
 }

@@ -6,7 +6,13 @@ import FoodList from "./FoodList";
 import footerLogo from "../assets/logo-text.png";
 import backgroundImg from "../assets/background.png";
 import { useState, useEffect } from "react";
-import { addDatas, deleteDatas, getDatasByOrderLimit } from "../api/firebase";
+import {
+  addDatas,
+  deleteDatas,
+  getDatasByOrderLimit,
+  updateDatas,
+} from "../api/firebase";
+import LocaleSelect from "./LocaleSelect";
 
 const LIMIT = 5;
 
@@ -67,6 +73,17 @@ function App() {
     setItems((prevItems) => [resultData, ...prevItems]);
   };
 
+  const handleUpdateSuccess = (result) => {
+    setItems((prev) => {
+      const splitIndex = prev.findIndex((item) => item.id === result.id);
+      return [
+        ...prev.slice(0, splitIndex),
+        result,
+        ...prev.slice(splitIndex + 1),
+      ];
+    });
+  };
+
   useEffect(() => {
     handleLoad({ fieldName: order, limits: LIMIT, lq: undefined });
   }, [order]);
@@ -101,7 +118,12 @@ function App() {
             </AppSortButton>
           </div>
         </div>
-        <FoodList items={items} handleDelete={handleDelete} />
+        <FoodList
+          items={items}
+          handleDelete={handleDelete}
+          onUpdate={updateDatas}
+          onUpdateSuccess={handleUpdateSuccess}
+        />
         <button className="App-load-more-button" onClick={handleMoreClick}>
           더보기
         </button>
@@ -109,10 +131,7 @@ function App() {
       <div className="App-footer">
         <div className="App-footer-container">
           <img src={footerLogo} />
-          <select>
-            <option>한국어</option>
-            <option>ENGLISH</option>
-          </select>
+          <LocaleSelect />
           <div className="App-footer-menu">
             서비스 이용약관 | 개인정보 처리방침
           </div>
