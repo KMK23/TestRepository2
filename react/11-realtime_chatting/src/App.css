@@ -1,0 +1,72 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background-color: #282c34;
+}
+.App {
+  text-align: center;
+  max-width: 450px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.App header {
+  background-color: #a9bdce;
+  height: 10vh;
+  min-height: 50px;
+  color: rgb(59, 59, 59);
+  width: 100%;
+  max-width: 450px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.App section {
+  background-color: #b2c7d9;
+  flex: 1 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+main {
+  padding: 10px;
+  flex: 1 1;
+  overflow-y: scroll;
+  overflow: auto;
+}
+
+form {
+  background-color: #ffec42;
+  width: 100%;
+  max-width: 450px;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  position: sticky;
+}
+form input {
+  width: 100%;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #262626;
+  outline: none;
+  border: none;
+  padding: 0 15px;
+  height: 80px;
+}
+form button {
+  background-color: #ffec42;
+  width: 90px;
+  opacity: 0.2;
+  cursor: pointer;
+}
+button {
+  border: none;
+  border-radius: 9999px;
+  padding: 8px 16px;
+  cursor: pointer;
+}

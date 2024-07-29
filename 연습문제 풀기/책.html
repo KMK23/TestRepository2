@@ -19,7 +19,6 @@
     //     pTag.innerHTML = `${qs}은 4의 배수4 입니다.`;
     //   } else {
     //     pTag.innerHTML = `${qs}는 4의 배수가 아닙니다`;
-    //   }
     // }
     // four();
     let count = 0;
@@ -35,5 +34,10 @@
       document.write(`<p>${count}</p>`);
     }
     three();
+
+    function sum(a, b, ...args) {
+      return a + b;
+    }
+    const x = sum(1,2)
   </script>
 </html>

@@ -16,6 +16,7 @@ import {
 } from "../api/firebase";
 import LocaleSelected from "./LocaleSelected";
 import useTranslate from "../hooks/useTranslate";
+import useAsync from "../hooks/useAsync";
 
 const LIMIT = 5;
 let listItems;
@@ -41,12 +42,18 @@ function App() {
   const [hasNext, setHasNext] = useState(true);
   // 더보기버튼을 관리 하기 위해 만든 state이다
   const t = useTranslate();
+  // const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, loadingError, getDatasAsnyc] =
+    useAsync(getDatasByOrderLimit);
 
   const handleLoad = async (options) => {
-    const { resultData, lastQuery } = await getDatasByOrderLimit(
-      "foods",
-      options
-    );
+    // setIsLoading(true);
+    // const { resultData, lastQuery } = await getDatasByOrderLimit(
+    //   "foods",
+    //   options
+    // );
+    // setIsLoading(false);
+    const { resultData, lastQuery } = await getDatasAsnyc("foods", options);
     console.log(lastQuery);
 
     if (!options.lq) {
@@ -171,7 +178,11 @@ function App() {
           onUpdateSuccess={handleUpdateSuccess}
         />
         {hasNext && (
-          <button onClick={handleMoreClick} className="App-load-more-button">
+          <button
+            onClick={handleMoreClick}
+            className="App-load-more-button"
+            disabled={isLoading}
+          >
             {t("load more ")}
           </button>
         )}

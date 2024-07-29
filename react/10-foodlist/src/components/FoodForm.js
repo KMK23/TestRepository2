@@ -4,6 +4,7 @@ import "./FoodForm.css";
 import { useState } from "react";
 import { addDatas } from "../api/firebase";
 import useTranslate from "../hooks/useTranslate";
+import useAsync from "../hooks/useAsync";
 
 const INITIAL_VALUES = {
   title: "",
@@ -31,9 +32,9 @@ function FoodForm({
   initialPreview,
 }) {
   const [values, setValues] = useState(initialValues);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [isSubmitting, setIsSubmitting] = useState(false);
   const t = useTranslate();
-
+  const [isSubmitting, submittingError, onSubmitAsync] = useAsync(onSubmit);
   const handleChange = (name, value) => {
     setValues((prev) => ({
       ...prev,
@@ -50,11 +51,12 @@ function FoodForm({
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    const resultData = await onSubmit("foods", values);
-    onSubmitSuccess(resultData);
 
-    setIsSubmitting(false);
+    // setIsSubmitting(true);
+    const resultData = await onSubmitAsync("foods", values);
+    onSubmitSuccess(resultData);
+    // setIsSubmitting(false);
+
     setValues(INITIAL_VALUES);
   };
   return (
