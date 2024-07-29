@@ -6,6 +6,7 @@ function useAsync(asyncFunction) {
 
   const wrappedFunction = async (...args) => {
     //함수 선언
+
     // ...은 스프레드연산자가 아님 하나의 문법. 나머지 파라미터를 다 받을수 있는
     // ==>> 배열의 형태 ex) ...["foods", options] 그래서 ...과 [] 없애서
     //"foods", options 이렇게 함수안에 파라미터로 들어가는것

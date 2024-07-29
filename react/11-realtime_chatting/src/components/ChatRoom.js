@@ -1,17 +1,17 @@
 import React from "react";
 import * as FaIcons from "react-icons/fa";
-function ChatRoom(props) {
+function ChatRoom({ onChange, value, onSubmit }) {
   return (
     <>
       <main>
         <div>
           <img />
-          <p>채팅내용</p>
+          <p>{value}</p>
         </div>
       </main>
-      <form>
-        <input />
-        <button>
+      <form onSubmit={onSubmit}>
+        <input onChange={onChange} name="content" />
+        <button type="submit">
           <FaIcons.FaPaperPlane />
         </button>
       </form>

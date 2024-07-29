@@ -11,9 +11,25 @@ function App() {
   console.log(auth);
   const [loginUser, setLoginUser] = useState(user);
   // console.log(user);
+  const [value, setValue] = useState();
 
   const handleLogOut = () => {
     auth.signOut();
+  };
+
+  const handleChange = (name, value) => {
+    setValue(name, value);
+  };
+
+  const handleInputChange = (e) => {
+    const { value, name } = e.target;
+    handleChange(name, value);
+    // console.log(name, value);
+    setValue(value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
   };
 
   useEffect(() => {
@@ -29,7 +45,15 @@ function App() {
         <button onClick={handleLogOut}>로그아웃</button>
       </header>
       <section>
-        {loginUser ? <ChatRoom /> : <SignIn auth={auth} login={setLoginUser} />}
+        {loginUser ? (
+          <ChatRoom
+            onChange={handleInputChange}
+            value={value}
+            onSubmit={handleSubmit}
+          />
+        ) : (
+          <SignIn auth={auth} login={setLoginUser} />
+        )}
       </section>
     </div>
   );
