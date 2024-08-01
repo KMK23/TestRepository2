@@ -66,7 +66,7 @@ function DiaryList({ diaryList }) {
 
   useEffect(() => {
     getSortedDiaryList();
-  }, []);
+  }, [order, filter]);
   return (
     <div className="diaryList">
       <div className="menu_wrapper">
