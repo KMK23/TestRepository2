@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "./Button";
 import "./DiaryList.css";
 import DiaryItem from "./DiaryItem";
@@ -14,9 +14,14 @@ const filterOptionList = [
   { name: "안좋은 감정만", value: "bad" },
 ];
 
-function ControlMenu({ optionList }) {
+function ControlMenu({ optionList, value, onChange }) {
+  console.log(value);
   return (
-    <select className="ControlMenu">
+    <select
+      className="ControlMenu"
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+    >
       {optionList.map((option, idx) => {
         return (
           <option key={idx} value={option.value}>
@@ -28,14 +33,57 @@ function ControlMenu({ optionList }) {
   );
 }
 
-function DiaryList(props) {
+function DiaryList({ diaryList }) {
   const navigate = useNavigate();
+  const [order, setOrder] = useState("latest");
+  const [filter, setFilter] = useState("all");
+
+  const getSortedDiaryList = () => {
+    // 필터링 함수
+    const getFilteredList = () => {
+      // filter state 가 good이면(emotion의 값이 3보다 작거나 같을때)
+      const filterItem = diaryList.filter((diary) => {
+        return filter === "good" ? diary.emotion <= 3 : diary.emotion > 3;
+      });
+      return filterItem;
+
+      // filter state 가 good 이 아니면(emotion 값이 3보다 클때)
+    };
+    // 정렬 함수
+    // const compare
+    // 원래 보통 정렬 함수를 만들때(sort 함수 쓸때) compare라고 이름 씀
+
+    const getOrderedList = (list) => {
+      return list.sort((a, b) => {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        return dateB - dateA;
+      });
+    };
+
+    console.log(order);
+    const filterdList = diaryList.filter((diary) => getFilteredList(diary));
+    const sortedList = filterdList.sort(getOrderedList);
+    return sortedList;
+  };
+
+  useEffect(() => {
+    getSortedDiaryList();
+  }, []);
   return (
     <div className="diaryList">
       <div className="menu_wrapper">
         <div className="control_menus">
-          <ControlMenu optionList={sortOptionList} />
-          <ControlMenu optionList={filterOptionList} />
+          <ControlMenu
+            optionList={sortOptionList}
+            value={order}
+            onChange={setOrder}
+          />
+          <ControlMenu
+            optionList={filterOptionList}
+            value={filter}
+            onChange={setFilter}
+          />
         </div>
         <div className="new_btn">
           <Button
@@ -45,7 +93,10 @@ function DiaryList(props) {
           />
         </div>
       </div>
-      <DiaryItem />
+
+      {diaryList.map((diary) => (
+        <DiaryItem {...diary} key={diary.id} />
+      ))}
     </div>
   );
 }
