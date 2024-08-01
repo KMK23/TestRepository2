@@ -42,10 +42,13 @@ function DiaryList({ diaryList }) {
     // 필터링 함수
     const getFilteredList = () => {
       // filter state 가 good이면(emotion의 값이 3보다 작거나 같을때)
-      const filterItem = diaryList.filter((diary) => {
-        return filter === "good" ? diary.emotion <= 3 : diary.emotion > 3;
-      });
-      return filterItem;
+      if (filter === "all") {
+        return diaryList;
+      } else if (filter === "good") {
+        return diaryList.filter((diary) => diary.emotion <= 3);
+      } else {
+        return diaryList.filter((diary) => diary.emotion > 3);
+      }
 
       // filter state 가 good 이 아니면(emotion 값이 3보다 클때)
     };
@@ -53,13 +56,7 @@ function DiaryList({ diaryList }) {
     // const compare
     // 원래 보통 정렬 함수를 만들때(sort 함수 쓸때) compare라고 이름 씀
 
-    const getOrderedList = (list) => {
-      return list.sort((a, b) => {
-        const dateA = new Date(a.date);
-        const dateB = new Date(b.date);
-        return dateB - dateA;
-      });
-    };
+    const getOrderedList = () => {};
 
     console.log(order);
     const filterdList = diaryList.filter((diary) => getFilteredList(diary));
