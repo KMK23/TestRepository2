@@ -44,7 +44,7 @@ function HomePage(props) {
     );
     //4.setSortedItem 사용
     setSortedItem(newItem);
-  }, [curDate]);
+  }, [curDate, diaryList]);
 
   const headText = `${curDate.getFullYear()}년 ${curDate.getMonth() + 1}월`;
 

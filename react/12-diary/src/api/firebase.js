@@ -12,6 +12,8 @@ import {
   where,
   getDoc,
   runTransaction,
+  updateDoc,
+  doc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -106,4 +108,15 @@ async function getDatas(collectionName, queryOptions) {
   return resultData;
 }
 
-export { addDatas, getUserAuth, getDatas };
+async function updateDatas(collectionName, docId, updateObj) {
+  try {
+    const docRef = doc(db, collectionName, docId);
+    await updateDoc(docRef, updateObj);
+    const snapshot = await getDoc(docRef);
+    const resultData = { ...snapshot.data(), docId: snapshot.id };
+    return resultData;
+  } catch (error) {
+    console.log("Error Update", error);
+  }
+}
+export { addDatas, getUserAuth, getDatas, updateDatas };

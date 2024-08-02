@@ -1,4 +1,4 @@
-import { addDatas, getDatas } from "./firebase";
+import { addDatas, getDatas, updateDatas } from "./firebase";
 
 // action types
 const FETCH_ITEMS = "FETCH_ITMES";
@@ -27,7 +27,16 @@ export function reducer(state, action) {
     //   여기써준 return 값이 새로운 state가 되는거야
     // 원래는 [...prevItems, resultData ]로 써있었지만 초기값이 위에 있고 그게 state 라는곳에 들어가있으니 그리고 객체 모양이니까 이렇게썼어
     case UPDATE_ITEM:
-      return;
+      return {
+        ...state,
+        items: state.items.map((item) =>
+          item.id === action.payload.id ? action.payload : item
+        ),
+        // 우선 기존의 items에서 id가 같은 것을 찾고 삼황연산자를 써서 action.payload(수정된놈)이거나 기존 item 이거나
+
+        // reducer 에서 주는 state 는 항상 새로운것들로 줘야해.
+        error: null,
+      };
     case DELETE_ITEM:
       return;
     case SET_ERROR:
@@ -65,5 +74,23 @@ export const addItem = async (collectionName, addObj, dispatch) => {
     //dispath 실행시 reducer 함수로 간다. ==> 위에 만든거에 action 으로 들어가(dispatch안에 객체들이)
   }
 };
-export const updateItem = async () => {};
+export const updateItem = async (
+  collectionName,
+  docId,
+  updateObj,
+  dispatch
+) => {
+  const resultData = await updateDatas(
+    collectionName,
+    docId,
+    updateObj,
+    dispatch
+  );
+  if (!resultData) {
+    dispatch({ type: SET_ERROR, payload: "Update Datas 에러!!!" });
+  } else {
+    dispatch({ type: UPDATE_ITEM, payload: resultData });
+    //dispath 실행시 reducer 함수로 간다. ==> 위에 만든거에 action 으로 들어가(dispatch안에 객체들이)
+  }
+};
 export const deleteItem = async () => {};

@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import Button from "./Button";
 import { emotionList } from "../util/emotion";
@@ -24,18 +24,17 @@ const INITIAL_VALUES = {
 //컨텍스트를 사용(접근)
 // ==> useContext(사용할 컨텍스트) 사용
 
-function DiaryEditor(props) {
-  const { onCreate } = useContext(DiaryDispatchContext);
+function DiaryEditor({ originData = INITIAL_VALUES, isEdit }) {
+  const { onCreate, onUpdate } = useContext(DiaryDispatchContext);
   // 여기에 객체안에 onCreate 를 넣어놨는데(App에서) 그걸 구조분해한거야
-
   const contentRef = useRef();
   const navigate = useNavigate();
   // 1. 날짜, 감정, 텍스트 관리할 상태를 만들어야한다.
-
-  const [values, setValues] = useState(INITIAL_VALUES);
-
+  const [values, setValues] = useState(originData);
+  console.log(`valuese 는 ${values.content}`);
   // 2. 각각의 emotionItem을 클릭했을 때 콘솔창에 emotion_id 를 출력해본다.
   // 3. 1번에서 만든 state의 값이 변경되도록 만든 후 개발자도구의 components 탭에서 확인
+
   const handleChange = (name, value) => {
     setValues((prevValues) => ({ ...prevValues, [name]: value }));
   };
@@ -53,18 +52,38 @@ function DiaryEditor(props) {
       contentRef.current.focus();
       return;
     }
-    if (window.confirm("새로운 일기를 저장하시겠습니까?")) {
+    if (
+      window.confirm(
+        isEdit ? "일기를 수정하시겠습니까?" : "새로운 일기를 저장하시겠습니까?"
+      )
+    ) {
       // 리액트에서는 window 붙여
-      onCreate(values);
+      if (!isEdit) {
+        onCreate(values);
+      } else {
+        onUpdate(values);
+      }
+      navigate("/", { replace: true });
     }
-    navigate("/", { replace: true });
   };
 
+  useEffect(() => {
+    if (isEdit) {
+      //받아온 날짜 데이터(밀리세컨즈)를 formastting(yyyy-mm-dd) 해주자.
+      handleChange(
+        "date",
+        new Date(originData.date).toISOString().split("T")[0]
+      );
+    }
+  }, []);
+
+  console.log(values.date);
   return (
     <div className="diaryEditor">
       <Header
-        headText={"새 일기 작성하기"}
+        headText={isEdit ? "일기 수정하기" : "새 일기 작성하기"}
         leftChild={<Button text={"< 뒤로가기"} onClick={() => navigate(-1)} />}
+        rightChild={isEdit && <Button text={"삭제하기"} type={"negative"} />}
       />
       <div>
         <section>
