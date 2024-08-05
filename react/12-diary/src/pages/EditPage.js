@@ -7,10 +7,10 @@ import { changeTitle } from "../util/changeTitle";
 function EditPage({}) {
   const [editData, setEditData] = useState();
   const { id } = useParams();
-  console.log(id);
+  // console.log(id);
   const navigate = useNavigate();
-  const diaryList = useContext(DiaryStateContext);
-  console.log(diaryList);
+  const { diaryList } = useContext(DiaryStateContext);
+  // console.log(diaryList);
 
   useEffect(() => {
     changeTitle(`감정 일기장 -${id}번 일기 수정`);

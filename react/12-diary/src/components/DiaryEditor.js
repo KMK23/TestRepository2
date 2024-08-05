@@ -25,13 +25,13 @@ const INITIAL_VALUES = {
 // ==> useContext(사용할 컨텍스트) 사용
 
 function DiaryEditor({ originData = INITIAL_VALUES, isEdit }) {
-  const { onCreate, onUpdate } = useContext(DiaryDispatchContext);
+  const { onCreate, onUpdate, onDelete } = useContext(DiaryDispatchContext);
   // 여기에 객체안에 onCreate 를 넣어놨는데(App에서) 그걸 구조분해한거야
   const contentRef = useRef();
   const navigate = useNavigate();
   // 1. 날짜, 감정, 텍스트 관리할 상태를 만들어야한다.
   const [values, setValues] = useState(originData);
-  console.log(`valuese 는 ${values.content}`);
+  // console.log(`valuese 는 ${values.content}`);
   // 2. 각각의 emotionItem을 클릭했을 때 콘솔창에 emotion_id 를 출력해본다.
   // 3. 1번에서 만든 state의 값이 변경되도록 만든 후 개발자도구의 components 탭에서 확인
 
@@ -67,6 +67,13 @@ function DiaryEditor({ originData = INITIAL_VALUES, isEdit }) {
     }
   };
 
+  const handleDelete = () => {
+    if (window.confirm("정말 삭제 하시겠습니까?")) {
+      onDelete(originData.docId);
+      navigate("/", { replace: true });
+    }
+  };
+
   useEffect(() => {
     if (isEdit) {
       //받아온 날짜 데이터(밀리세컨즈)를 formastting(yyyy-mm-dd) 해주자.
@@ -77,13 +84,21 @@ function DiaryEditor({ originData = INITIAL_VALUES, isEdit }) {
     }
   }, []);
 
-  console.log(values.date);
+  // console.log(values.date);
   return (
     <div className="diaryEditor">
       <Header
         headText={isEdit ? "일기 수정하기" : "새 일기 작성하기"}
         leftChild={<Button text={"< 뒤로가기"} onClick={() => navigate(-1)} />}
-        rightChild={isEdit && <Button text={"삭제하기"} type={"negative"} />}
+        rightChild={
+          isEdit && (
+            <Button
+              text={"삭제하기"}
+              type={"negative"}
+              onClick={handleDelete}
+            />
+          )
+        }
       />
       <div>
         <section>

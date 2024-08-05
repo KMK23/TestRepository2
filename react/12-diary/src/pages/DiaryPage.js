@@ -13,7 +13,7 @@ function DiaryPage() {
   //   경로를 활용하는법
   // ==> <Route path = "diary/:id" ele~~/>
   // :id 값이 경로상으로 들어가는거고 그걸 useParams 찍어서 보면 객체안에 값이 들어온다
-  const diaryList = useContext(DiaryStateContext);
+  const { diaryList } = useContext(DiaryStateContext);
   const [data, setData] = useState();
 
   console.log(diaryList);

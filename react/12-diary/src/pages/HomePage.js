@@ -3,9 +3,12 @@ import Header from "../components/Header";
 import Button from "../components/Button";
 import DiaryList from "../components/DiaryList";
 import { DiaryStateContext } from "../App";
+import { useSelector } from "react-redux";
 
 function HomePage(props) {
-  const diaryList = useContext(DiaryStateContext);
+  const { auth } = useContext(DiaryStateContext);
+  const diaryList = useSelector((state) => state.diary.items);
+  // console.log(diaryList);
   const [curDate, setCurDate] = useState(new Date());
   const [sortedItem, setSortedItem] = useState([]);
   // 정렬하고 나온 아이템을 배열로 담기위해
@@ -61,7 +64,7 @@ function HomePage(props) {
         leftChild={<Button text={"<"} onClick={decreaseMonth} />}
         rightChild={<Button text={">"} onClick={increaseMonth} />}
       />
-      <DiaryList diaryList={sortedItem} />
+      <DiaryList diaryList={sortedItem} auth={auth} />
     </div>
   );
 }

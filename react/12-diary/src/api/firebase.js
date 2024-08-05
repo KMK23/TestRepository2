@@ -14,6 +14,7 @@ import {
   runTransaction,
   updateDoc,
   doc,
+  deleteDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -119,4 +120,15 @@ async function updateDatas(collectionName, docId, updateObj) {
     console.log("Error Update", error);
   }
 }
-export { addDatas, getUserAuth, getDatas, updateDatas };
+
+async function deleteDatas(collectionName, docId) {
+  try {
+    const docRef = doc(db, collectionName, docId);
+    await deleteDoc(docRef);
+    return true;
+    // return docId 해도 됌(반환받는 데이터만 있으면 되니까)
+  } catch (error) {
+    console.log("Error Delete", error);
+  }
+}
+export { addDatas, getUserAuth, getDatas, updateDatas, deleteDatas };

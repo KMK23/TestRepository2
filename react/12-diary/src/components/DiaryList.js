@@ -32,11 +32,19 @@ function ControlMenu({ optionList, value, onChange }) {
   );
 }
 
-function DiaryList({ diaryList }) {
-  console.log(diaryList);
+function DiaryList({ diaryList, auth }) {
   const navigate = useNavigate();
   const [order, setOrder] = useState("latest");
   const [filter, setFilter] = useState("all");
+
+  const checkLogin = () => {
+    if (!auth.currentUser) {
+      alert("로그인을 해주세요");
+      navigate("/login");
+    } else {
+      navigate("/new");
+    }
+  };
 
   const getSortedDiaryList = () => {
     // 필터링 함수
@@ -88,12 +96,19 @@ function DiaryList({ diaryList }) {
           />
         </div>
         <div className="new_btn">
-          <Button
-            text={"새 일기쓰기"}
-            type="positive"
-            onClick={() => navigate("/new")}
-          />
+          <Button text={"새 일기쓰기"} type="positive" onClick={checkLogin} />
         </div>
+        {auth.currentUser && (
+          <div>
+            <Button
+              text={"로그아웃"}
+              type={"negative"}
+              onClick={() => {
+                auth.signOut();
+              }}
+            />
+          </div>
+        )}
       </div>
       {/* 이제 정렬된거, 필터링된것 만 렌더링 해야하니까 원래 있던 diaryList 가 아닌 getSortedDiaryList 함수 안에 리턴된 값인 sortedList 가 필요해서 */}
       {getSortedDiaryList().map((diary) => (

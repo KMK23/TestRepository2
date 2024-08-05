@@ -1,4 +1,4 @@
-import { addDatas, getDatas, updateDatas } from "./firebase";
+import { addDatas, deleteDatas, getDatas, updateDatas } from "./firebase";
 
 // action types
 const FETCH_ITEMS = "FETCH_ITMES";
@@ -38,7 +38,11 @@ export function reducer(state, action) {
         error: null,
       };
     case DELETE_ITEM:
-      return;
+      return {
+        ...state,
+        items: state.items.filter((item) => item.docId !== action.payload),
+        error: null,
+      };
     case SET_ERROR:
       return { ...state, error: action.payload };
     default:
@@ -93,4 +97,11 @@ export const updateItem = async (
     //dispath 실행시 reducer 함수로 간다. ==> 위에 만든거에 action 으로 들어가(dispatch안에 객체들이)
   }
 };
-export const deleteItem = async () => {};
+export const deleteItem = async (collectionName, docId, dispatch) => {
+  const resultData = await deleteDatas(collectionName, docId);
+  if (!resultData) {
+    dispatch({ type: SET_ERROR, payload: "Delete Datas 에러!!!" });
+  } else {
+    dispatch({ type: DELETE_ITEM, payload: docId });
+  }
+};
