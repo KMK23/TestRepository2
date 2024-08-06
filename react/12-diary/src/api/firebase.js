@@ -115,6 +115,7 @@ async function updateDatas(collectionName, docId, updateObj) {
     await updateDoc(docRef, updateObj);
     const snapshot = await getDoc(docRef);
     const resultData = { ...snapshot.data(), docId: snapshot.id };
+
     return resultData;
   } catch (error) {
     console.log("Error Update", error);

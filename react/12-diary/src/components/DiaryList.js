@@ -3,6 +3,8 @@ import Button from "./Button";
 import "./DiaryList.css";
 import DiaryItem from "./DiaryItem";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserAuth } from "../api/firebase";
 
 const sortOptionList = [
   { name: "최신순", value: "latest" },
@@ -32,13 +34,15 @@ function ControlMenu({ optionList, value, onChange }) {
   );
 }
 
-function DiaryList({ diaryList, auth }) {
+function DiaryList({ diaryList }) {
   const navigate = useNavigate();
   const [order, setOrder] = useState("latest");
   const [filter, setFilter] = useState("all");
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const auth = getUserAuth();
 
   const checkLogin = () => {
-    if (!auth.currentUser) {
+    if (!isAuthenticated) {
       alert("로그인을 해주세요");
       navigate("/login");
     } else {
@@ -98,7 +102,8 @@ function DiaryList({ diaryList, auth }) {
         <div className="new_btn">
           <Button text={"새 일기쓰기"} type="positive" onClick={checkLogin} />
         </div>
-        {auth.currentUser && (
+        {/* {auth.currentUser && ( */}
+        {isAuthenticated && (
           <div>
             <Button
               text={"로그아웃"}
@@ -112,7 +117,11 @@ function DiaryList({ diaryList, auth }) {
       </div>
       {/* 이제 정렬된거, 필터링된것 만 렌더링 해야하니까 원래 있던 diaryList 가 아닌 getSortedDiaryList 함수 안에 리턴된 값인 sortedList 가 필요해서 */}
       {getSortedDiaryList().map((diary) => (
-        <DiaryItem {...diary} key={diary.id} />
+        <DiaryItem
+          {...diary}
+          key={diary.id}
+          isAuthenticated={isAuthenticated}
+        />
       ))}
     </div>
   );

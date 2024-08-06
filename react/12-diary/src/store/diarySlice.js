@@ -32,13 +32,17 @@ const diarySlice = createSlice({
       })
       .addCase(deleteItem.fulfilled, (state, action) => {
         state.items = state.items.filter((item) => {
-          return item.docId !== action.payload.docId;
+          return item.docId !== action.payload;
         });
       })
       .addCase(updateItem.fulfilled, (state, action) => {
         state.items = state.items.map((item) => {
-          return item.id == action.payload.id ? action.payload : item;
+          console.log(item);
+          return item.id === action.payload.id ? action.payload : item;
         });
+
+        //  const index= state.items.findIndex(item => item.id===action.payload.id)
+        //  state.items[index] = action.payload
       });
   },
 
@@ -78,24 +82,36 @@ const deleteItem = createAsyncThunk(
   async ({ collectionName, docId }) => {
     try {
       const resultData = await deleteDatas(collectionName, docId);
-      return resultData;
+      return docId;
     } catch (error) {
       console.log("Delete_Error", error);
     }
   }
 );
 
+// updateItem이라고 쓴 부분은 actionCreator 야
+// async ~~ 써있는 부분을 payloadCreator 야
 const updateItem = createAsyncThunk(
   "items/updateItem",
+  // 위에 부분은 type
+
+  // 밑에부분은 payload
   async ({ collectionName, docId, updateObj }) => {
     try {
       const resultData = await updateDatas(collectionName, docId, updateObj);
+      console.log(collectionName);
+      console.log(docId);
+      console.log(updateObj);
+      console.log(resultData);
       return resultData;
     } catch (error) {
       console.log("update_Error", error);
     }
   }
 );
+//
+
+// 여기서 updateItem 을 시작하고 그다음에 가는곳이 App.js 에 있는 dispatch 로 들어간다음 위에 addCase로 들어가는 순서
 
 export default diarySlice;
 export { fetchItems, addItem, deleteItem, updateItem };

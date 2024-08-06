@@ -69,22 +69,22 @@ async function getDatasByOrder(collectionName, options) {
 }
 
 async function getDatasByOrderLimit(collectionName, options) {
-  const { fieldName, limits, lq } = options;
-  let q;
-  if (!lq) {
-    q = query(
-      getCollection(collectionName),
-      orderBy(fieldName, "desc"),
-      limit(limits)
-    );
-  } else {
-    q = query(
-      getCollection(collectionName),
-      orderBy(fieldName, "desc"),
-      startAfter(lq),
-      limit(limits)
-    );
-  }
+  // const { fieldName, limits, lq } = options;
+  let q = getQuery(collectionName, options);
+  // if (!lq) {
+  //   q = query(
+  //     getCollection(collectionName),
+  //     orderBy(fieldName, "desc"),
+  //     limit(limits)
+  //   );
+  // } else {
+  //   q = query(
+  //     getCollection(collectionName),
+  //     orderBy(fieldName, "desc"),
+  //     startAfter(lq),
+  //     limit(limits)
+  //   );
+  // }
   // 만약 정렬을 두개 하고 싶으면 orderBy를 한개 더 쓰면 된다
   const snapshot = await getDocs(q);
   const docs = snapshot.docs;
@@ -238,6 +238,32 @@ async function getSearchDatas(collectionName, options) {
   const docs = snapshot.docs;
   const resultData = docs.map((doc) => ({ ...doc.data(), docId: doc.id }));
   return resultData;
+}
+
+function getQuery(collectionName, queryOption) {
+  const { conditions = [], orderBys = [], limits, lastQuery } = queryOption;
+  const collect = getCollection(collectionName);
+  let q = query(collect);
+
+  //where 조건
+  conditions.forEach((condition) => {
+    q = query(q, where(condition.field, condition.operator, condition.value));
+  });
+
+  //orderBy 조건
+  orderBys.forEach((order) => {
+    q = query(q, orderBy(order.field, order.direction || "asc"));
+  });
+
+  // startAfter조건
+  if (lastQuery) {
+    q = query(q, startAfter(lastQuery));
+  }
+
+  //limit 조건
+  q = query(q, limit(limits));
+
+  return q;
 }
 
 export {

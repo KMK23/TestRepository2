@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./FoodList.css";
 import FoodForm from "./FoodForm";
 import useTranslate from "../hooks/useTranslate";
+import { useSelector, useDispatch } from "react-redux";
 
 function formatDate(value) {
   const date = new Date(value);
@@ -51,7 +52,8 @@ function FoodListItem({ item, handleDelete, onEdit }) {
 
 function FoodList({ items, handleDelete, onUpdate, onUpdateSuccess }) {
   const [editingId, setEditingId] = useState(null);
-
+  // const foodItems = useSelector((state) => state.foodList.items);
+  // const dispatch = useDispatch();
   return (
     <ul className="FoodList">
       {items.map((item) => {
