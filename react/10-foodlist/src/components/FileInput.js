@@ -4,6 +4,9 @@ import resetImg from "../assets/ic-reset-white.png";
 import "./FileInput.css";
 
 function FileInput({ name, value, onChange, initialPreview }) {
+  if (typeof value === "string") {
+    value = null;
+  }
   const [preview, setPreview] = useState(initialPreview);
 
   // 미리보기를 보여줄때의 url은 value에 들어가는게 아니고

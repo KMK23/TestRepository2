@@ -13,6 +13,7 @@ import {
   updateDatas,
 } from "../api/firebase";
 import LocaleSelect from "./LocaleSelect";
+import { useDispatch, useSelector } from "react-redux";
 
 const LIMIT = 5;
 
@@ -28,26 +29,27 @@ function AppSortButton({ children, selected, onClick }) {
 }
 
 function App() {
-  const [items, setItems] = useState([]);
+  const dispatch = useDispatch();
+  const items = useSelector((state) => state.food.items);
+  // const [items, setItems] = useState([]);
   const [order, setOrder] = useState("createdAt");
   const [lq, setLq] = useState();
   const [hasNext, setHasNext] = useState(true);
   const handleLoad = async (options) => {
-    const { resultData, lastQuery } = await getDatasByOrderLimit(
-      "PracFoods",
-      options
-    );
-    console.log(resultData);
-    if (!options.lq) {
-      setItems(resultData);
-    } else {
-      setItems((prev) => [...prev, ...resultData]);
-    }
-
-    setLq(lastQuery);
-    if (!lastQuery) {
-      setHasNext(false);
-    }
+    // const { resultData, lastQuery } = await getDatasByOrderLimit(
+    //   "PracFoods",
+    //   options
+    // );
+    // console.log(resultData);
+    // if (!options.lq) {
+    // setItems(resultData);
+    // } else {
+    // setItems((prev) => [...prev, ...resultData]);
+    // }
+    // setLq(lastQuery);
+    // if (!lastQuery) {
+    //   setHasNext(false);
+    // }
   };
 
   const handleNewestClick = () => setOrder("createdAt");
@@ -62,30 +64,36 @@ function App() {
     if (!result) {
       alert("저장된 아이템이 없습니다. \n관리자에게 문의하세요");
     }
-    setItems((prevItems) =>
-      prevItems.filter(function (item) {
-        return item.docId !== docId;
-      })
-    );
+    // setItems((prevItems) =>
+    //   prevItems.filter(function (item) {
+    //     return item.docId !== docId;
+    //   })
+    // );
   };
 
   const handleAddSuccess = (resultData) => {
-    setItems((prevItems) => [resultData, ...prevItems]);
+    // setItems((prevItems) => [resultData, ...prevItems]);
   };
 
   const handleUpdateSuccess = (result) => {
-    setItems((prev) => {
-      const splitIndex = prev.findIndex((item) => item.id === result.id);
-      return [
-        ...prev.slice(0, splitIndex),
-        result,
-        ...prev.slice(splitIndex + 1),
-      ];
-    });
+    // setItems((prev) => {
+    //   const splitIndex = prev.findIndex((item) => item.id === result.id);
+    //   return [
+    //     ...prev.slice(0, splitIndex),
+    //     result,
+    //     ...prev.slice(splitIndex + 1),
+    //   ];
+    // });
   };
 
   useEffect(() => {
-    handleLoad({ fieldName: order, limits: LIMIT, lq: undefined });
+    const queryOption = {
+      conditions: [],
+      orderBys: [{ field: order, direction: "desc" }],
+      lastQuery: undefined,
+      limits: LIMIT,
+    };
+    handleLoad();
   }, [order]);
   return (
     <div className="App" style={{ backgroundImage: `url(${backgroundImg})` }}>

@@ -70,7 +70,7 @@ async function getDatasByOrder(collectionName, options) {
 
 async function getDatasByOrderLimit(collectionName, options) {
   // const { fieldName, limits, lq } = options;
-  let q = getQuery(collectionName, options);
+  const q = getQuery(collectionName, options);
   // if (!lq) {
   //   q = query(
   //     getCollection(collectionName),
@@ -89,6 +89,7 @@ async function getDatasByOrderLimit(collectionName, options) {
   const snapshot = await getDocs(q);
   const docs = snapshot.docs;
   const lastQuery = docs[docs.length - 1];
+  console.log(lastQuery);
   const resultData = docs.map((doc) => ({
     docId: doc.id,
     ...doc.data(),

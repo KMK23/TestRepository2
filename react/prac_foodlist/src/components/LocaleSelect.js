@@ -4,7 +4,7 @@ import { useLocale, useSetLocale } from "../contexts/LocaleContext";
 function LocaleSelect(props) {
   const locale = useLocale();
   const setLocale = useSetLocale();
-  debugger;
+
   const handleChange = (e) => {
     setLocale(e.target.value);
   };

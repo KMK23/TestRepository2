@@ -15,13 +15,18 @@ import {
   updateDatas,
 } from "../api/firebase";
 import LocaleSelected from "./LocaleSelected";
+
 import useTranslate from "../hooks/useTranslate";
 import useAsync from "../hooks/useAsync";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteItem, fetchItems } from "../store/foodListSlice";
+import {
+  deleteItem,
+  fetchItems,
+  setOrder,
+  updateItem,
+} from "../store/foodListSlice";
 
 const LIMIT = 5;
-let listItems;
 
 function AppSortButton({ children, selected, onClick }) {
   return (
@@ -37,21 +42,24 @@ function AppSortButton({ children, selected, onClick }) {
 
 function App() {
   const dispatch = useDispatch();
-  const items = useSelector((state) => state.foodList.itmes);
-  const search = useSelector((state) => state.foodList.search);
+  const { items, order, lastQuery, hasNext, isLoading } = useSelector(
+    (state) => state.foodList
+  );
+  // const search = useSelector((state) => state.foodList.search);
   // const [items, setItems] = useState([]);
   // const [search, setSearch] = useState("");
-  const [order, setOrder] = useState("createdAt");
-  const [lq, setLq] = useState();
+  // const [order, setOrder] = useState("createdAt");
+  // const [lq, setLq] = useState();
   // lastQuery를 관리하기위해 만든 state이다.
-  const [hasNext, setHasNext] = useState(true);
+  // const [hasNext, setHasNext] = useState(true);
   // 더보기버튼을 관리 하기 위해 만든 state이다
   const t = useTranslate();
   // const [isLoading, setIsLoading] = useState(false);
-  const [isLoading, loadingError, getDatasAsnyc] =
-    useAsync(getDatasByOrderLimit);
+  // const [isLoading, loadingError, getDatasAsnyc] =
+  //   useAsync(getDatasByOrderLimit);
 
   const handleLoad = async (options) => {
+    dispatch(fetchItems({ collectionName: "foods", queryOptions: options }));
     // setIsLoading(true);
     // const { resultData, lastQuery } = await getDatasByOrderLimit(
     //   "foods",
@@ -60,13 +68,11 @@ function App() {
     // setIsLoading(false);
     // const { resultData, lastQuery } = await getDatasAsnyc("foods", options);
     // console.log(lastQuery);
-    dispatch(fetchItems({ collectionName: "foods", options }));
     // if (!options.lq) {
     //   setItems(resultData);
     // } else if (options.lq) {
     //   setItems((prev) => [...prev, ...resultData]);
     // }
-
     // setLq(lastQuery);
     // if (!lastQuery) {
     //   setHasNext(false);
@@ -86,13 +92,19 @@ function App() {
   // };
   // ==========> 이상태로 냅두면 더보기를 누르면 1번부터 계속 다시 나와 그래서 그걸 방지하기 위해서 다른 코드로 로직으로 짜야해
 
-  const handleNewestClick = () => setOrder("createdAt");
-  const handleCalorieClick = () => setOrder("calorie");
+  const handleNewestClick = () => dispatch(setOrder("createdAt"));
+  const handleCalorieClick = () => dispatch(setOrder("calorie"));
 
   //d일반 리듀서스
 
   const handleMoreClick = () => {
-    handleLoad({ fieldName: order, limits: LIMIT, lq: lq });
+    const queryOptions = {
+      conditions: [],
+      orderBys: [{ field: order, direction: "desc" }],
+      lastQuery: lastQuery,
+      limits: LIMIT,
+    };
+    handleLoad(queryOptions);
     // 그냥 handleLoad 넣어주면 되는데 위에 options 라고 객체 넣어주기로 했으니까 파라미터에 객체방식으로 데이터를 넣어준거야
   };
 
@@ -100,50 +112,70 @@ function App() {
     //item 에서 docId 를 받아온다.
 
     //db에서 데이터 삭제(스토리지에 있는 사진 파일도 삭제, database에 있는 데이터 삭제) ==> 스토리지에 파일은 imgUrl이 , database는 docId 필요
-    // const { result, message } = await deleteDatas("foods", docId, imgUrl);
-    // if (!result) {
-    //   alert(message);
-    //   return;
-    // }
-    //삭제 성공 시 화면에 그 결과를 반영해야한다.
-    // setItems((prevItems) =>
-    //   prevItems.filter(function (item) {
-    //     return item.docId !== docId;
-    //   })
-    // );
-    dispatch(deleteItem("foods", docId, imgUrl));
+    const { result, message } = await deleteDatas("foods", docId, imgUrl);
+    if (!result) {
+      alert(message);
+      return;
+    }
+    // 삭제 성공 시 화면에 그 결과를 반영해야한다.
+    const queryOptions = {
+      conditions: [],
+      orderBys: [{ field: order, direction: "desc" }],
+      lastQuery: undefined,
+      limits: LIMIT,
+    };
+    handleLoad(queryOptions);
   };
 
-  // const handleAddSuccess = (resultData) => {
-  //   setItems((prevItems) => [resultData, ...prevItems]);
-  // };
+  const handleAddSuccess = (resultData) => {
+    const queryOptions = {
+      conditions: [],
+      orderBys: [{ field: order, direction: "desc" }],
+      lastQuery: undefined,
+      limits: LIMIT,
+    };
+    handleLoad(queryOptions);
+    // setItems((prevItems) => [resultData, ...prevItems]);
+  };
 
-  // const handleUpdateSuccess = (result) => {
-  //   setItems((prev) => {
-  //     const splitIdx = prev.findIndex((item) => item.id === result.id);
-  //     return [...prev.slice(0, splitIdx), result, ...prev.slice(splitIdx + 1)];
-  //   });
-  // };
+  const handleUpdate = (collectionName, docId, updateObj, imgUrl) => {
+    dispatch(updateItem({ collectionName, docId, updateObj, imgUrl }));
+  };
+
+  const handleUpdateSuccess = (result) => {
+    console.log(result);
+    // setItems((prev) => {
+    //   const splitIdx = prev.findIndex((item) => item.id === result.id);
+    //   return [...prev.slice(0, splitIdx), result, ...prev.slice(splitIdx + 1)];
+    // });
+  };
 
   const handleSearchChange = (e) => {
-    setSearch(e.target.value);
+    // setSearch(e.target.value);
   };
 
   const handleSearchSubmit = async (e) => {
-    e.preventDefault();
-    if (search === "") {
-      handleLoad({ fieldName: order, limits: LIMIT, lq: undefined });
-    } else {
-      const resultData = await getSearchDatas("foods", {
-        limits: LIMIT,
-        search: search,
-      });
-      setItems(resultData);
-    }
+    // e.preventDefault();
+    // if (search === "") {
+    //   handleLoad({ fieldName: order, limits: LIMIT, lq: undefined });
+    // } else {
+    //   const resultData = await getSearchDatas("foods", {
+    //     limits: LIMIT,
+    //     search: search,
+    //   });
+    //   setItems(resultData);
+    // }
   };
 
   useEffect(() => {
-    handleLoad({ fieldName: order, limits: LIMIT, lq: undefined });
+    // handleLoad({ fieldName: order, limits: LIMIT, lq: undefined });
+    const queryOptions = {
+      conditions: [],
+      orderBys: [{ field: order, direction: "desc" }],
+      lastQuery: undefined,
+      limits: LIMIT,
+    };
+    handleLoad(queryOptions);
   }, [order]);
   // 여기 fieldName:order, limits : LIMIT는 원래 getDatasByOrderLimit 함수에 파라미터로 들어가있던걸 여기로 옮기고 위에 options 라는 파라미터로 만든거뿐이야
 
@@ -181,7 +213,7 @@ function App() {
         <FoodList
           items={items}
           handleDelete={handleDelete}
-          onUpdate={updateDatas}
+          onUpdate={handleUpdate}
           onUpdateSuccess={handleUpdateSuccess}
         />
         {hasNext && (

@@ -3,31 +3,57 @@ import {
   addDatas,
   deleteDatas,
   getDatasByOrderLimit,
+  getSearchDatas,
   updateDatas,
 } from "../api/firebase";
 const foodListSlice = createSlice({
   name: "foodList",
   initialState: {
     items: [],
-    error: null,
-    // lastQuery: null,
+    loadingError: "",
     hasNext: true,
-    status: "welcome",
     search: "",
     lastQuery: null,
+    isLoading: false,
+    order: "createdAt",
   },
-  reducers: {},
+  reducers: {
+    setOrder: (state, action) => {
+      state.order = action.payload;
+    },
+    setHasNext: (state, action) => {
+      state.hasNext = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
+      .addCase(fetchItems.pending, (state, action) => {
+        state.isLoading = true;
+      })
       .addCase(fetchItems.fulfilled, (state, action) => {
         const { resultData, lastQuery } = action.payload;
-        state.items = resultData;
+        if (action.payload.isReset) {
+          state.items = resultData;
+        } else {
+          // state.items = [...state.items, ...resultData];
+          resultData.forEach((data) => {
+            state.items.push(data);
+          });
+        }
+        // if (!action.payload.lastQuery) {
+        //   state.hasNext = false;
+        // } else {
+        //   state.hasNext = true;
+        // }
+        // state.hasNext = action.payload.lastQuery ? true : false;
+        state.hasNext = !!action.payload.lastQuery;
+        // 이렇게도 쓸수 있음 ==> 부정연산자 두번한것. ()안에는 true가 나오고 ! 만나서 false가 되고 그다음 괄호 밖에 ! 만나니까 true 가 됌
         state.lastQuery = lastQuery;
-        state.status = "complete";
+        state.isLoading = false;
       })
       .addCase(fetchItems.rejected, (state, action) => {
-        state.status = "fail";
-        state.error = action.payload;
+        state.isLoading = false;
+        state.loadingError = action.payload;
       })
       .addCase(addItem.fulfilled, (state, action) => {
         state.items.push(action.payload);
@@ -43,22 +69,24 @@ const foodListSlice = createSlice({
           (item) => item.id === action.payload.id
         );
         state.items[idx] = action.payload;
+        state.isLoading = false;
       });
   },
 });
 
 const fetchItems = createAsyncThunk(
   "items/fetchItems",
-  async ({ collectionName, options }) => {
+  async ({ collectionName, queryOptions }) => {
     try {
-      const { resultData, lastQuery } = await getDatasByOrderLimit(
+      const resultData = await getDatasByOrderLimit(
         collectionName,
-        options
+        queryOptions
       );
-      console.log(lastQuery);
-      return { resultData, lastQuery };
+      resultData.isReset = !queryOptions.lastQuery ? true : false;
+      // resultData.isReset = !!queryOptions.lastQuery;
+      return resultData;
     } catch (error) {
-      console.log("FETCH Error", error);
+      return "FETCH Error: " + error;
     }
   }
 );
@@ -93,14 +121,31 @@ const deleteItem = createAsyncThunk(
 
 const updateItem = createAsyncThunk(
   "item/updateItem",
-  async ({ collectionName, docId, updateObj }) => {
+  async ({ collectionName, docId, updateObj, imgUrl }) => {
     try {
-      const resultData = await updateDatas(collectionName, docId, updateObj);
+      const resultData = await updateDatas(
+        collectionName,
+        docId,
+        updateObj,
+        imgUrl
+      );
       return resultData;
     } catch (error) {
-      console.log("update error", error);
+      return `UPDATE Error : + ${error}`;
+    }
+  }
+);
+
+const searchItem = createAsyncThunk(
+  "item/searchItem",
+  async ({ collectionName, options }) => {
+    try {
+      const resultData = await getSearchDatas(collectionName);
+    } catch (error) {
+      console.log("search error", error);
     }
   }
 );
 export default foodListSlice;
 export { fetchItems, addItem, deleteItem, updateItem };
+export const { setOrder, setHasNext } = foodListSlice.actions;
