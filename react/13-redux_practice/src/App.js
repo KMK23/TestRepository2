@@ -18,12 +18,8 @@ function Counter() {
   // const count = useSelector((state) => {
   //   return state.value;
   // });
-  const plus = useSelector((state) => {
-    return state.plus;
-  });
-  const minus = useSelector((state) => {
-    return state.minus;
-  });
+  const plus = useSelector((state) => state.plus);
+  const minus = useSelector((state) => state.minus);
   return (
     <>
       <div>
