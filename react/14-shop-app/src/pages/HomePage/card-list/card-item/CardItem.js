@@ -9,7 +9,7 @@ function CardItem({ item }) {
       <Link>
         <img src={image} />
       </Link>
-      <h5>{title}</h5>
+      <h5>{`${title.slice(0, 25)}...`}</h5>
       <div>
         <button>장바구니에 담기</button>
         <p>$ {price}</p>

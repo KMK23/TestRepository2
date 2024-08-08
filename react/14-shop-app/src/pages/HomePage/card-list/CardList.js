@@ -9,7 +9,7 @@ import productsSlice, {
 function CardList(props) {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.productsSlice);
-  const category = "Electronics";
+  const category = "";
   useEffect(() => {
     const queryOptions = {
       conditions: [
