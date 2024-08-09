@@ -1,9 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getDatas } from "../../firebase";
+import { getData, getDatas } from "../../firebase";
 
 const initialState = {
   products: [],
-  isLoadig: false,
+  isLoading: false,
   error: "",
 };
 
@@ -14,14 +14,14 @@ const productsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state, action) => {
-        state.isLoadig = true;
+        state.isLoading = true;
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
-        state.isLoadig = false;
+        state.isLoading = false;
         state.products = action.payload;
       })
       .addCase(fetchProducts.rejected, (state, action) => {
-        state.isLoadig = false;
+        state.isLoading = false;
         state.error = action.payload;
       });
   },
@@ -41,3 +41,4 @@ const fetchProducts = createAsyncThunk(
 
 export default productsSlice.reducer;
 export { fetchProducts };
+export const { itemFilter } = productsSlice.actions;

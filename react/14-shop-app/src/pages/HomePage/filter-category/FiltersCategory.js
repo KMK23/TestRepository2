@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./FiltersCategory.module.scss";
 import CategoryTab from "./category-tab/CategoryTab";
-import { CategoriesName } from "../../../store/categorys/categories";
+import { CategoriesName } from "../../../store/categories/categories";
 
 function FiltersCategory(props) {
   return (

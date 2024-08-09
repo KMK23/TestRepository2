@@ -81,4 +81,15 @@ async function getDatas(collectionName, queryOptions) {
   return resultData;
 }
 
-export { getDatas };
+async function getData(collectionName, queryOptions) {
+  const q = getQuery(collectionName, queryOptions);
+  const snapshot = await getDocs(q);
+  const doc = snapshot.docs[0];
+  const resultData = {
+    ...doc.data(),
+    docId: doc.id,
+  };
+  return resultData;
+}
+
+export { getDatas, getData };
