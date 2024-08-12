@@ -33,8 +33,17 @@ const cartSlice = createSlice({
       state.products[index].quantity += 1;
       state.products[index].total += state.products[index].price;
     },
+    degrementProduct: (state, action) => {
+      const index = state.products.findIndex(
+        (product) => product.id === action.payload
+      );
+      state.products[index].quantity = state.products[index].quantity - 1;
+      state.products[index].total =
+        state.products[index].total - state.products[index].price;
+    },
   },
 });
 
 export default cartSlice.reducer;
-export const { addToCart, getTotalPrice, incrementProduct } = cartSlice.actions;
+export const { addToCart, getTotalPrice, incrementProduct, degrementProduct } =
+  cartSlice.actions;
