@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import {
   degrementProduct,
   incrementProduct,
+  removeFromCart,
 } from "../../../../store/cart/cartSlice";
 
 function CartItem({ product }) {
@@ -15,6 +16,10 @@ function CartItem({ product }) {
   };
   const degrementCount = () => {
     dispatch(degrementProduct(product.id));
+  };
+
+  const removeItems = () => {
+    dispatch(removeFromCart(product));
   };
   return (
     <div className={styles.cart_item}>
