@@ -9,7 +9,6 @@ function CardItem({ item }) {
   const { products } = useSelector((state) => state.cartSlice);
   const productMatching = products.some((product) => product.id === item.id);
   // find, findIndex 같은 역할을 하는거야. 그래서 return 값으로 나온 조건이 같으면 true 냐 false 냐 두개로 나와
-  console.log(productMatching);
 
   const dispatch = useDispatch();
   const addItemToCart = () => {
