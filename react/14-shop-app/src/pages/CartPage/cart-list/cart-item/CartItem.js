@@ -18,9 +18,6 @@ function CartItem({ product }) {
     dispatch(degrementProduct(product.id));
   };
 
-  const removeItems = () => {
-    dispatch(removeFromCart(product));
-  };
   return (
     <div className={styles.cart_item}>
       <Link>
@@ -36,9 +33,13 @@ function CartItem({ product }) {
       </div>
       <div className={styles.cart_count}>
         <div>
-          <button onClick={degrementCount}>-</button>
+          <button disabled={product.quantity === 1} onClick={degrementCount}>
+            -
+          </button>
           <span>{product.quantity}</span>
-          <button onClick={incrementCount}>+</button>
+          <button disabled={product.quantity === 10} onClick={incrementCount}>
+            +
+          </button>
         </div>
       </div>
       <button className={styles.cart_delete}>
