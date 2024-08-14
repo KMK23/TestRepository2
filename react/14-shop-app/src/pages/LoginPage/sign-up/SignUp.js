@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Form from "../../../components/form/Form";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from "react-redux";
-import { asyncCart, getUserAuth, joinUser } from "../../../firebase";
+import { syncCart, getUserAuth, joinUser } from "../../../firebase";
 import { setUser } from "../../../store/user/userSlice";
 import { useNavigate } from "react-router-dom";
 
@@ -26,7 +26,7 @@ function SignUp(props) {
       await joinUser(user.uid, user.email);
       //회원가입 시키기
 
-      await asyncCart(user.uid, cartItems);
+      await syncCart(user.uid, cartItems);
       //이건 동기화하는것
       dispatch(
         setUser({ email: user.email, token: user.refreshToken, uid: user.uid })

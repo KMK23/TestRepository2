@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Form from "../../../components/form/Form";
 import { useDispatch } from "react-redux";
-import { asyncCart, getUserAuth } from "../../../firebase";
+import { syncCart, getUserAuth } from "../../../firebase";
 import { useNavigate } from "react-router-dom";
 import { setUser } from "../../../store/user/userSlice";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { syncCartAndStorage } from "../../../store/cart/cartSlice";
 
 function SignIn(props) {
   const [firebaseError, setFirebaseError] = useState("");
@@ -26,7 +27,9 @@ function SignIn(props) {
 
       //회원가입 시키기
 
-      await asyncCart(user.uid, cartItems);
+      // await syncCart(user.uid, cartItems);
+      dispatch(syncCartAndStorage({ uid: user.uid, cartItems }));
+
       //이건 동기화하는것
       dispatch(
         setUser({ email: user.email, token: user.refreshToken, uid: user.uid })
