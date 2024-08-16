@@ -20,8 +20,12 @@ function CartItem({ product }) {
   const deleteProduct = () => {
     if (isAuthenticated) {
       dispatch(
+        // deleteCartItem({
+        //   collectionName: ["users", uid, "cart"],
+        //   productId: product.id,
+        // })
         deleteCartItem({
-          collectionName: ["users", uid, "cart"],
+          collectionName: `users/${uid}/cart/`,
           productId: product.id,
         })
       );

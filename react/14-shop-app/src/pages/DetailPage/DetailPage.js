@@ -5,19 +5,24 @@ import { useDispatch, useSelector } from "react-redux";
 import productSlice, {
   fetchProduct,
 } from "./../../store/products/productSlice";
+import cartSlice from "../../store/cart/cartSlice";
+import productsSlice from "./../../store/products/productsSlice";
 
 function DetailPage(props) {
   const { id } = useParams();
-  const productId = Number(id);
+  // const productId = Number(id);
   const dispatch = useDispatch();
   const { product, isLoading } = useSelector((state) => state.productSlice);
-  console.log(product);
+  const { products } = useSelector((state) => state.productsSlice);
+  // console.log(product);
+  const productMatching = products.some((cartItem) => cartItem.docId === id);
 
   useEffect(() => {
-    const queryOptions = {
-      conditions: [{ field: "id", operator: "==", value: productId }],
-    };
-    dispatch(fetchProduct({ collectionName: "products", queryOptions }));
+    // const queryOptions = {
+    //   conditions: [{ field: "id", operator: "==", value: productId }],
+    // };
+    // dispatch(fetchProduct({ collectionName: "products", queryOptions }));
+    dispatch(fetchProduct({ collectionName: `/products/${id}` }));
   }, []);
 
   return (
@@ -35,7 +40,9 @@ function DetailPage(props) {
             <h4>{product?.price}</h4>
             <p>{product?.description}</p>
             <div>
-              <button>장바구니에 담기</button>
+              <button disabled={productMatching}>
+                {productMatching ? "장바구니에 담긴 제품" : "장바구니에 담기"}{" "}
+              </button>
               <Link>장바구니로 이동</Link>
             </div>
           </div>

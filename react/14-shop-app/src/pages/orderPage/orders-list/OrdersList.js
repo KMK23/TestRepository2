@@ -12,8 +12,6 @@ import CartEmpty from "./../../../components/cart-empty/CartEmpty";
 import { fetchOrder } from "../../../store/order/orderSlice";
 
 function OrdersList(props) {
-  console.log(sendOrder);
-
   const { order } = useSelector((state) => state.orderSlice);
   const dispatch = useDispatch();
   const { uid } = useSelector((state) => state.userSlice);

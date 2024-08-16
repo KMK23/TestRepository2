@@ -6,6 +6,7 @@ import {
   syncCart,
   updateTotalAndQuantity,
 } from "../../firebase";
+import { addDatasRest, deleteDatasRest, deleteDatasRestBatch } from "../../API";
 
 const initialState = {
   products: localStorage.getItem("cartProducts")
@@ -116,7 +117,7 @@ export const addCartItem = createAsyncThunk(
         (sliceProduct) => sliceProduct.id === product.id
       );
       console.log(addItem);
-      await addCart(collectionName, addItem);
+      await addDatasRest(collectionName, addItem);
     } catch (error) {}
   }
 );
@@ -142,7 +143,26 @@ export const postOrder = createAsyncThunk(
   async ({ uid, cart }, thunkAPI) => {
     try {
       //createOrder 함수 호출 (firebase에서) 파라미터는 uid, orderObj였음
-      const result = await createOrder(uid, cart);
+      console.log(cart);
+      console.log(uid);
+      // const result = await createOrder(uid, cart);
+      const orderObj = {
+        cancelYn: "N",
+        createdAt: new Date().getTime(),
+        updatedAt: new Date().getTime(),
+        ...cart,
+      };
+
+      const result = await addDatasRest(
+        `/users/${uid}/orders/${crypto.randomUUID().slice(0, 20)}`,
+        orderObj
+      );
+
+      const deleteResult = await deleteDatasRestBatch(
+        `users/${uid}/cart`,
+        cart.products
+      );
+
       if (!result) return;
       //cartSlice.products 초기화 및 로컬스토리지 초기화(sendOrder 만들었음)
       thunkAPI.dispatch(sendOrder());

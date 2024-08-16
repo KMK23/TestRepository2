@@ -17,15 +17,14 @@ function NavCartItem({ product }) {
     if (isAuthenticated) {
       dispatch(
         deleteCartItem({
-          collectionName: ["users", uid, "cart"],
-          productId: product.id,
+          collectionName: `users/${uid}/cart/`,
+          productId: product.docId,
         })
       );
     } else {
       dispatch(deleteFromCart(product.id));
     }
   };
-
   return (
     <div className={styles.nav_cart_item}>
       <Link>
