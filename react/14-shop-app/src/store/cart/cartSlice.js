@@ -159,7 +159,7 @@ export const postOrder = createAsyncThunk(
       );
 
       const deleteResult = await deleteDatasRestBatch(
-        `users/${uid}/cart`,
+        `/users/${uid}/cart/`,
         cart.products
       );
 

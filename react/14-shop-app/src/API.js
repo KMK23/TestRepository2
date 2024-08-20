@@ -96,24 +96,30 @@ export async function deleteDatasRest(url) {
 
 export async function deleteDatasRestBatch(url, dataArr) {
   try {
-    const requests = dataArr.map((item) => {
-      return {
-        delete: `projects/shop-app-3ea82/databases/(default)/documents/${url}/${item.id}`,
-      };
-    });
+    for (const item of dataArr) {
+      const response = await api.delete(`${url}${item.id}`);
+    }
+    // const requests = dataArr.map((item) => {
+    //   return {
+    //     delete: `projects/shop-app-3ea82/databases/(default)/documents/${url}/${item.id}`,
+    //   };
+    // });
 
-    const response = await api.post(
-      ":batchWrite", //==> URL 이되는거고
-      { writes: requests }, //==> requests body
-      {
-        headers: {
-          Authorization: `Bearer ${AUTH_TOKEN}`,
-        },
-      } //==> queryParameter
-    );
+    // const response = await api.post(
+    //   ":batchWrite", //==> URL 이되는거고
+    //   { writes: requests }, //==> requests body
+    //   {
+    //     headers: {
+    //       Authorization: `Bearer ${AUTH_TOKEN}`,
+    //     },
+    //   } //==> queryParameter
+    // );
     return true;
   } catch (error) {
-    console.error(error);
+    console.error(
+      "Batch delete error :",
+      error.response ? error.response.data : error.message
+    );
     return false;
   }
 }
