@@ -36,7 +36,7 @@ async function addDatas(collectionName, dataObj) {
     // const saveDoc = await doc(db, collectionName, "2");
     // console.log(`Doc(결과)${saveDoc}`);
     // const saveResult = await setDoc(saveDoc, dataObj);
-    // setDoc 은 return 이 없어서 처리를 해주어야 한다.
+    // setDoc 은 return 이 없어서 처리를 해주어야 한ㅋ다.
     // console.log(`setDoc(결과)${saveResult}`);
     // 문서 ID 자동
     const collect = await collection(db, collectionName);

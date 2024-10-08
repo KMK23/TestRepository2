@@ -1,0 +1,31 @@
+ * react 배포
+ git 
+ (https://git-scm.com/download/win)
+
+ -> Download for Windows  -> Standalone Installer -> 64-bit Git for Windows Setup. (vscode 끄고 설치!!)
+
+ -> 명령프롬프트 git --version 입력 -> git version 2.45.2.windows.1 확인
+ -> vscode 실행 -> 터미널 git --version 입력 -> git version 2.45.2.windows.1 확인
+
+ -> package.json 파일 -> github 주소!(view on Github) -> <>coded의 https 주소 복사 
+ -->package.json 파일에서 "homepage": "https://ParkGMo.github.io/D.W.-class-file/"(복사된 주소에서 앞의 양식으로 변경) 입력
+
+ -> 터미널 파일 이동 -> npm install gh-pages -> "gh-pages": "^6.1.1" 확인! 
+
+ -> npm run build -> build 폴더 생성 확인
+// 배포 전 단계 
+
+// deploy 실행 전 predeploy  실행하고 deploy는 서버에 올린다.
+-> package.json 파일 -> 
+"scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build", --> 추가
+    "deploy": "gh-pages -d build" --> 추가
+  },
+
+ * setting -> Pages -> Branch -> gh-pages선택
+
+-> npm run deploy 로 실행  -> <BrowserRouter  basename={process.env.PUBLIC_URL}>( =="homepage"주소) 작성

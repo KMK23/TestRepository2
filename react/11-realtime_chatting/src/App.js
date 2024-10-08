@@ -11,6 +11,7 @@ function App() {
   // const user = auth.currentUser;
   console.log(auth);
   const [user] = useAuthState(auth);
+
   // const [loginUser, setLoginUser] = useState(user);
   const handleLogout = () => {
     auth.signOut();

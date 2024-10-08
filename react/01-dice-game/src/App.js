@@ -57,7 +57,7 @@ function App() {
         <h1 className="App-title">주사위 게임</h1>
         <div>
           <button className="App-btn blue" onClick={handleRollClick}>
-            던질까말까
+            주사위 던지기
           </button>
           <button className="App-btn red" onClick={handleClearClick}>
             처음부터
