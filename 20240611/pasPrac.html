@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    const csvFilePath = "data.csv"; // CSV 파일 경로 수정
+    fetch(csvFilePath)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok " + response.statusText);
+        }
+        return response.text();
+      })
+      .then((data) => {
+        const jsonData = csvToJson(data);
+        console.log(jsonData); // JSON 데이터 콘솔 출력
+      })
+      .catch((error) => {
+        console.error("There was a problem with the fetch operation:", error);
+      });
+
+    // CSV를 JSON으로 변환하는 함수
+    function csvToJson(csv) {
+      const lines = csv.split("\n"); // CSV 데이터를 줄 단위로 분리
+      const headers = lines[0].split(","); // 첫 줄을 헤더로 사용
+
+      const jsonData = lines.slice(1).map((line) => {
+        const values = line.split(","); // 각 줄을 값으로 분리
+        const jsonObject = {};
+
+        headers.forEach((header, index) => {
+          jsonObject[header.trim()] = values[index]
+            ? values[index].trim()
+            : null; // 각 헤더와 값 매칭
+        });
+
+        return jsonObject;
+      });
+
+      return jsonData;
+    }
+  </script>
+</html>
